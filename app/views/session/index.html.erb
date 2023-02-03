@@ -1,0 +1,24 @@
+<div class="login-container">
+    <div class="form-signin w-100 m-auto">
+        <a href="/" class="logo">Marjobs</a>
+
+        <%= form_tag '/login' do %>
+            <div class="form-floating">
+                <%= text_field_tag :username, "", class: 'form-control', placeholder: 'Username' %>
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating">
+                <%= password_field_tag :password, "", class: 'form-control', placeholder: 'Password' %>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+
+            <%= submit_tag "Sign in", class: 'w-100 btn btn-lg btn-primary' %>
+        <% end %>
+    </div>
+</div>

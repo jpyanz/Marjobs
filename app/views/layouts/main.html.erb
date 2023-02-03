@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Marjobs</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+
+        <!-- 
+            TODO: Needed but causes error, maybe show in production?
+            <%= javascript_importmap_tags %> 
+        -->
+    </head>
+    <body>
+        <div class="container-fluid">
+        <%= render "layouts/header" %>
+        <%= yield %>
+        <%= render "layouts/footer" %>
+        </div>
+        <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+        <%= javascript_include_tag "turbo", type: "module" %>
+    </body>
+</html>
