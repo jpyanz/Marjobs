@@ -5,18 +5,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="navbar-brand d-lg-none d-xl-none" href="/">Marjobs</a>
+            <a class="navbar-brand d-lg-none d-xl-none text-center m-0" href="/">Marjobs</a>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Packages</a>
+                        <%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link" %>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <%= link_to "About Us", about_path, controller: 'about', action: 'index', class: "nav-link" %>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -33,7 +33,7 @@
                 </ul>
             </div>
 
-            <a class="navbar-brand d-none d-lg-block d-xl-block" href="/">Marjobs</a>
+            <a class="navbar-brand d-none d-lg-block d-xl-block text-center m-0" href="/">Marjobs</a>
 
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav mb-2 mb-lg-0">

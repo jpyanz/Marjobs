@@ -1,18 +1,24 @@
-<footer class="py-3 my-4 border-top">
-    <ul class="nav justify-content-center">
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Packages</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Gallery</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About Us</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
-    </ul>
+<footer class="py-3 mt-4 border-top bg-white">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <span>&copy; <a href="/" class="logo mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">Marjobs</a></span>
 
-    <div class="d-flex flex-wrap justify-content-between align-items-center">
-        <span>&copy; <a href="/" class="logo mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">Marjobs</a> 2023</span>
-
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-twitter"></i></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-square-instagram"></i></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-        </ul>
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item"><%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link px-2 text-muted" %></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Gallery</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About Us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
+                    </ul>
+                    
+                    <ul class="nav justify-content-end list-unstyled d-flex">
+                        <li class="ms-3"><a class="text-muted" href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="#" target="_blank"><i class="fa-brands fa-square-instagram"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="#" target="_blank"><i class="fa-brands fa-square-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
