@@ -1,5 +1,5 @@
 class PackagesController < ApplicationController
-  layout 'main'
+  layout 'default'
   
   def index
   end

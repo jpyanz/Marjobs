@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :authorize
 
-    layout 'main'
+    layout 'default'
     
     def index
         @users = User.all

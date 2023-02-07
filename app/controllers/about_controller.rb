@@ -1,5 +1,5 @@
 class AboutController < ApplicationController
-  layout 'main'
+  layout 'default'
   
   def index
   end

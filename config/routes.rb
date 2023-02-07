@@ -1,6 +1,4 @@
-Rails.application.routes.draw do
-  get 'about/index'
-  
+Rails.application.routes.draw do  
     root "main#index"
 
     resources :users
@@ -12,4 +10,5 @@ Rails.application.routes.draw do
 
     get '/packages', to: 'packages#index'
     get '/about', to: 'about#index'
+    get '/contact', to: 'contact#index'
 end

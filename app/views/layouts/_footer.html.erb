@@ -6,10 +6,18 @@
                     <span>&copy; <a href="/" class="logo mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">Marjobs</a></span>
 
                     <ul class="nav justify-content-center">
-                        <li class="nav-item"><%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link px-2 text-muted" %></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Gallery</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About Us</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
+                        <li class="nav-item">
+                            <%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 text-muted" href="#">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "About Us", about_path, controller: 'about', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "Contact Us", contact_path, controller: 'contact', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
                     </ul>
                     
                     <ul class="nav justify-content-end list-unstyled d-flex">
