@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-    def create
+	def create
 		@user = User.find_by(username: params[:username].downcase)
 
 		if !!@user && @user.authenticate(params[:password])
@@ -7,14 +7,15 @@ class SessionController < ApplicationController
 
 			redirect_to user_path(@user)
 		else
-			message = "Something went wrong!"
-			redirect_to login_path, notice: message
+			redirect_to login_path, notice: "Something went wrong!"
 		end
 	end
 
 	def destroy
-    	session[:user_id] = nil 
+		session.delete(:user_id)
+    	
+		@user = nil
 		
-		redirect_to login_path
+		redirect_to login_path, notice: "You have successfully logged out."
 	end
 end

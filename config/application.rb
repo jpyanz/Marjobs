@@ -19,6 +19,9 @@ module Marjobs
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.assets.paths << "#{Rails.root}/app/assets/stylesheets"
+    config.assets.paths << "#{Rails.root}/app/assets/javascripts"
+    config.assets.paths << "#{Rails.root}/app/assets/images"
     config.assets.paths << "#{Rails.root}/app/assets/videos"
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
   end

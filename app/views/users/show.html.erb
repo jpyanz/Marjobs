@@ -1,12 +1,20 @@
-<h1>Show</h1>
+<% content_for :header do %>
+<% end %>
 
-<p><%= @user.name %>: <%= @user.username %></p>
+<% content_for :footer do %>
+<% end %>
 
-<%= link_to "Edit", edit_user_path(@user), class: 'btn btn-primary' %>
+<div class="user-container">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+    </div>
 
-<%= button_to 'Delete', user_path(@user), method: :delete,
-    data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-    },  class: 'btn btn-primary'  
-%>
+    <p><%= @user.name %>: <%= @user.username %></p>
+
+    <%= button_to 'Delete', user_path(@user), method: :delete,
+        data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        },  class: 'btn btn-danger'  
+    %>
+</div>

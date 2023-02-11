@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     get '/packages', to: 'packages#index'
     get '/about', to: 'about#index'
     get '/contact', to: 'contact#index'
+    get '/gallery', to: 'gallery#index'
 end

@@ -1,3 +1,9 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
 <div class="main-container container-fluid">
     <div class="row row-cols-1">
         <div class="section-1 col">
@@ -90,7 +96,7 @@
                             <a href="#"><small>Read more...</small></a>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Posted Jan. 01, 2023</small>
+                            <small class="text-muted">Posted <%= distance_of_time_in_words(Time.now, Time.now + 15.seconds) %></small>
                         </div>
                     </div>
                 </div>
@@ -108,7 +114,7 @@
                             <a href="#"><small>Read more...</small></a>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Posted Jan. 01, 2023</small>
+                            <small class="text-muted">Posted <%= distance_of_time_in_words(Time.now, Time.now + 15.seconds) %></small>
                         </div>
                     </div>
                 </div>
@@ -126,7 +132,7 @@
                             <a href="#"><small>Read more...</small></a>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Posted Jan. 01, 2023</small>
+                            <small class="text-muted">Posted <%= distance_of_time_in_words(Time.now, Time.now + 15.seconds) %></small>
                         </div>
                     </div>
                 </div>
