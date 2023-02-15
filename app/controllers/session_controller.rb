@@ -5,7 +5,7 @@ class SessionController < ApplicationController
 		if !!@user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
 
-			redirect_to user_path(@user)
+			redirect_to albums_url
 		else
 			redirect_to login_path, notice: "Something went wrong!"
 		end

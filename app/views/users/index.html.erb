@@ -9,11 +9,14 @@
         <h1 class="h2">Users</h1>
     </div>
 
-    <ul>
+    <ol class="list-group list-group-flush list-group-numbered">
         <% @users.each do |user| %>
-            <li>
-                <%= link_to user.name+": "+user.username, user %>
+            <li class="list-group-item d-flex justify-content-between align-items-start bg-transparent">
+                <div class="ms-2 me-auto">
+                    <p class="fw-bold">Name: <%= link_to user.name, user %></p>
+                    <p class="fw-bold">Username: <%= link_to user.username, user %></p>
+                </div>
             </li>
         <% end %>
-    </ul>
+    </ol>
 </div>

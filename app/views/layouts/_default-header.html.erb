@@ -1,0 +1,64 @@
+<header class="sticky-top" role="banner">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand d-lg-none d-xl-none text-center m-0" href="/">Marjobs</a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Gallery", gallery_path, controller: 'gallery', action: 'index', class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "About Us", about_path, controller: 'about', action: 'index', class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Contact Us", contact_path, controller: 'contact', action: 'index', class: "nav-link" %>
+                    </li>
+                    <% if logged_in? %>
+                        <li class="nav-item d-lg-none d-xl-none">
+                            <%= link_to icon('fa-solid', 'right-from-bracket') +" Sign out", logout_path, method: :delete, class: 'nav-link' %>
+                        </li>
+                    <% else %>
+                        <li class="nav-item d-lg-none d-xl-none">
+                            <%= link_to icon('fa-solid', 'right-to-bracket') +" Sign in", login_path, class: 'nav-link' %>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+
+            <a class="navbar-brand d-none d-lg-block d-xl-block text-center m-0" href="/">Marjobs</a>
+
+            <div class="collapse navbar-collapse justify-content-end">
+                <% if logged_in? %>
+                    <div class="dropdown">
+                        <button class="profile-btn btn btn-link dropdown-toggle text-decoration-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg class="bd-placeholder-img rounded-circle" width="30" height="30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Profile Image" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Profile Image</title>
+                                <rect width="100%" height="100%" fill="#868e96"></rect>
+                                <text x="30%" y="50%" fill="#dee2e6" dy=".4em">JY</text>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <%= link_to icon('fa-solid', 'right-from-bracket') +" Sign out", logout_path, method: :delete, class: 'dropdown-item' %>
+                            </li>
+                        </ul>
+                    </div>
+                <% else %>
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <%= link_to icon('fa-solid', 'right-to-bracket') +" Sign in", login_path, class: 'nav-link' %>
+                        </li>
+                    </ul>
+                <% end %>
+            </div>
+        </div>
+    </nav>
+</header>

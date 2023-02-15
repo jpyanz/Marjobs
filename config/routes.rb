@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     root "main#index"
 
     resources :users
+    resources :albums
 
     get '/login', to: 'session#index'
     post '/login', to: 'session#create'
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
     get '/about', to: 'about#index'
     get '/contact', to: 'contact#index'
     get '/gallery', to: 'gallery#index'
+    get '/gallery/album/:id', to: 'gallery#album'
 end

@@ -1,0 +1,35 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="albums-container">
+	<nav class="mt-3" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Gallery</li>
+		</ol>
+	</nav>
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Albums</h1>
+    </div>
+
+	<p style="color: green"><%= notice %></p>
+
+	<div id="albums" class="mb-3">
+		<ol class="list-group list-group-flush list-group-numbered">
+			<% @albums.each do |album| %>
+				<li id="<%= dom_id album %>" class="list-group-item d-flex justify-content-between align-items-start bg-transparent">
+					<div class="ms-2 me-auto">
+						<p class="fw-bold"><%= link_to album.name, album %></p>
+						<%= album.description %>
+					</div>
+				</li>
+			<% end %>
+		</ol>	
+	</div>
+
+	<%= link_to icon('fa-solid', 'plus') +" New Album", new_album_path, class: 'btn btn-primary' %>
+</div>
+

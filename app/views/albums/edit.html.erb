@@ -1,0 +1,28 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="edit-album-container">
+    <nav class="mt-3" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><%= link_to "Gallery", albums_path %></li>
+    		<li class="breadcrumb-item active" aria-current="page">Edit Album</li>
+		</ol>
+	</nav>
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+			<%= link_to icon('fa-solid', 'angle-left'), @album %>
+			Edit Album
+		</h1>
+    </div>
+
+	<%= render "form", album: @album %>
+
+    <div class="mt-3">
+        <%= link_to "View this album", @album %> |
+        <%= link_to "Back to albums", albums_path %>
+    </div>
+</div>

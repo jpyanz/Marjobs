@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authorize
-
     layout 'dashboard'
+    before_action :authorize
     
     def index
         @users = User.all
@@ -43,7 +42,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
 
         if @user.destroy
-            redirect_to users_path, status: :see_other
+            redirect_to login_path, status: :see_other
         else
             render :show
         end

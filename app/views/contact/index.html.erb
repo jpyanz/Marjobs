@@ -1,0 +1,58 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="contact-container container-fluid">
+    <div class="row justify-content-center">
+        <div class="col col-sm-10 col-md-8 col-lg-6">
+            <h1 class="display-6 text-center my-5">Contact Us</h1>
+
+            <p><strong>Address</strong></p>
+            <address>
+                Lorem ipsum dolor sit amet<br />
+                consectetur adipiscing elit.<br />
+                pellentesque, Vitae mauris.<br />
+            </address>
+
+            <p><strong>Phone:</strong> +1234567890</p>
+
+            <p class="mb-5"><strong>E-mail:&nbsp;</strong><a href="mailto:test@test.com">test@test.com</a></p>
+
+            <%= form_tag '/login' do %>
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <div class="form-floating">
+                            <%= text_field_tag :name, "", class: 'form-control', placeholder: 'Name' %>
+                            <label for="name">Name</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating">
+                            <%= telephone_field_tag :phone, "", class: 'form-control', placeholder: 'Phone' %>
+                            <label for="name">Phone</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1">
+                    <div class="col mb-3">
+                        <div class="form-floating">
+                            <%= email_field_tag :email, "", class: 'form-control', placeholder: 'Email' %>
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <div class="form-floating">
+                            <%= text_area_tag :message, "", class: 'form-control h-25', rows: '4', placeholder: 'Message' %>
+                            <label for="message">Message</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-primary btn-lg" type="button">SEND MESSAGE</button>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

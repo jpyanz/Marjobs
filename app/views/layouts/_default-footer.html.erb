@@ -1,0 +1,32 @@
+<footer class="py-3 mt-4 border-top bg-white" role="contentinfo">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <span>&copy; <a href="/" class="logo mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">Marjobs</a></span>
+
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "Gallery", gallery_path, controller: 'gallery', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "About Us", about_path, controller: 'about', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "Contact Us", contact_path, controller: 'contact', action: 'index', class: "nav-link px-2 text-muted" %>
+                        </li>
+                    </ul>
+                    
+                    <ul class="nav justify-content-end list-unstyled d-flex">
+                        <li class="ms-3"><a class="text-muted" href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="#" target="_blank"><i class="fa-brands fa-square-instagram"></i></a></li>
+                        <li class="ms-3"><a class="text-muted" href="#" target="_blank"><i class="fa-brands fa-square-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
