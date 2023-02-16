@@ -15,7 +15,7 @@
 
     <div class="mb-3">
         <%= f.label :password, class: 'form-label' %>
-        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.password_field :password, class: 'form-control', autocomplete: 'on' %>
 
         <% user.errors.full_messages_for(:password).each do |message| %>
             <div><%= message %></div>

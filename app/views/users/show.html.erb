@@ -12,7 +12,7 @@
     <p class="fw-bold">Name: <%= @user.name %></p>
     <p class="fw-bold">Username: <%= @user.username %></p>
 
-    <div class="btn-group mb-3" role="group" aria-label="User controls">
+    <div class="mb-3">
         <%= link_to "Users", users_path, class: 'btn btn-primary' %>
         <%= link_to "Create", new_user_path, class: 'btn btn-primary' %>
         <%= link_to "Edit", edit_user_path(@current_user), class: 'btn btn-primary' %>

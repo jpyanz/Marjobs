@@ -44,6 +44,7 @@ class AlbumsController < ApplicationController
 
 	def destroy
 		@album.destroy
+		@album.images.purge
 
 		respond_to do |format|
 			format.html { redirect_to albums_path, notice: "Album was successfully deleted." }

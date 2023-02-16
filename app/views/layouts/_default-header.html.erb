@@ -47,6 +47,9 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
+                                <%= link_to "Dashboard", albums_path, method: :delete, class: 'dropdown-item' %>
+                            </li>
+                            <li>
                                 <%= link_to icon('fa-solid', 'right-from-bracket') +" Sign out", logout_path, method: :delete, class: 'dropdown-item' %>
                             </li>
                         </ul>
