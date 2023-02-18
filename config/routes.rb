@@ -10,8 +10,10 @@ Rails.application.routes.draw do
     post '/logout', to: 'session#destroy'
 
     get '/packages', to: 'packages#index'
+    post '/packages/checkout', to: 'packages#checkout'
     get '/about', to: 'about#index'
     get '/contact', to: 'contact#index'
+    post '/contact', to: 'contact#index'
     get '/gallery', to: 'gallery#index'
     get '/gallery/album/:id', to: 'gallery#album'
 end

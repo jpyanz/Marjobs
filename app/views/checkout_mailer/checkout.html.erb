@@ -1,0 +1,19 @@
+<h1>Order from <%= @name %></h1>
+
+<p><strong>Package: </strong> <%= @package %></p>
+<p><strong>Date: </strong> <%= @date %></p>
+<p><strong>Name: </strong> <%= @name %></p>
+<p><strong>Phone: </strong> +63<%= @phone %></p>
+<p><strong>Email: </strong> <%= @email %></p>
+<p><strong>Venue: </strong> <%= @venue %></p>
+
+<p><strong>Addons: </strong></p>
+<ol>
+    <% for addon in @addons %>
+        <% if addon.to_s != '0' %>
+            <li><%= addon %></li>
+        <% end %>
+    <% end %>
+</ol>
+
+<a href="#">View Order</a>
