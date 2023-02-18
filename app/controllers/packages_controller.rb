@@ -23,8 +23,11 @@ class PackagesController < ApplicationController
 			params[:addon9]
 		]
 
-		CheckoutMailer.checkout(package, date, name, phone, email, venue, addons).deliver
+		#CheckoutMailer.checkout(package, date, name, phone, email, venue, addons).deliver
 
-		redirect_to packages_path
+		redirect_to packages_confirmation_path
     end
+
+	def confirmation
+	end
 end
