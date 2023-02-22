@@ -6,15 +6,16 @@ class Album < ApplicationRecord
     validate :image_type
 
     private
-        def image_type
-            if images.attached? == false
-                errors.add(:images, "are missing!")
-            end
+    
+    def image_type
+        if images.attached? == false
+            errors.add(:images, "are missing!")
+        end
 
-            images.each do |img|
-                if !img.content_type.in?(%('image/jpeg image/png'))
-                    errors.add(:images, "needs to be JPEG or PNG")
-                end
+        images.each do |img|
+            if !img.content_type.in?(%('image/jpeg image/png'))
+                errors.add(:images, "needs to be JPEG or PNG")
             end
         end
+    end
 end

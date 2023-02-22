@@ -1,0 +1,115 @@
+<%= form_with(model: booking) do |form| %>
+  	<% if booking.errors.any? %>
+		<div style="color: red">
+			<h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+			<ul>
+				<% booking.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+  	<% end %>
+
+	<div class="row">
+		<div class="col-6">
+			<div class="mb-3">
+				<%= form.label "package", class: 'form-label fw-bold' do %>
+					Package<small class="text-danger">*</small>
+				<% end %>
+
+				<%= form.select :package, [
+					["ANDROMEDA", "Andromeda"], 
+					["AQUILA", "Aquila"], 
+					["CASSEIOPEIA", "Casseiopeia"], 
+					["ORION", "Orion"]
+				], 
+				{ include_blank: "Select your package" }, 
+				{ class: "form-control", required: true } %>
+			</div>
+		</div>
+		<div class="col-6">
+			<%= form.label :date, class: 'form-label fw-bold' do %>
+				Date<small class="text-danger">*</small>
+			<% end %>
+			<%= form.date_field :date, class: 'form-control', required: true %>
+		</div>
+	</div>
+	<div class="mb-3">
+		<%= form.label :name, class: 'form-label fw-bold' do %>
+			Name<small class="text-danger">*</small>
+		<% end %>
+		<%= form.text_field :name, class: 'form-control', required: true %>
+	</div>
+	<div class="mb-3">
+		<%= form.label :phone, class: 'form-label fw-bold' do %>
+			Phone<small class="text-danger">*</small>
+		<% end %>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="phone">+63</span>
+			<%= form.number_field :phone, class: 'form-control', min: 0, onKeyPress: 'if(this.value.length==10) return false;', required: true %>
+		</div>
+	</div>
+	<div class="mb-3">
+		<%= form.label :email, class: 'form-label fw-bold' do %>
+			Email<small class="text-danger">*</small>
+		<% end %>
+		<%= form.email_field :email, class: 'form-control', required: true %>
+	</div>
+	<div class="mb-3">
+		<%= form.label :venue, class: 'form-label fw-bold' do %>
+			Venue<small class="text-danger">*</small>
+		<% end %>
+		<%= form.text_area :venue, class: 'form-control', rows: '3', placeholder: 'Venue address', required: true %>
+	</div>
+	<div class="mb-3">
+		<p class="form-label fw-bold">Add-ons</p>
+	</div>
+
+	
+
+	<div class="row">
+		<div class="col-6">
+			<div class="form-check">
+				<%= form.check_box 'addon1', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[1].to_s != '0' : ''}, "10 Pages Album" %>
+				<%= form.label 'addon1', "10 Pages Album", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon2', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[2].to_s != '0' : ''}, "20 Pages Album" %>
+				<%= form.label 'addon2', "20 Pages Album", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon3', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[3].to_s != '0' : ''}, "40 Pages Album" %>
+				<%= form.label 'addon3', "40 Pages Album", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon4', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[4].to_s != '0' : ''}, "16x20 Frame" %>
+				<%= form.label 'addon4', "16x20 Frame", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon5', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[5].to_s != '0' : ''}, "11x14 Frame" %>
+				<%= form.label 'addon5', "11x14 Frame", class: 'form-check-label' %>
+			</div>
+		</div>
+		<div class="col-6">
+			<div class="form-check">
+				<%= form.check_box 'addon6', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[6].to_s != '0' : ''}, "Photographer" %>
+				<%= form.label 'addon6', "Photographer", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon7', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[7].to_s != '0' : ''}, "Videographer" %>
+				<%= form.label 'addon7', "Videographer", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon8', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[8].to_s != '0' : ''}, "Same Day Edit Video" %>
+				<%= form.label 'addon8', "Same Day Edit Video", class: 'form-check-label' %>
+			</div>
+			<div class="form-check">
+				<%= form.check_box 'addon9', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[9].to_s != '0' : ''}, "Same Day Edit Photo" %>
+				<%= form.label 'addon9', "Same Day Edit Photo", class: 'form-check-label' %>
+			</div>
+		</div>
+	</div>
+	
+ 	<%= form.submit btn_title, class: 'w-100 btn btn-lg btn-primary mt-3' %>
+<% end %>

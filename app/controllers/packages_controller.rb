@@ -1,33 +1,49 @@
 class PackagesController < ApplicationController
     layout 'default'
-  
+	
     def index
     end
 
-    def checkout
-		package = params[:package]
-		date = params[:date]
-		name = params[:name]
-		phone = params[:phone]
-		email = params[:email]
-		venue = params[:venue]
-		addons = [
-			params[:addon1],
-			params[:addon2],
-			params[:addon3],
-			params[:addon4],
-			params[:addon5],
-			params[:addon6],
-			params[:addon7],
-			params[:addon8],
-			params[:addon9]
-		]
+	def checkout
+		@booking = Booking.new
+    end
 
-		#CheckoutMailer.checkout(package, date, name, phone, email, venue, addons).deliver
+    def book		
+		@booking = Booking.new(booking_params)
 
-		redirect_to packages_confirmation_path
+		@booking.addons = {
+			1 => params[:booking]['addon1'],
+			2 => params[:booking]['addon2'],
+			3 => params[:booking]['addon3'],
+			4 => params[:booking]['addon4'],
+			5 => params[:booking]['addon5'],
+			6 => params[:booking]['addon6'],
+			7 => params[:booking]['addon7'],
+			8 => params[:booking]['addon8'],
+			9 => params[:booking]['addon9']
+		}
+
+		respond_to do |format|
+		  if @booking.save
+			
+			CheckoutMailer.checkout(booking_params, @booking.addons).deliver
+			
+			format.html { redirect_to packages_confirmation_path }
+			format.json { render :confirmation, status: :created, location: @booking }
+		  else
+			format.html { render :checkout, status: :unprocessable_entity }
+			format.json { render json: @booking.errors, status: :unprocessable_entity }
+		  end
+		end
     end
 
 	def confirmation
+	end
+
+	private
+
+	# Only allow a list of trusted parameters through.
+    def booking_params
+		params.require(:booking).permit(:package, :date, :name, :phone, :email, :venue, addons: {})
 	end
 end

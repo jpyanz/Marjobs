@@ -1,8 +1,10 @@
 Rails.application.routes.draw do  
+  
     root "main#index"
 
     resources :users
     resources :albums
+    resources :bookings
 
     get '/login', to: 'session#index'
     post '/login', to: 'session#create'
@@ -10,7 +12,8 @@ Rails.application.routes.draw do
     post '/logout', to: 'session#destroy'
 
     get '/packages', to: 'packages#index'
-    post '/packages/checkout', to: 'packages#checkout'
+    get '/packages/checkout', to: 'packages#checkout'
+    post '/packages/book', to: 'packages#book'
     get '/packages/confirmation', to: 'packages#confirmation'
 
     get '/about', to: 'about#index'

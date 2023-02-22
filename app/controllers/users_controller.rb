@@ -48,6 +48,8 @@ class UsersController < ApplicationController
         end
     end
 
+    private
+
     def current_user
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
@@ -55,9 +57,8 @@ class UsersController < ApplicationController
     def authorize
         redirect_to login_path unless current_user
     end
-    
-    private
-        def user_params
-            params.require(:user).permit(:name, :username, :password)
-        end
+
+    def user_params
+        params.require(:user).permit(:name, :username, :password)
+    end
 end

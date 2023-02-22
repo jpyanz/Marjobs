@@ -1,11 +1,11 @@
 class GalleryController < ApplicationController
-  layout 'default'
+	layout 'default'
 
-  def index
-    @albums = Album.all
-  end
+	def index
+		@albums = Album.all
+	end
 
-  def album
-      @album = Album.find(params[:id])
-  end
+	def album
+		@album = Album.find(params[:id])
+	end
 end

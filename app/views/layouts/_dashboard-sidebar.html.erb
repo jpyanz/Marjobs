@@ -2,7 +2,7 @@
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="#" class="nav-link"><%= icon('fa-solid', 'cart-shopping') %> Orders</a>
+                <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'photo-film') +" Gallery", albums_path, class: "nav-link" %>

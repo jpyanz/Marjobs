@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  package: MyString
+  date: 2023-02-19
+  name: MyString
+  phone: 1
+  email: MyText
+  venue: MyText
+  addons: MyText
+
+two:
+  package: MyString
+  date: 2023-02-19
+  name: MyString
+  phone: 1
+  email: MyText
+  venue: MyText
+  addons: MyText

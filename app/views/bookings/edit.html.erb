@@ -1,0 +1,28 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="edit-booking-container">
+    <nav class="mt-3" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><%= link_to "Booking", bookings_path %></li>
+    		<li class="breadcrumb-item active" aria-current="page">Edit Album</li>
+		</ol>
+	</nav>
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+			<%= link_to icon('fa-solid', 'angle-left'), @booking %>
+			Edit Booking
+		</h1>
+    </div>
+
+	<%= render "form", booking: @booking, btn_title: 'EDIT' %>
+
+    <div class="mt-3">
+        <%= link_to "View this booking", @booking %> |
+        <%= link_to "Back to bookings", bookings_path %>
+    </div>
+</div>

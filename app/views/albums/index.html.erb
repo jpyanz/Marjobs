@@ -11,8 +11,9 @@
 		</ol>
 	</nav>
 
-    <div class="pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Albums</h1>
+	<div class="pt-3 pb-2 mb-3 border-bottom d-flex justify-content-between">
+        <h1 class="h2 mb-0">Albums</h1>
+		<%= link_to icon('fa-solid', 'plus') +" New Album", new_album_path, class: 'btn btn-success' %>
     </div>
 
 	<p style="color: green"><%= notice %></p>
@@ -29,7 +30,4 @@
 			<% end %>
 		</ol>	
 	</div>
-
-	<%= link_to icon('fa-solid', 'plus') +" New Album", new_album_path, class: 'btn btn-primary' %>
 </div>
-

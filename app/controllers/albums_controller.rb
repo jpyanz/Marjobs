@@ -1,7 +1,8 @@
 class AlbumsController < ApplicationController
 	layout 'dashboard'
+	before_action :authorize
 	before_action :set_album, only: %i[ show edit update destroy ]
-
+	
 	def index
 		@albums = Album.all
 	end
@@ -53,13 +54,22 @@ class AlbumsController < ApplicationController
 	end
 
 	private
-		# Run this on before_action
-		def set_album
-			@album = Album.find(params[:id])
-		end
 
-		# Only allow a list of trusted parameters through.
-		def album_params
-			params.require(:album).permit(:name, :description, images: [])
-		end
+	def current_user
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    end
+
+    def authorize
+        redirect_to login_path unless current_user
+    end
+
+	# Run this on before_action
+	def set_album
+		@album = Album.find(params[:id])
+	end
+
+	# Only allow a list of trusted parameters through.
+	def album_params
+		params.require(:album).permit(:name, :description, images: [])
+	end
 end

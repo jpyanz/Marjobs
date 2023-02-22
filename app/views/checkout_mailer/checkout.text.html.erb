@@ -8,13 +8,16 @@
 <p><strong>Email: </strong> <%= @email %></p>
 <p><strong>Venue: </strong> <%= @venue %></p>
 
-<p><strong>Addons: </strong></p>
-<ol>
-    <% for addon in @addons %>
-        <% if addon.to_s != '0' %>
-            <li><%= addon %></li>
+<% if @addons.values.all?{|i| i.to_s != '0'} %>
+    <p><strong>Addons: </strong></p>
+
+    <ol>
+        <% @addons.each do |key, value| %>
+            <% if value.to_s != '0' %>
+                <li><%= value %></li>
+            <% end %>
         <% end %>
-    <% end %>
-</ol>
+    </ol>
+<% end %>
 
 <a href="#">View Order</a>
