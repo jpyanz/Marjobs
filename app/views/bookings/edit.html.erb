@@ -21,8 +21,9 @@
 
 	<%= render "form", booking: @booking, btn_title: 'EDIT' %>
 
-    <div class="mt-3">
-        <%= link_to "View this booking", @booking %> |
+	<div class="hstack gap-1 mt-3">
+		<%= link_to "View this booking", @booking %> 
+		<div class="vr"></div>
         <%= link_to "Back to bookings", bookings_path %>
-    </div>
+	</div>
 </div>
