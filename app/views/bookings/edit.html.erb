@@ -14,7 +14,7 @@
 
     <div class="pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
-			<%= link_to icon('fa-solid', 'angle-left'), @booking %>
+			<%= link_to icon('fa-solid', 'angle-left'), bookings_path %>
 			Edit Booking
 		</h1>
     </div>
@@ -22,8 +22,6 @@
 	<%= render "form", booking: @booking, btn_title: 'EDIT' %>
 
 	<div class="hstack gap-1 mt-3">
-		<%= link_to "View this booking", @booking %> 
-		<div class="vr"></div>
         <%= link_to "Back to bookings", bookings_path %>
 	</div>
 </div>

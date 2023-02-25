@@ -10,16 +10,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <%= link_to "Packages", packages_path, controller: 'packages', action: 'index', class: "nav-link" %>
+                        <%= link_to "Packages", packages_path, class: "nav-link" %>
                     </li>
                     <li class="nav-item">
-                        <%= link_to "Gallery", gallery_path, controller: 'gallery', action: 'index', class: "nav-link" %>
+                        <%= link_to "Gallery", gallery_path, class: "nav-link" %>
                     </li>
                     <li class="nav-item">
-                        <%= link_to "About Us", about_path, controller: 'about', action: 'index', class: "nav-link" %>
+                        <%= link_to "About Us", about_path, class: "nav-link" %>
                     </li>
                     <li class="nav-item">
-                        <%= link_to "Contact Us", contact_path, controller: 'contact', action: 'index', class: "nav-link" %>
+                        <%= link_to "Contact Us", contact_us_path, class: "nav-link" %>
                     </li>
                     <% if logged_in? %>
                         <li class="nav-item d-lg-none d-xl-none">

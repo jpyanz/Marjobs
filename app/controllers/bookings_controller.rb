@@ -50,7 +50,6 @@ class BookingsController < ApplicationController
 
 	# PATCH/PUT /bookings/1 or /bookings/1.json
 	def update
-		
 		@booking.addons = {
 			1 => params[:booking]['addon1'],
 			2 => params[:booking]['addon2'],
@@ -65,7 +64,7 @@ class BookingsController < ApplicationController
 
 		respond_to do |format|
 			if @booking.update(booking_params)
-				format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
+				format.html { redirect_to bookings_url, notice: "Booking was successfully updated." }
 				format.json { render :show, status: :ok, location: @booking }
 			else
 				format.html { render :edit, status: :unprocessable_entity }

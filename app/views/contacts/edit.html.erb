@@ -1,0 +1,27 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="edit-contact-container">
+    <nav class="mt-3" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><%= link_to "Messages", contacts_path %></li>
+    		<li class="breadcrumb-item active" aria-current="page">Edit Message</li>
+		</ol>
+	</nav>
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+			<%= link_to icon('fa-solid', 'angle-left'), contacts_path %>
+			Edit Message
+		</h1>
+    </div>
+
+	<%= render "form", contact: @contact, btn_title: 'EDIT' %>
+
+	<div class="hstack gap-1 mt-3">
+        <%= link_to "Back to messages", contacts_path %>
+	</div>
+</div>

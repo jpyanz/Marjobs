@@ -1,0 +1,49 @@
+<%= form_with(model: contact) do |form| %>
+	<% if contact.errors.any? %>
+		<div style="color: red">
+			<h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+			<ul>
+				<% contact.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="row">
+		<div class="col-12 col-sm-6">
+			<div class="mb-3">
+				<%= form.label :name, class: 'form-label fw-bold' do %>
+					Name<small class="text-danger">*</small>
+				<% end %>
+
+				<%= form.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6">
+			<%= form.label :phone, class: 'form-label fw-bold' do %>
+				Phone<small class="text-danger">*</small>
+			<% end %>
+
+			<%= form.number_field :phone, class: 'form-control', min: 0, placeholder: :phone, onKeyPress: 'if(this.value.length==15) return false;', required: true %>
+		</div>
+	</div>
+	<div class="mb-3">
+		<%= form.label :email, class: 'form-label fw-bold' do %>
+			Email<small class="text-danger">*</small>
+		<% end %>
+
+		<%= form.email_field :email, class: 'form-control', placeholder: :email, required: true %>
+	</div>
+
+	<div class="mb-3">
+		<%= form.label :message, class: 'form-label fw-bold' do %>
+			Message<small class="text-danger">*</small>
+		<% end %>
+
+		<%= form.text_area :message, class: 'form-control h-25', rows: '5', placeholder: "Message", required: true %>
+	</div>
+
+	<%= form.submit btn_title, class: 'w-100 btn btn-lg btn-primary mt-3' %>
+<% end %>

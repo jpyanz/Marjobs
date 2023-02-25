@@ -65,8 +65,17 @@
 							</ol>
 						</td>
 						<td><%= booking.status.nil? || booking.status == "Pending" ? "Pending" : "Done" %></td>
-						<td class="text-center">
-							<%= link_to icon('fa-solid', 'eye') +" View", booking, class: 'btn btn-primary btn-sm' %>
+						<td>
+							<div class="d-flex justify-content-center">
+								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_booking_path(booking), class: 'btn btn-link btn-sm text-decoration-none' %>
+								<%= button_to icon('fa-solid', 'trash') +" Delete", booking,
+									method: :delete, 
+									data: {
+										turbo_method: :delete,
+										turbo_confirm: "Are you sure?"
+									},  
+									class: 'btn btn-danger btn-sm' %>
+							</div>
 						</td>
 					</tr>
 				<% end %>

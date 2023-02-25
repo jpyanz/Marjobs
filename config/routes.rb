@@ -1,10 +1,10 @@
 Rails.application.routes.draw do  
-  
     root "main#index"
 
     resources :users
     resources :albums
     resources :bookings
+    resources :contacts
 
     get '/login', to: 'session#index'
     post '/login', to: 'session#create'
@@ -13,13 +13,13 @@ Rails.application.routes.draw do
 
     get '/packages', to: 'packages#index'
     get '/packages/checkout', to: 'packages#checkout'
-    post '/packages/book', to: 'packages#book'
+    post '/packages/create', to: 'packages#create'
     get '/packages/confirmation', to: 'packages#confirmation'
 
     get '/about', to: 'about#index'
 
-    get '/contact', to: 'contact#index'
-    post '/contact/submit', to: 'contact#submit'
+    get '/contact-us', to: 'contact_us#index'
+    post '/contact-us/create', to: 'contact_us#create'
     
     get '/gallery', to: 'gallery#index'
     get '/gallery/album/:id', to: 'gallery#album'
