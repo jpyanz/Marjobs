@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
 	before_action :set_album, only: %i[ show edit update destroy ]
 	
 	def index
-		@albums = Album.all
+		@albums = Album.all.order("created_at DESC")
 	end
 
 	def show

@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
 
 	# GET /contacts or /contacts.json
 	def index
-		@contacts = Contact.all
+		@contacts = Contact.all.order("created_at DESC")
 	end
 
 	# GET /contacts/1 or /contacts/1.json
@@ -54,7 +54,7 @@ class ContactsController < ApplicationController
 		@contact.destroy
 
 		respond_to do |format|
-			format.html { redirect_to contacts_url, notice: "Contact was successfully destroyed." }
+			format.html { redirect_to contacts_url, notice: "Contact was successfully deleted." }
 			format.json { head :no_content }
 		end
 	end

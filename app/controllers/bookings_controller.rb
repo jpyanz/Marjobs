@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
 
 	# GET /bookings or /bookings.json
 	def index
-		@bookings = Booking.all
+		@bookings = Booking.all.order("created_at DESC")
 	end
 
 	# GET /bookings/1 or /bookings/1.json
@@ -78,7 +78,7 @@ class BookingsController < ApplicationController
 		@booking.destroy
 
 		respond_to do |format|
-			format.html { redirect_to bookings_path, notice: "Booking was successfully destroyed." }
+			format.html { redirect_to bookings_path, notice: "Booking was successfully deleted." }
 			format.json { head :no_content }
 		end
 	end
