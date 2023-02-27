@@ -32,6 +32,22 @@
 		</div>
 	</div>
 
-	<%= form.submit "UPLOAD", class: 'w-100 btn btn-lg btn-primary' %>
-  <div>
+	<%= form.submit "UPLOAD", class: 'w-100 btn btn-lg btn-primary mb-5' %>
+
+	<% form.object.images.each do |image| %>
+		<figure class="figure position-relative mx-3">
+			<%= link_to  icon('fa-solid', 'xmark') , 
+				album_delete_image_path(@album, image.id), 
+				method: :delete, 
+              	data: {
+					turbo_method: :delete,
+					turbo_confirm: "Are you sure?"
+				},  
+				class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle'
+  			%>
+		
+			<%= link_to image_tag(image.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
+			<figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
+		</figure>
+ 	<% end %>
 <% end %>
