@@ -53,6 +53,14 @@ class AlbumsController < ApplicationController
 		end
 	end
 
+	def delete_image
+		@album = Album.find(params[:album_id])
+		@image = ActiveStorage::Attachment.find(params[:id])
+	  	@image.purge
+
+		redirect_to edit_album_path(@album), notice: "Image was successfully deleted." 
+	end
+
 	private
 
 	def current_user
