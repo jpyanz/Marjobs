@@ -1,13 +1,12 @@
 class Album < ApplicationRecord
-    has_many_attached :images do |attachable|
-        attachable.variant :thumb, resize_to_limit: [300, 300]
-    end
+    has_many_attached :images
+    has_many :comments
     validates :name, presence: true
-    validate :image_type
+    validate :upload_check
 
     private
     
-    def image_type
+    def upload_check
         if images.attached? == false
             errors.add(:images, "are missing!")
         end

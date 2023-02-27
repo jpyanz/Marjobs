@@ -1,4 +1,9 @@
 <% content_for :header do %>
+    <style>
+        .custom-tooltip {
+            --bs-tooltip-bg: var(--bs-primary);
+        }
+    </style>
 <% end %>
 
 <% content_for :footer do %>
@@ -8,25 +13,14 @@
     <script>
         $(function() 
         {
+            const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
             var $grid = $('.grid').imagesLoaded( function()
             {
                 $grid.masonry({
                     percentPosition: true
                 });
-            });
-
-            $('#previewViewer').on('show.bs.modal', function (event) 
-            {
-                var button = $(event.relatedTarget),
-                    img_url = $('img', button).prop('src'),
-                    modal_body = $('.modal-body', this);
-                
-                modal_body.empty();
-                
-                $('<img />',
-                { 
-                    src: img_url,
-                }).appendTo(modal_body);
             });
         });
     </script>
@@ -47,41 +41,50 @@
         </h1>
     </div>
 
-    <p style="color: green"><%= notice %></p>
+    <% if notice.present? %>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="toast align-items-center show text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <%= notice %>
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    <% end %>
 
 	<div id="<%= dom_id @album %>">
-		<p><strong>Name: </strong><%= @album.name %></p>
-    	<p><strong>Description: </strong><%= @album.description %></p>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p class="mb-0"><strong>Name: </strong><%= @album.name %></p>
+                <p><strong>Description: </strong><%= @album.description %></p>            
+            </div>
+            <%= button_to icon('fa-solid', 'trash') +" Delete", @album,
+                method: :delete, 
+                data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                },  
+                class: 'btn btn-danger btn-sm' %>
+        </div>
 
 		<div class="row grid">
-			<% @album.images.each do |image| %>
-				<div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
-					<a href="#previewViewer" data-bs-toggle="modal">
-						<%= image_tag image, loading: 'lazy', class: 'img-thumbnail' %>
-					</a>
-				</div>
-			<% end %>
+			 <% if @album.images.attached? %>
+                <% @album.images.each do |image| %>
+                    <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <figure class="figure mb-0">
+                            <%= link_to image_tag(image, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
+                            <figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
+                        </figure>
+                    </div>
+                <% end %>
+            <% end %>
 		</div>
   	</div>
 
     <div class="my-3">
 		<%= link_to "Edit this album", edit_album_path(@album) %> |
 		<%= link_to "Back to albums", albums_path %>
-  		<%= button_to icon('fa-solid', 'trash') +" Delete this album", @album, method: :delete, class: 'btn btn-danger mt-3' %>
 	</div>
-
-	<section class="modal fade" id="previewViewer" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modalTitle">Preview</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex justify-content-center align-items-center"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>

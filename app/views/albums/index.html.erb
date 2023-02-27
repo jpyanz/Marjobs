@@ -16,14 +16,25 @@
 		<%= link_to icon('fa-solid', 'plus') +" New Album", new_album_path, class: 'btn btn-success' %>
     </div>
 
-	<p style="color: green"><%= notice %></p>
-
+	<% if notice.present? %>
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="toast align-items-center show text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <%= notice %>
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    <% end %>
+	
 	<div id="albums" class="mb-3">
 		<ol class="list-group list-group-flush list-group-numbered">
 			<% @albums.each do |album| %>
 				<li id="<%= dom_id album %>" class="list-group-item d-flex justify-content-between align-items-start bg-transparent">
 					<div class="ms-2 me-auto">
-						<p class="fw-bold"><%= link_to album.name, album %></p>
+						<p class="fw-bold mb-0"><%= link_to album.name, album %></p>
 						<%= album.description %>
 					</div>
 				</li>

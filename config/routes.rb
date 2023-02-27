@@ -1,10 +1,11 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do    
     root "main#index"
 
-    resources :users
-    resources :albums
-    resources :bookings
-    resources :contacts
+    resources :users, :bookings, :contacts, :albums, :comments
+
+    resources :albums do 
+        resources :comments
+    end
 
     get '/login', to: 'session#index'
     post '/login', to: 'session#create'
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
     post '/contact-us/create', to: 'contact_us#create'
     
     get '/gallery', to: 'gallery#index'
-    get '/gallery/album/:id', to: 'gallery#album'
+    get '/gallery/show/:id', to: 'gallery#show', as: 'gallery_show'
 end
