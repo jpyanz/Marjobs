@@ -4,13 +4,17 @@
 			color: #fff;
 			border: none;
 			font-size: 10px;
-			padding: 2px 5px;
+			padding: 1px 5px;
 			z-index: 1;
 		}
 	</style>
 <% end %>
 
 <% content_for :footer do %>
+	<script>
+		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+	</script>
 <% end %>
 
 <div class="edit-album-container">

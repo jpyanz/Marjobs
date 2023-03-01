@@ -54,7 +54,7 @@
 						<td><%= booking.name %></td>
 						<td><%= phone_to booking.phone, "+63"+ booking.phone.to_s %></td>
 						<td><%= mail_to booking.email, booking.email %></td>
-						<td><%= booking.venue %></td>
+						<td><%= sanitize(booking.venue) %></td>
 						<td>
 							<ol>
 								<% booking.addons.each do |key, value| %>

@@ -48,7 +48,7 @@
 						<td><%= contact.name %></td>
 						<td><%= phone_to contact.phone, contact.phone %></td>
 						<td><%= mail_to contact.email, contact.email %></td>
-						<td><%= contact.message %></td>
+						<td><%= sanitize(contact.message) %></td>
 						<td>
 							<div class="vstack text-center">
 								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_contact_path(contact), class: 'btn btn-secondary btn-sm mb-1' %>

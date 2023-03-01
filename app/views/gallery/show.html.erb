@@ -1,9 +1,7 @@
 <% content_for :header do %>
     <style>
         .album-container .created-date { font-size: 12px; }
-        .album-container .add-comment-text { font-size: 30px; }
-
-        .custom-tooltip { --bs-tooltip-bg: var(--bs-primary); }
+        .album-container .add-comment-text { font-size: 25px; }
     </style>
 <% end %>
 
@@ -14,9 +12,6 @@
     <script>
         $(function() 
         {
-            const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
             const $grid = $('.grid').imagesLoaded(function()
             {
                 $grid.masonry({
@@ -41,8 +36,7 @@
             <% @album.images.each do |image| %>
                 <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
                     <figure class="figure mb-0">
-                        <%= link_to image_tag(image, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
-                        <figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
+                        <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
                     </figure>
                 </div>
             <% end %>
@@ -54,21 +48,25 @@
         
         <div class="row justify-content-center">
             <div class="col col-sm-8">
-                <% @album.comments.where(:status => 'Public').each do |comment| %>
-                    <div class="d-flex">
-                        <div class="flex-shrink-0 d-flex align-items-center">
-                            <span class="rounded-circle text-bg-secondary p-3"><%= icon('fa-solid fa-2xl', 'user') %></span>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, comment.created_at + 50.minutes) %></i></span></h5>
-                            <p><%= comment.body %></p>
-                        </div>
-                    </div>
-                <% end %>
+                <ul class="list-group list-group-flush">
+                    <% @album.comments.where(:status => 'Public').each do |comment| %>
+                        <li class="list-group-item bg-transparent">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 d-flex align-items-center">
+                                    <span class="rounded-circle text-bg-secondary p-3"><%= icon('fa-solid fa-2xl', 'user') %></span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, comment.created_at + 50.minutes) %></i></span></h5>
+                                    <p><%= comment.body %></p>
+                                </div>
+                            </div>
+                        </li>
+                    <% end %>
+                </ul>
             </div>        
         </div>
 
-        <h2 class="add-comment-text my-5 text-center">Add a comment</h2>
+        <h3 class="add-comment-text my-5 text-center">Add a comment</h3>
         <div class="row justify-content-center">
             <div class="col col-sm-8">
                 <%= form_with model: [ @album, @album.comments.build ] do |form| %>
@@ -81,10 +79,10 @@
                         <%= form.text_area :body, rows: '5', class: 'form-control' %>
                     </div>
                     
-                    <%= form.hidden_field :status, value: 'public' %>
+                    <%= form.hidden_field :status, value: 'Public' %>
                     <%= form.hidden_field :album_id, value: request.fullpath.split("/").last %>
 
-                    <div class="text-center">
+                    <div class="d-grid gap-2">
                         <%= form.submit 'Submit', :class => 'btn btn-primary btn-lg' %>
                     </div>
                 <% end %>
