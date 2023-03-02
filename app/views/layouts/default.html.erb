@@ -34,6 +34,17 @@
         <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "turbo", type: "module" %>
 
+        <script>
+            (function($) 
+            {
+                $(document).bind("contextmenu", function (e)
+                {
+                    return false;
+                });
+                
+            })(jQuery);            
+        </script>
+
         <%= yield :footer if content_for? :footer %>
     </body>
 </html>

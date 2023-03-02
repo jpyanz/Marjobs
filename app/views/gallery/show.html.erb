@@ -36,7 +36,11 @@
             <% @album.images.each do |image| %>
                 <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
                     <figure class="figure mb-0">
-                        <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                        <% if image.content_type.include?("image") %>
+                            <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                        <% else %>
+                            <%= video_tag url_for(image), size: "300x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+                        <% end %>
                     </figure>
                 </div>
             <% end %>
@@ -67,6 +71,7 @@
         </div>
 
         <h3 class="add-comment-text my-5 text-center">Add a comment</h3>
+        
         <div class="row justify-content-center">
             <div class="col col-sm-8">
                 <%= form_with model: [ @album, @album.comments.build ] do |form| %>
