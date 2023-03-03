@@ -81,7 +81,7 @@
                             <% if image.content_type.include?("image") %>
                                 <%= link_to image_tag(image, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
                             <% else %>
-                                <%= video_tag url_for(image), size: "300x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+                                <%= video_tag url_for(image), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
                             <% end %>
                             <figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
                         </figure>

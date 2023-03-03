@@ -47,7 +47,7 @@
 								<% if image.content_type.include?("image") %>
 									<%= link_to image_tag(image.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(image), target: :_blank %>
 								<% else %>
-									<%= video_tag url_for(image), size: "300x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+									<%= video_tag url_for(image), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
 								<% end %>
 								
 								<figcaption class="figure-caption"><%= image.blob.filename %></figcaption>

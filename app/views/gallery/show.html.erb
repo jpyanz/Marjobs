@@ -2,6 +2,8 @@
     <style>
         .album-container .created-date { font-size: 12px; }
         .album-container .add-comment-text { font-size: 25px; }
+        .album-container video { width: 100%; }
+        .album-container *:focus { outline: none !important; }
     </style>
 <% end %>
 
@@ -12,12 +14,16 @@
     <script>
         $(function() 
         {
-            const $grid = $('.grid').imagesLoaded(function()
+            $('.grid', '.album-container container-fluid').each(function() 
             {
-                $grid.masonry({
-                    percentPosition: true
+                const $grid = $(this).imagesLoaded(function()
+                {
+                    $grid.masonry({
+                        percentPosition: true
+                    });
                 });
             });
+            
         });
     </script>
 <% end %>
@@ -31,20 +37,55 @@
             </div>
         </div>
     </section>
-    <div class="row grid">
-        <% if @album.images.attached? %>
-            <% @album.images.each do |image| %>
-                <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <figure class="figure mb-0">
-                        <% if image.content_type.include?("image") %>
-                            <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
-                        <% else %>
-                            <%= video_tag url_for(image), size: "300x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
-                        <% end %>
-                    </figure>
-                </div>
-            <% end %>
-        <% end %>
+    <nav>
+        <div class="nav nav-tabs" role="tablist">
+            <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+            <button class="nav-link" id="nav-photos-tab" data-bs-toggle="tab" data-bs-target="#photos" type="button" role="tab" aria-controls="photos" aria-selected="false">Photos</button>
+            <button class="nav-link" id="nav-videos-tab" data-bs-toggle="tab" data-bs-target="#videos" type="button" role="tab" aria-controls="videos" aria-selected="false">Videos</button>
+        </div>
+    </nav>
+    <div class="tab-content">
+        <div class="tab-pane fade show active p-5" id="all" role="tabpanel" aria-labelledby="nav-all-tab" tabindex="0">
+            <div class="row grid">
+                <% @album.images.each do |image| %>
+                    <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <figure class="figure mb-0">
+                            <% if image.content_type.include?("image") %>
+                                <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                            <% else %>
+                                <%= video_tag url_for(image), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img' %>	
+                            <% end %>
+                        </figure>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="tab-pane fade p-5" id="photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="0">
+            <div class="row grid">
+                <% @album.images.each do |image| %>
+                    <% if image.content_type.include?("image") %>
+                        <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
+                            <figure class="figure mb-0">
+                                <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                            </figure>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <div class="tab-pane fade p-5" id="videos" role="tabpanel" aria-labelledby="nav-videos-tab" tabindex="0">
+            <div class="row grid">
+                <% @album.images.each do |image| %>
+                    <% if image.content_type.include?("video") %>
+                        <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
+                            <figure class="figure mb-0">
+                                <%= video_tag url_for(image), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img' %>	
+                            </figure>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
     </div>
 
     <section class="comments">
@@ -71,7 +112,7 @@
         </div>
 
         <h3 class="add-comment-text my-5 text-center">Add a comment</h3>
-        
+
         <div class="row justify-content-center">
             <div class="col col-sm-8">
                 <%= form_with model: [ @album, @album.comments.build ] do |form| %>
