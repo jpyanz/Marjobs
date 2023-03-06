@@ -11,7 +11,7 @@ class SessionController < ApplicationController
 
 			redirect_to bookings_url
 		else
-			redirect_to login_path, notice: "Something went wrong!"
+			redirect_to login_path, notice: "You have entered an invalid username or password"
 		end
 	end
 

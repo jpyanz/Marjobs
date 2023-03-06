@@ -12,42 +12,83 @@
 	<% end %>
 
 	<div class="mb-3">
-		<%= form.label 'Title', class: 'form-label' %>
+		<%= form.label 'Title', class: 'form-label fw-bold' %>
 		<%= form.text_field :name, class: 'form-control', placeholder: 'Title' %>
 	</div>
 
 	<div class="mb-3">
-		<%= form.label :description, class: 'form-label' %>
+		<%= form.label :description, class: 'form-label fw-bold' %>
 		<%= form.text_area :description, class: 'form-control', rows: '5', placeholder: 'Description' %>
 	</div>
 
 	<div class="mb-3">
-		<%= form.label :images, 'Attach Files' %>
+		<%= form.label :images, 'Attach Files', class: 'form-label fw-bold' %>
 
 		<div class="border-dashed rounded p-5 text-center">
-			<h3>Upload your images</h3>
-			<small class="text-muted d-block mb-5">JPG and PNG files are allowed</small>
+			<h3>Upload your Files</h3>
+			<small class="text-muted d-block mb-5">only JPG, PNG, GIF and MP4 files are allowed</small>
+
+			<% if album.images.attached? %>
+					<% album.images.each do |image| %>
+						<% if !image.id.nil? %>
+							<figure class="figure position-relative mx-3">
+								<%= link_to icon('fa-solid', 'xmark'), 
+									album_delete_image_path(@album, image.id), 
+									method: :delete, 
+									data: {
+										turbo_method: :delete,
+										turbo_confirm: "Are you sure?"
+									},  
+									:"data-bs-toggle" => "tooltip", 
+									:"data-bs-title" => "Delete",
+									class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle'
+								%>
+							
+								<% if image.content_type.include?("image") %>
+									<%= link_to image_tag(image.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(image), target: :_blank %>
+								<% else %>
+									<%= video_tag url_for(image), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+								<% end %>
+								
+								<figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
+							</figure>
+						<% end %>
+					<% end %>
+			<% end %>
 
 			<%= form.file_field :images, multiple: true, class: 'form-control' %>
 		</div>
 	</div>
 
-	<%= form.submit "UPLOAD", class: 'w-100 btn btn-lg btn-primary mb-5' %>
+	<div class="mb-3">
+		<%= form.label :thumbnail, 'Thumbnail', class: 'form-label fw-bold' %>
 
-	<% form.object.images.each do |image| %>
-		<figure class="figure position-relative mx-3">
-			<%= link_to  icon('fa-solid', 'xmark') , 
-				album_delete_image_path(@album, image.id), 
-				method: :delete, 
-              	data: {
-					turbo_method: :delete,
-					turbo_confirm: "Are you sure?"
-				},  
-				class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle'
-  			%>
-		
-			<%= link_to image_tag(image.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
-			<figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
-		</figure>
- 	<% end %>
+		<div class="border-dashed rounded p-5 text-center">
+			<h3>Upload your Thumbnail</h3>
+			<small class="text-muted d-block mb-5">only image file is allowed</small>
+
+			<% if album.thumbnail.attached? && !album.thumbnail.id.nil? %>
+				<figure class="figure position-relative mx-3">
+					<%= link_to icon('fa-solid', 'xmark'), 
+						album_delete_thumbnail_path(@album, album.thumbnail.id),
+						method: :delete, 
+						data: {
+							turbo_method: :delete,
+							turbo_confirm: "Are you sure?"
+						},  
+						:"data-bs-toggle" => "tooltip", 
+						:"data-bs-title" => "Delete",
+						class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle' 
+					%>
+
+					<%= link_to image_tag(album.thumbnail.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(form.object.thumbnail), target: :_blank %>
+					<figcaption class="figure-caption"><%= album.thumbnail.blob.filename %></figcaption>
+				</figure>
+			<% end %>
+			
+			<%= form.file_field :thumbnail, class: 'form-control' %>
+		</div>
+	</div>
+
+	<%= form.submit "UPLOAD", class: 'w-100 btn btn-lg btn-primary' %>
 <% end %>

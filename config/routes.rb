@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         resources :comments
 
         resources :delete_image, to: 'albums#delete_image'
+        resources :delete_thumbnail, to: 'albums#delete_thumbnail'
     end
 
     get '/login', to: 'session#index'

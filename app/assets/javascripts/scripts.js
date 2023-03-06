@@ -1,7 +1,6 @@
 (function($) 
 {
-	var init = function()
-	{ }
+	var init = function() {}
 	
 	init();
 	

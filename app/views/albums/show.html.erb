@@ -71,7 +71,6 @@
                     },  
                     class: 'btn btn-danger btn-sm' %>
             </div>
-            
         </div>
 
 		<div class="row grid">
@@ -79,7 +78,11 @@
                 <% @album.images.each do |image| %>
                     <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
                         <figure class="figure mb-0">
-                            <%= link_to image_tag(image, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
+                            <% if image.content_type.include?("image") %>
+                                <%= link_to image_tag(image, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
+                            <% else %>
+                                <%= video_tag url_for(image), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+                            <% end %>
                             <figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
                         </figure>
                     </div>
