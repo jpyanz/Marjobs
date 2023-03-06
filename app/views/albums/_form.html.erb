@@ -28,8 +28,8 @@
 			<h3>Upload your Files</h3>
 			<small class="text-muted d-block mb-5">only JPG, PNG, GIF and MP4 files are allowed</small>
 
-			<% if form.object.images.attached? %>
-					<% form.object.images.each do |image| %>
+			<% if album.images.attached? %>
+					<% album.images.each do |image| %>
 						<% if !image.id.nil? %>
 							<figure class="figure position-relative mx-3">
 								<%= link_to icon('fa-solid', 'xmark'), 
@@ -67,10 +67,10 @@
 			<h3>Upload your Thumbnail</h3>
 			<small class="text-muted d-block mb-5">only image file is allowed</small>
 
-			<% if form.object.thumbnail.attached? && !form.object.thumbnail.id.nil? %>
+			<% if album.thumbnail.attached? && !album.thumbnail.id.nil? %>
 				<figure class="figure position-relative mx-3">
 					<%= link_to icon('fa-solid', 'xmark'), 
-						album_delete_thumbnail_path(@album, form.object.thumbnail.id),
+						album_delete_thumbnail_path(@album, album.thumbnail.id),
 						method: :delete, 
 						data: {
 							turbo_method: :delete,
@@ -80,9 +80,9 @@
 						:"data-bs-title" => "Delete",
 						class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle' 
 					%>
-				
-					<%= link_to image_tag(form.object.thumbnail.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(form.object.thumbnail), target: :_blank %>
-					<figcaption class="figure-caption"><%= form.object.thumbnail.blob.filename %></figcaption>
+
+					<%= link_to image_tag(album.thumbnail.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(form.object.thumbnail), target: :_blank %>
+					<figcaption class="figure-caption"><%= album.thumbnail.blob.filename %></figcaption>
 				</figure>
 			<% end %>
 			

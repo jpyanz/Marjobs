@@ -1,11 +1,13 @@
 <div class="login-container">
-    <div class="flash">
-        <% flash.each do |name, value| %>
-            <p><%= value %></p>
-        <% end %>
-    </div>
     <div class="form-signin w-100 m-auto">
         <a href="/" class="logo">Marjobs</a>
+
+        <% if flash[:notice] %>
+            <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
+                <strong><%= flash[:notice] %></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% end %>
 
         <%= form_tag '/login' do %>
             <div class="form-floating">
