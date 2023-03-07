@@ -53,12 +53,12 @@ class AlbumsController < ApplicationController
 		end
 	end
 
-	def delete_image
+	def delete_file
 		@album = Album.find(params[:album_id])
 		@image = ActiveStorage::Attachment.find(params[:id])
 	  	@image.purge
 
-		redirect_to edit_album_path(@album), notice: "Image was successfully deleted." 
+		redirect_to edit_album_path(@album), notice: "File was successfully deleted." 
 	end
 
 	def delete_thumbnail
@@ -86,6 +86,6 @@ class AlbumsController < ApplicationController
 
 	# Only allow a list of trusted parameters through.
 	def album_params
-		params.require(:album).permit(:name, :description, :thumbnail, images: [])
+		params.require(:album).permit(:title, :description, :thumbnail, files: [])
 	end
 end

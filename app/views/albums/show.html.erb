@@ -57,7 +57,7 @@
 	<div id="<%= dom_id @album %>">
         <div class="d-flex justify-content-between">
             <div>
-                <p class="mb-0"><strong>Name: </strong><%= @album.name %></p>
+                <p class="mb-0"><strong>Title: </strong><%= @album.title %></p>
                 <p><strong>Description: </strong><%= @album.description %></p>            
             </div>
             <div class="hstack gap-2">
@@ -74,16 +74,16 @@
         </div>
 
 		<div class="row grid">
-			 <% if @album.images.attached? %>
-                <% @album.images.each do |image| %>
+			 <% if @album.files.attached? %>
+                <% @album.files.each do |file| %>
                     <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
                         <figure class="figure mb-0">
-                            <% if image.content_type.include?("image") %>
-                                <%= link_to image_tag(image, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => image.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(image), target: :_blank %>
+                            <% if file.content_type.include?("image") %>
+                                <%= link_to image_tag(file, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => file.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(file), target: :_blank %>
                             <% else %>
-                                <%= video_tag url_for(image), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+                                <%= video_tag url_for(file), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
                             <% end %>
-                            <figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
+                            <figcaption class="figure-caption"><%= file.blob.filename %></figcaption>
                         </figure>
                     </div>
                 <% end %>

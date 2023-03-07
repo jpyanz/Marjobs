@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :albums do 
         resources :comments
 
-        resources :delete_image, to: 'albums#delete_image'
+        resources :delete_file, to: 'albums#delete_file'
         resources :delete_thumbnail, to: 'albums#delete_thumbnail'
     end
 

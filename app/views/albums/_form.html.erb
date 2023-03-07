@@ -12,8 +12,8 @@
 	<% end %>
 
 	<div class="mb-3">
-		<%= form.label 'Title', class: 'form-label fw-bold' %>
-		<%= form.text_field :name, class: 'form-control', placeholder: 'Title' %>
+		<%= form.label :title, class: 'form-label fw-bold' %>
+		<%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
 	</div>
 
 	<div class="mb-3">
@@ -22,18 +22,18 @@
 	</div>
 
 	<div class="mb-3">
-		<%= form.label :images, 'Attach Files', class: 'form-label fw-bold' %>
+		<%= form.label :files, 'Attach Files', class: 'form-label fw-bold' %>
 
 		<div class="border-dashed rounded p-5 text-center">
 			<h3>Upload your Files</h3>
 			<small class="text-muted d-block mb-5">only JPG, PNG, GIF and MP4 files are allowed</small>
 
-			<% if album.images.attached? %>
-					<% album.images.each do |image| %>
-						<% if !image.id.nil? %>
+			<% if album.files.attached? %>
+					<% album.files.each do |file| %>
+						<% if !file.id.nil? %>
 							<figure class="figure position-relative mx-3">
 								<%= link_to icon('fa-solid', 'xmark'), 
-									album_delete_image_path(@album, image.id), 
+									album_delete_file_path(@album, file.id), 
 									method: :delete, 
 									data: {
 										turbo_method: :delete,
@@ -44,19 +44,19 @@
 									class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle'
 								%>
 							
-								<% if image.content_type.include?("image") %>
-									<%= link_to image_tag(image.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(image), target: :_blank %>
+								<% if file.content_type.include?("image") %>
+									<%= link_to image_tag(file.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(file), target: :_blank %>
 								<% else %>
-									<%= video_tag url_for(image), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+									<%= video_tag url_for(file), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
 								<% end %>
 								
-								<figcaption class="figure-caption"><%= image.blob.filename %></figcaption>
+								<figcaption class="figure-caption"><%= file.blob.filename %></figcaption>
 							</figure>
 						<% end %>
 					<% end %>
 			<% end %>
 
-			<%= form.file_field :images, multiple: true, class: 'form-control' %>
+			<%= form.file_field :files, multiple: true, class: 'form-control' %>
 		</div>
 	</div>
 

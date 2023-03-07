@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180409) do
   end
 
   create_table "albums", force: :cascade do |t|
-    t.text "name"
+    t.text "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,9 +54,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180409) do
     t.text "email"
     t.text "venue"
     t.text "addons"
+    t.text "string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status"
   end
 
   create_table "comments", force: :cascade do |t|
