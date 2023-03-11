@@ -2,7 +2,8 @@ class AlbumsController < ApplicationController
 	layout 'dashboard'
 	before_action :authorize
 	before_action :set_album, only: %i[ show edit update destroy ]
-	
+	before_action :set_categories, only: %i[ show new edit create ]
+
 	def index
 		@albums = Album.all.order("created_at DESC")
 	end
@@ -45,7 +46,7 @@ class AlbumsController < ApplicationController
 
 	def destroy
 		@album.destroy
-		@album.images.purge
+		@album.files.purge
 
 		respond_to do |format|
 			format.html { redirect_to albums_path, notice: "Album was successfully deleted." }
@@ -84,8 +85,12 @@ class AlbumsController < ApplicationController
 		@album = Album.find(params[:id])
 	end
 
+	def set_categories
+		@categories_array = Category.all.map { |category| [category.category] }
+	end
+
 	# Only allow a list of trusted parameters through.
 	def album_params
-		params.require(:album).permit(:title, :description, :thumbnail, files: [])
+		params.require(:album).permit(:title, :description, :thumbnail, :category, files: [])
 	end
 end

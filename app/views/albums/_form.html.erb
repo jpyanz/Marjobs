@@ -11,10 +11,22 @@
 		</div>
 	<% end %>
 
-	<div class="mb-3">
-		<%= form.label :title, class: 'form-label fw-bold' %>
-		<%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
+	<div class="row">
+		<div class="col mb-3">
+			<%= form.label :title, class: 'form-label fw-bold' %>
+			<%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
+		</div>
+		<% if @categories_array.present? %>
+			<div class="col mb-3">
+				<%= form.label :category, class: 'form-label fw-bold' %>
+
+				<%= form.select :category, options_for_select(@categories_array, album.category), 
+				{ include_blank: "Select a category" }, 
+				{ class: "form-control", required: false } %>
+			</div>
+		<% end %>
 	</div>
+	
 
 	<div class="mb-3">
 		<%= form.label :description, class: 'form-label fw-bold' %>

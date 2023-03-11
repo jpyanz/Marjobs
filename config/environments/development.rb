@@ -84,4 +84,6 @@ Rails.application.configure do
   config.action_view.preload_links_header = false
 
   config.active_storage.replace_on_assign_to_many = false
+
+  config.serve_static_assets = false
 end

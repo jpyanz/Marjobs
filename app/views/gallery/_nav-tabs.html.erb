@@ -12,7 +12,7 @@
                     <%= form.text_field :query, placeholder: 'search', class: 'form-control' %>
                 <% end %>         
                 
-                <%= form.submit "Search", class: 'btn btn-outline-secondary' %>
+                <%= form.submit "Search", name: nil, class: 'btn btn-outline-secondary' %>
             </div>
         <% end %>
     </div>
@@ -23,7 +23,7 @@
         <div class="row grid">
             <% @album.files.each do |file| %>
                 <% if(params.has_key?(:query)) %>
-                    <% if file.filename.to_s.include?(params[:query]) %>
+                    <% if file.filename.to_s.downcase.include?(params[:query].downcase) %>
                         <div class="col col-sm-4 col-md-3 mb-4">
                             <figure class="figure mb-0 w-100">
                                 <% if file.image? %>
@@ -56,7 +56,7 @@
         <div class="row grid">
             <% @album.files.each do |file| %>
                 <% if(params.has_key?(:query)) %>
-                    <% if file.filename.to_s.include?(params[:query]) %>
+                    <% if file.filename.to_s.downcase.include?(params[:query].downcase) %>
                         <% if file.image? %>
                             <div class="col col-sm-4 col-md-3 mb-4">
                                 <figure class="figure mb-0 w-100">
@@ -81,7 +81,7 @@
         <div class="row grid">
             <% @album.files.each do |file| %>
                 <% if(params.has_key?(:query)) %>
-                    <% if file.filename.to_s.include?(params[:query]) %>
+                    <% if file.filename.to_s.downcase.include?(params[:query].downcase) %>
                         <% if file.video? %>
                             <div class="col col-sm-4 col-md-3 mb-4">
                                 <figure class="figure mb-0 w-100">

@@ -9,7 +9,7 @@
         <%= csp_meta_tag %>
 
         <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
-        <%= stylesheet_link_tag "dashboard", media: "all", "data-turbo-track": "reload" %>
+        <%= stylesheet_link_tag "dashboard", media: "all", "data-turbo-track": "reload" %>        
 
         <!-- 
             TODO: Needed but causes error, maybe show in production?
@@ -41,7 +41,7 @@
         
         <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "turbo", type: "module" %>
-
+        
         <%= yield :footer if content_for? :footer %>
     </body>
 </html>

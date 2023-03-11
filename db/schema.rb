@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_180409) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_10_170818) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180409) do
   create_table "albums", force: :cascade do |t|
     t.text "title"
     t.text "description"
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,7 +55,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180409) do
     t.text "email"
     t.text "venue"
     t.text "addons"
-    t.text "string"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

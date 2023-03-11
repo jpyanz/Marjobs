@@ -5,7 +5,10 @@
                 <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: current_page?('/bookings') ? 'nav-link active' : 'nav-link' %>
             </li>
             <li class="nav-item">
-                <%= link_to icon('fa-solid', 'photo-film') +" Gallery", albums_path, class: current_page?('/albums') ? 'nav-link active' : 'nav-link' %>
+                <%= link_to icon('fa-solid', 'photo-film') +" Galleries", albums_path, class: current_page?('/albums') ? 'nav-link active' : 'nav-link' %>
+            </li>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'object-group') +" Categories", categories_path, class: current_page?('/categories') ? 'nav-link active' : 'nav-link' %>
             </li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'comments') +" Comments", comments_path, class: current_page?('/comments') ? 'nav-link active' : 'nav-link' %>

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do    
     root "main#index"
 
-    resources :users, :bookings, :contacts, :albums, :comments
+    resources :users, :bookings, :contacts, :albums, :comments, :categories
 
     resources :albums do 
         resources :comments
-
+      
         resources :delete_file, to: 'albums#delete_file'
         resources :delete_thumbnail, to: 'albums#delete_thumbnail'
     end

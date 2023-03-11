@@ -58,7 +58,11 @@
         <div class="d-flex justify-content-between">
             <div>
                 <p class="mb-0"><strong>Title: </strong><%= @album.title %></p>
-                <p><strong>Description: </strong><%= @album.description %></p>            
+                <p class="mb-0"><strong>Description: </strong><%= @album.description %></p>
+
+                <% if @album.category.present? %>
+                    <p class="mb-0"><strong>Category: </strong><%= @album.category %></p>
+		        <% end %>
             </div>
             <div class="hstack gap-2">
                 <%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_album_path(@album), class: 'btn btn-secondary btn-sm' %>
@@ -73,15 +77,15 @@
             </div>
         </div>
 
-		<div class="row grid">
+		<div class="row grid mt-5">
 			 <% if @album.files.attached? %>
                 <% @album.files.each do |file| %>
                     <div class="col col-sm-6 col-md-4 col-lg-3 mb-4">
                         <figure class="figure mb-0">
-                            <% if file.content_type.include?("image") %>
+                            <% if file.image? %>
                                 <%= link_to image_tag(file, loading: 'lazy', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => file.blob.filename, :"data-bs-custom-class" => "custom-tooltip"), url_for(file), target: :_blank %>
                             <% else %>
-                                <%= video_tag url_for(file), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+                                <%= video_tag url_for(file), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img', :"data-bs-toggle" => "tooltip", :"data-bs-title" => file.blob.filename, :"data-bs-custom-class" => "custom-tooltip" %>	
                             <% end %>
                             <figcaption class="figure-caption"><%= file.blob.filename %></figcaption>
                         </figure>

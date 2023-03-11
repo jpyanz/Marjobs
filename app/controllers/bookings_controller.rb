@@ -3,25 +3,17 @@ class BookingsController < ApplicationController
 	before_action :authorize
 	before_action :set_booking, only: %i[ show edit update destroy ]
 
-	# GET /bookings or /bookings.json
 	def index
 		@bookings = Booking.all.order("created_at DESC")
 	end
 
-	# GET /bookings/1 or /bookings/1.json
-	def show
-	end
-
-	# GET /bookings/new
 	def new
 		@booking = Booking.new
 	end
 
-	# GET /bookings/1/edit
 	def edit
 	end
 
-	# POST /bookings or /bookings.json
 	def create
 		@booking = Booking.new(booking_params)
 
@@ -48,7 +40,6 @@ class BookingsController < ApplicationController
 		end
 	end
 
-	# PATCH/PUT /bookings/1 or /bookings/1.json
 	def update
 		@booking.addons = {
 			1 => params[:booking]['addon1'],
@@ -73,7 +64,6 @@ class BookingsController < ApplicationController
 		end
 	end
 
-	# DELETE /bookings/1 or /bookings/1.json
 	def destroy
 		@booking.destroy
 
@@ -93,12 +83,10 @@ class BookingsController < ApplicationController
 		redirect_to login_path unless current_user
 	end
 
-	# Use callbacks to share common setup or constraints between actions.
 	def set_booking
 		@booking = Booking.find(params[:id])
 	end
-
-	# Only allow a list of trusted parameters through.
+	
 	def booking_params
 		params.require(:booking).permit(:package, :date, :name, :phone, :email, :venue, :status, addons: {})
 	end
