@@ -1,7 +1,7 @@
 Rails.application.routes.draw do    
     root "main#index"
 
-    resources :users, :bookings, :contacts, :albums, :comments, :categories
+    resources :users, :bookings, :contacts, :comments, :categories
 
     resources :albums do 
         resources :comments
@@ -15,10 +15,10 @@ Rails.application.routes.draw do
     get '/logout', to: 'session#destroy'
     post '/logout', to: 'session#destroy'
 
-    get '/packages', to: 'packages#index'
-    get '/packages/checkout', to: 'packages#checkout'
-    post '/packages/create', to: 'packages#create'
-    get '/packages/confirmation', to: 'packages#confirmation'
+    get '/checkout', to: 'checkout#index'
+    get '/checkout/new', to: 'checkout#new'
+    post '/checkout/create', to: 'checkout#create'
+    get '/checkout/confirmation', to: 'checkout#confirmation'
 
     get '/about', to: 'about#index'
 

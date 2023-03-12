@@ -12,9 +12,12 @@
 
 <% content_for :footer do %>
 	<script>
-		const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-		const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-	</script>
+        $(function() 
+        {
+            const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        });
+    </script>
 <% end %>
 
 <div class="edit-album-container">
