@@ -1,0 +1,19 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="packages-confirmation-container container-fluid">
+    <div class="row justify-content-center">
+        <div class="col col-md-8 text-center">
+            <h3 class="my-5">Your order has been received</h3>
+
+            <%= icon('fa-solid', 'circle-check', class: 'text-success fs-1 mb-3') %>
+            <p class="lead">Thank you for your purchase!</p>
+            <p>We will contact you for more details.</p>
+
+            <%= link_to 'Back', checkout_path, class: 'btn btn-primary mt-3' %>
+        </div>
+    </div>
+</div>

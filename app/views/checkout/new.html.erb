@@ -1,0 +1,125 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="packages-confirmation-container container-fluid">
+    <div class="row justify-content-center">
+        <div class="col col-md-8">
+            <h1 class="display-6 text-center my-5">Checkout</h1>
+            
+            <%= form_with(model: @booking, url: '/checkout/create', id: 'checkout') do |form| %>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <div class="mb-3">
+                            <%= form.label :package, class: 'form-label fw-bold' do %>
+                                Package<small class="text-danger">*</small>
+                            <% end %>
+
+                            <%= form.select :package, [
+                                ["ANDROMEDA", "Andromeda"], 
+                                ["AQUILA", "Aquila"], 
+                                ["CASSEIOPEIA", "Casseiopeia"], 
+                                ["ORION", "Orion"]
+                            ], 
+                            { include_blank: "Select your package" }, 
+                            { class: "form-control", required: true } %>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <%= form.label :date, class: 'form-label fw-bold' do %>
+                            Date<small class="text-danger">*</small>
+                        <% end %>
+                        <%= form.date_field :date, class: 'form-control', required: true %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-4">
+                        <div class="mb-3">
+                            <%= form.label :name, class: 'form-label fw-bold' do %>
+                                Name<small class="text-danger">*</small>
+                            <% end %>
+                            <%= form.text_field :name, class: 'form-control', required: true %>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="mb-3">
+                            <%= form.label :phone, class: 'form-label fw-bold' do %>
+                                Phone<small class="text-danger">*</small>
+                            <% end %>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="phone">+63</span>
+                                <%= form.number_field :phone, class: 'form-control', min: 0, onKeyPress: 'if(this.value.length==10) return false;', required: true %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="mb-3">
+                            <%= form.label :email, class: 'form-label fw-bold' do %>
+                                Email<small class="text-danger">*</small>
+                            <% end %>
+                            <%= form.email_field :email, class: 'form-control', required: true %>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <%= form.label :venue, class: 'form-label fw-bold' do %>
+                        Venue<small class="text-danger">*</small>
+                    <% end %>
+                    <%= form.text_area :venue, class: 'form-control', rows: '5', placeholder: 'Venue address', required: true %>
+                </div>
+                <div class="mb-3">
+                    <p class="form-label fw-bold">Add-ons</p>
+                </div>
+                <div class="row">
+                    <div class="col col-sm-6">
+                        <div class="form-check">
+                            <%= form.check_box 'addon1', {:class => "form-check-input"}, "10 Pages Album" %>
+                            <%= form.label 'addon1', "10 Pages Album", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon2', {:class => "form-check-input"}, "20 Pages Album" %>
+                            <%= form.label 'addon2', "20 Pages Album", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon3', {:class => "form-check-input"}, "40 Pages Album" %>
+                            <%= form.label 'addon3', "40 Pages Album", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon4', {:class => "form-check-input"}, "16x20 Frame" %>
+                            <%= form.label 'addon4', "16x20 Frame", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon5', {:class => "form-check-input"}, "11x14 Frame" %>
+                            <%= form.label 'addon5', "11x14 Frame", class: 'form-check-label' %>
+                        </div>
+                    </div>
+                    <div class="col col-sm-6">
+                        <div class="form-check">
+                            <%= form.check_box 'addon6', {:class => "form-check-input"}, "Photographer" %>
+                            <%= form.label 'addon6', "Photographer", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon7', {:class => "form-check-input"}, "Videographer" %>
+                            <%= form.label 'addon7', "Videographer", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon8', {:class => "form-check-input"}, "Same Day Edit Video" %>
+                            <%= form.label 'addon8', "Same Day Edit Video", class: 'form-check-label' %>
+                        </div>
+                        <div class="form-check">
+                            <%= form.check_box 'addon9', {:class => "form-check-input"}, "Same Day Edit Photo" %>
+                            <%= form.label 'addon9', "Same Day Edit Photo", class: 'form-check-label' %>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <%= form.button nil, class: "btn btn-primary btn-lg" do %>
+                        <%= icon('fa-solid', 'cart-shopping') %> BOOK
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
