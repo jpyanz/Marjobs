@@ -7,10 +7,16 @@
 
 <% content_for :footer do %>
     <script>
-        if($.trim($('#cards', '.gallery-container').html()).length == 0)
+        window.onload = function ()
         {
-            $('.error', '.gallery-container').removeClass('d-none');
-        }
+            $(function() 
+            {
+                if($.trim($('#cards', '.gallery-container').html()).length == 0)
+                {
+                    $('.error', '.gallery-container').removeClass('d-none');
+                }
+            });
+        };
     </script>
 <% end %>
 
@@ -57,14 +63,16 @@
                             <%= icon('fa-solid', 'search') %> Search
                         <% end %>
                         
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><%= icon('fa-solid', 'filter') %> Filter</button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><h6 class="dropdown-header">Categories</h6></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <% @categories.each do |category| %>
-                                <li><a class="dropdown-item" href="?category=<%= category.category.downcase %>"><%= category.category %></a></li>
-                            <% end %>
-                        </ul>
+                        <% if @categories.present? %>
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><%= icon('fa-solid', 'filter') %> Filter</button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><h6 class="dropdown-header">Categories</h6></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <% @categories.each do |category| %>
+                                    <li><a class="dropdown-item" href="?category=<%= category.category.downcase %>"><%= category.category %></a></li>
+                                <% end %>
+                            </ul>
+                        <% end %>
                     </div>
                 <% end %>
             </div>

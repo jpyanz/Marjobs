@@ -17,12 +17,7 @@
                                 Package<small class="text-danger">*</small>
                             <% end %>
 
-                            <%= form.select :package, [
-                                ["ANDROMEDA", "Andromeda"], 
-                                ["AQUILA", "Aquila"], 
-                                ["CASSEIOPEIA", "Casseiopeia"], 
-                                ["ORION", "Orion"]
-                            ], 
+                            <%= form.select :package, options_for_select(@packages_array, @booking.package), 
                             { include_blank: "Select your package" }, 
                             { class: "form-control", required: true } %>
                         </div>

@@ -2,10 +2,12 @@ class CheckoutController < ApplicationController
     layout 'default'
 	
     def index
+		@packages = Package.all
     end
 
 	def new
 		@booking = Booking.new
+		@packages_array = Package.all.map { |package| [package.name] }
     end
 
     def create		
