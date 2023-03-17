@@ -1,7 +1,7 @@
 <% content_for :header do %>
 <% end %>
 
-<% content_for :footer do %>
+<% content_for :footer do %>	
 <% end %>
 
 <div class="packages-container">
@@ -34,8 +34,8 @@
 						<th scope="row"><%= i %></th>
 						<td><%= package.name %></td>
 						<td><%= number_to_currency(package.price.to_f, unit: '₱') %></td>
-						<td><%= package.description %></td>
-						<td><%= package.freebies %></td>
+						<td><%= sanitize package.description, attributes: %w(class style href) %></td>
+						<td><%= sanitize package.freebies, attributes: %w(class style href) %></td>
 						<td class="text-end">
 							<div class="btn-group" role="group">
 								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_package_path(package), class: 'btn btn-secondary btn-sm text-nowrap' %>

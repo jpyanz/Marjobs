@@ -58,6 +58,16 @@ body {
             }
         }
     }
+
+    .edit-package-container {
+        .tox-statusbar__branding,
+        .tox-promotion { display: none; }
+    }
+
+    .new-package-container {
+        .tox-statusbar__branding,
+        .tox-promotion { display: none; }
+    }
 }
   
 footer { z-index: 1; }

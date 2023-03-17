@@ -16,6 +16,8 @@
             <%= javascript_importmap_tags %> 
         -->
 
+        <%= tinymce_assets if controller.controller_name == 'packages' %>
+
         <%= yield :header if content_for? :header %>
     </head>
     <body class="d-flex flex-column justify-content-between">
@@ -56,6 +58,8 @@
         <%= javascript_include_tag "dashboard", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "turbo", type: "module" %>
 
+        <%= tinymce if controller.controller_name == 'packages' %>
+        
         <%= yield :footer if content_for? :footer %>
     </body>
 </html>

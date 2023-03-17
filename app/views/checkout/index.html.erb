@@ -16,20 +16,10 @@
                     <div class="card-body">
                         <h2 class="card-title text-center"><%= number_to_currency(package.price.to_f, unit: '₱') %></h2>
                         
-                        <%= package.description %>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>OOTD Photo and Video Service</li>
-                            <li>1 Photographer</li>
-                            <li>1 Videographer</li>
-                            <li>1 P/V Assistant</li>
-                        </ul>
+                        <%= sanitize package.description, attributes: %w(class style href) %>
 
                         <p class="fw-bold text-center"><u>FREEBIES</u></p>
-                        <%= package.freebies %>
-                        <ul class="list-unstyled mt-3 mb-0">
-                            <li>100 Enhanced Photos</li>
-                            <li>USB Copy of All Files</li>
-                        </ul>
+                        <%= sanitize package.freebies, attributes: %w(class style href) %>
                     </div>
                 </div>
             </div>

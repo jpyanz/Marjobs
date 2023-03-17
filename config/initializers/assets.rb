@@ -9,4 +9,7 @@ Rails.application.config.assets.version = "1.0"
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
+
+# Rails.application.config.assets.precompile += %w(default.css default.js)
+# Rails.application.config.assets.precompile += %w(dashboard.css dashboard.js)
 Rails.application.config.assets.precompile += %w(bootstrap.min.js popper.js)

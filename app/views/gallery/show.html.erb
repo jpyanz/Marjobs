@@ -1,9 +1,9 @@
 <% content_for :header do %>
     <style>
-        .album-container .created-date { font-size: 12px; }
-        .album-container .add-comment-text { font-size: 25px; }
-        .album-container video { width: 100%; }
-        .album-container *:focus { outline: none !important; }
+        .gallery-show-container .created-date { font-size: 12px; }
+        .gallery-show-container .add-comment-text { font-size: 25px; }
+        .gallery-show-container video { width: 100%; }
+        .gallery-show-container *:focus { outline: none !important; }
     </style>
 <% end %>
 
@@ -25,11 +25,16 @@
                     });
                 });
             });
+
+            if($('figure', '.gallery-show-container').length == 0)
+            {
+                $('.error', '.gallery-show-container').removeClass('d-none');
+            }
         });
     </script>
 <% end %>
 
-<div class="album-container container-fluid">
+<div class="gallery-show-container container-fluid">
     <section class="py-5 text-center container">
         <div class="row">
             <div class="col">
@@ -40,6 +45,14 @@
     </section>
     
     <%= render "nav-tabs", object: @album %>
+
+    <div class="row justify-content-center error d-none">
+        <div class="col-6">
+            <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
+                <h1 class="display-6"><%= icon('fa-solid', 'triangle-exclamation') %> No result found</h1>
+            </div> 
+        </div>
+    </div>
 
     <section class="comments">
         <h2 class="display-6 my-5 text-center"><%= 'Comments' unless @album.comments.blank? %></h2>
