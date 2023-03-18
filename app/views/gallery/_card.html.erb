@@ -1,10 +1,10 @@
 <div id="<%= dom_id album %>" class="col mb-3">
     <div class="card shadow-sm h-100">
         <% if album.thumbnail.attached? %>
-            <%= image_tag album.thumbnail.variant(resize_to_fill: [300, 300]).processed, class: 'card-img-top' %>
+            <%= image_tag album.thumbnail.variant(resize_to_fill: [400, 400]).processed, class: 'card-img-top' %>
         <% else %>
             <% if album.files.first.image? %>
-                <%= image_tag album.files.first.variant(resize_to_fill: [300, 300]).processed, class: 'card-img-top' if album.files.attached? %> 
+                <%= image_tag album.files.first.variant(resize_to_fill: [400, 400]).processed, class: 'card-img-top' if album.files.attached? %> 
             <% else %>
                 <%= video_tag url_for(album.files.first), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'card-img-top' if album.files.attached? %>	
             <% end %>

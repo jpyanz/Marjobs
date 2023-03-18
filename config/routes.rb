@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     root "main#index"
 
-    resources :users, :bookings, :contacts, :comments, :categories, :packages
+    resources :users, :bookings, :contacts, :comments, :categories, :packages, :addons
 
     resources :albums do 
         resources :comments

@@ -45,9 +45,7 @@
 						<td>
 							<ol>
 								<% booking.addons.each do |key, value| %>
-									<% if value.to_s != '0' %>
-										<li><%= value %></li>
-									<% end %>
+									<li><%= value unless value == 0.to_s %></li>
 								<% end %>
 							</ol>
 						</td>

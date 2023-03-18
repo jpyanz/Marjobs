@@ -12,6 +12,9 @@
                 <%= link_to icon('fa-solid', 'box-archive') +" Packages", packages_path, class: controller.controller_name == 'packages' ? 'nav-link active' : 'nav-link' %>
             </li>
             <li class="nav-item">
+                <%= link_to icon('fa-solid', 'puzzle-piece') +" Addons", addons_path, class: controller.controller_name == 'addons' ? 'nav-link active' : 'nav-link' %>
+            </li>
+            <li class="nav-item">
                 <%= link_to icon('fa-solid', 'photo-film') +" Galleries", albums_path, class: controller.controller_name == 'albums' ? 'nav-link active' : 'nav-link' %>
             </li>
             <li class="nav-item">

@@ -1,0 +1,34 @@
+<%= form_with(model: addon) do |form| %>
+	<% if addon.errors.any? %>
+		<div style="color: red">
+			<h2><%= pluralize(addon.errors.count, "error") %> prohibited this addon from being saved:</h2>
+
+			<ul>
+				<% addon.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="row">
+		<div class="col-12 col-sm-6">
+			<div class="mb-3">
+				<%= form.label :name, class: 'form-label fw-bold' do %>
+					Name<small class="text-danger">*</small>
+				<% end %>
+
+				<%= form.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6">
+			<%= form.label :price, class: 'form-label fw-bold' do %>
+				Price<small class="text-danger">*</small>
+			<% end %>
+
+			<%= form.number_field :price, class: 'form-control', value: number_to_currency(addon.price.to_f, delimiter: '', unit: ''), step: :any, min: 0, placeholder: :price, required: true %>
+		</div>
+	</div>
+
+	<%= form.submit btn_title, class: 'w-100 btn btn-lg btn-primary mt-3' %>
+<% end %>

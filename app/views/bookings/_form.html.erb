@@ -20,7 +20,7 @@
 					["Done", "Done"]
 				], 
 				{ include_blank: false }, 
-				{ class: "form-control" } %>
+				{ class: "form-select" } %>
 			</div>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 					["ORION", "Orion"]
 				], 
 				{ include_blank: "Select your package" }, 
-				{ class: "form-control", required: true } %>
+				{ class: "form-select", required: true } %>
 			</div>
 		</div>
 		<div class="col-12 col-sm-6">
@@ -89,46 +89,14 @@
 	</div>
 
 	<div class="row">
-		<div class="col col-sm-6">
-			<div class="form-check">
-				<%= form.check_box 'addon1', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[1].to_s != '0' : ''}, "10 Pages Album" %>
-				<%= form.label 'addon1', "10 Pages Album", class: 'form-check-label' %>
+		<% @addons.each do |addon| %>
+			<div class="col-12 col-sm-6">
+				<div class="form-check">
+					<%= form.check_box addon.id, {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons.key?(addon.id.to_s) : ''}, addon.name %>
+					<%= form.label addon.id, addon.name, class: 'form-check-label' %><small class="text-muted fw-light"> - <%= number_to_currency(addon.price.to_f, unit: '₱') %></small>
+				</div>
 			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon2', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[2].to_s != '0' : ''}, "20 Pages Album" %>
-				<%= form.label 'addon2', "20 Pages Album", class: 'form-check-label' %>
-			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon3', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[3].to_s != '0' : ''}, "40 Pages Album" %>
-				<%= form.label 'addon3', "40 Pages Album", class: 'form-check-label' %>
-			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon4', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[4].to_s != '0' : ''}, "16x20 Frame" %>
-				<%= form.label 'addon4', "16x20 Frame", class: 'form-check-label' %>
-			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon5', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[5].to_s != '0' : ''}, "11x14 Frame" %>
-				<%= form.label 'addon5', "11x14 Frame", class: 'form-check-label' %>
-			</div>
-		</div>
-		<div class="col col-sm-6">
-			<div class="form-check">
-				<%= form.check_box 'addon6', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[6].to_s != '0' : ''}, "Photographer" %>
-				<%= form.label 'addon6', "Photographer", class: 'form-check-label' %>
-			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon7', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[7].to_s != '0' : ''}, "Videographer" %>
-				<%= form.label 'addon7', "Videographer", class: 'form-check-label' %>
-			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon8', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[8].to_s != '0' : ''}, "Same Day Edit Video" %>
-				<%= form.label 'addon8', "Same Day Edit Video", class: 'form-check-label' %>
-			</div>
-			<div class="form-check">
-				<%= form.check_box 'addon9', {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons[9].to_s != '0' : ''}, "Same Day Edit Photo" %>
-				<%= form.label 'addon9', "Same Day Edit Photo", class: 'form-check-label' %>
-			</div>
-		</div>
+		<% end %>
 	</div>
 	
  	<%= form.submit btn_title, class: 'w-100 btn btn-lg btn-primary mt-3' %>

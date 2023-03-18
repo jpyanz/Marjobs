@@ -3,7 +3,6 @@ class GalleryController < ApplicationController
 
 	def index
 		@albums = Album.all
-		@comments = Comment.all
 		@categories = Category.all
 	end
 	

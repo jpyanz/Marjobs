@@ -2,40 +2,37 @@ class CheckoutController < ApplicationController
     layout 'default'
 	
     def index
-		@packages = Package.all
+		@packages = Package.all.order("created_at DESC")
+		@addons = Addon.all.order("created_at DESC")
     end
 
 	def new
 		@booking = Booking.new
 		@packages_array = Package.all.map { |package| [package.name] }
+		@addons = Addon.all.order("created_at DESC")
     end
 
     def create		
 		@booking = Booking.new(booking_params)
+		@addons = Addon.all.order("created_at DESC")
 
-		@booking.addons = {
-			1 => params[:booking]['addon1'],
-			2 => params[:booking]['addon2'],
-			3 => params[:booking]['addon3'],
-			4 => params[:booking]['addon4'],
-			5 => params[:booking]['addon5'],
-			6 => params[:booking]['addon6'],
-			7 => params[:booking]['addon7'],
-			8 => params[:booking]['addon8'],
-			9 => params[:booking]['addon9']
-		}
+		@booking.addons = {}
+
+		@addons.each.with_index(1) do |addon, i|
+			@booking.addons.store(addon.id.to_s, params[:booking][addon.id.to_s]) unless params[:booking][addon.id.to_s] == 0.to_s
+		end
 
 		respond_to do |format|
-		  if @booking.save
-			
-			CheckoutMailer.checkout(booking_params, @booking.addons).deliver
-			
-			format.html { redirect_to checkout_confirmation_path }
-			format.json { render :confirmation, status: :created, location: @booking }
-		  else
-			format.html { render :new, status: :unprocessable_entity }
-			format.json { render json: @booking.errors, status: :unprocessable_entity }
-		  end
+			if @booking.save
+				
+				CheckoutMailer.checkout(booking_params, @booking.addons).deliver
+				
+				format.html { redirect_to checkout_confirmation_path }
+				format.json { render :confirmation, status: :created, location: @booking }
+			else
+				format.html { render :new, status: :unprocessable_entity }
+				format.json { render json: @booking.errors, status: :unprocessable_entity }
+			end
 		end
     end
 

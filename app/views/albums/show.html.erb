@@ -11,21 +11,18 @@
     <%= javascript_include_tag "imagesloaded.pkgd.min.js" %>
 
     <script>
-        window.onload = function ()
+        $(function() 
         {
-            $(function() 
-            {
-                const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
-                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-                var $grid = $('.grid').imagesLoaded( function()
-                {
-                    $grid.masonry({
-                        percentPosition: true
-                    });
+            var $grid = $('.grid').imagesLoaded( function()
+            {
+                $grid.masonry({
+                    percentPosition: true
                 });
             });
-        };
+        });
     </script>
 <% end %>
 

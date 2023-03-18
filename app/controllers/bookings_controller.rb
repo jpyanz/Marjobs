@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
 	layout 'dashboard'
 	before_action :authorize
 	before_action :set_booking, only: %i[ show edit update destroy ]
+	before_action :set_addons, only: %i[ new edit create update ]
 
 	def index
 		@bookings = Booking.all.order("created_at DESC")
@@ -17,17 +18,11 @@ class BookingsController < ApplicationController
 	def create
 		@booking = Booking.new(booking_params)
 
-		@booking.addons = {
-			1 => params[:booking]['addon1'],
-			2 => params[:booking]['addon2'],
-			3 => params[:booking]['addon3'],
-			4 => params[:booking]['addon4'],
-			5 => params[:booking]['addon5'],
-			6 => params[:booking]['addon6'],
-			7 => params[:booking]['addon7'],
-			8 => params[:booking]['addon8'],
-			9 => params[:booking]['addon9']
-		}
+		@booking.addons = {}
+
+		@addons.each.with_index(1) do |addon, i|
+			@booking.addons.store(addon.id.to_s, params[:booking][addon.id.to_s]) unless params[:booking][addon.id.to_s] == 0.to_s
+		end
 
 		respond_to do |format|
 		if @booking.save
@@ -41,17 +36,11 @@ class BookingsController < ApplicationController
 	end
 
 	def update
-		@booking.addons = {
-			1 => params[:booking]['addon1'],
-			2 => params[:booking]['addon2'],
-			3 => params[:booking]['addon3'],
-			4 => params[:booking]['addon4'],
-			5 => params[:booking]['addon5'],
-			6 => params[:booking]['addon6'],
-			7 => params[:booking]['addon7'],
-			8 => params[:booking]['addon8'],
-			9 => params[:booking]['addon9']
-		}
+		@booking.addons = {}
+
+		@addons.each.with_index(1) do |addon, i|
+			@booking.addons.store(addon.id.to_s, params[:booking][addon.id.to_s]) unless params[:booking][addon.id.to_s] == 0.to_s
+		end
 
 		respond_to do |format|
 			if @booking.update(booking_params)
@@ -85,6 +74,10 @@ class BookingsController < ApplicationController
 
 	def set_booking
 		@booking = Booking.find(params[:id])
+	end
+
+	def set_addons
+		@addons = Addon.all.order("created_at DESC")
 	end
 	
 	def booking_params

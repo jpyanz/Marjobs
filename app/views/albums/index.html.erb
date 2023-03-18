@@ -37,7 +37,7 @@
 							<td><%= album.category %></td>
 							<td class="text-end">
 								<div class="btn-group" role="group">
-									<%= link_to icon('fa-solid', 'eye') +" View", gallery_show_path(album.id), class: 'btn btn-primary btn-sm text-nowrap', target: '_blank' %>
+									<%= link_to icon('fa-solid', 'eye') +" Show", gallery_show_path(album.id), class: 'btn btn-primary btn-sm text-nowrap', target: '_blank' %>
 									<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_album_path(album), class: 'btn btn-secondary btn-sm text-nowrap' %>
 									<%= link_to icon('fa-solid', 'trash') +" Delete", album,
 										method: :delete, 

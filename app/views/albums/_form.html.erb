@@ -23,7 +23,7 @@
 				<div class="input-group mb-3">
 					<%= form.select :category, options_for_select(@categories_array, album.category), 
 					{ include_blank: "Select a category" }, 
-					{ class: "form-control", required: false } %>
+					{ class: "form-select", required: false } %>
 					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
 				</div>
 			</div>

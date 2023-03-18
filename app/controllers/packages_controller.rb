@@ -4,7 +4,7 @@ class PackagesController < ApplicationController
 	before_action :set_package, only: %i[ show edit update destroy ]
 
 	def index
-		@packages = Package.all
+		@packages = Package.all.order("created_at DESC")
 	end
 
 	def show

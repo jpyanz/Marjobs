@@ -35,7 +35,7 @@
 						<td><%= comment.status %></td>
 						<td class="text-end">
 							<div class="btn-group" role="group">
-								<%= link_to icon('fa-solid', 'eye') +" View", gallery_show_path(comment.album_id), class: 'btn btn-primary btn-sm text-nowrap', target: '_blank' %>
+								<%= link_to icon('fa-solid', 'eye') +" Show", gallery_show_path(comment.album_id), class: 'btn btn-primary btn-sm text-nowrap', target: '_blank' %>
 								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_comment_path(comment), class: 'btn btn-secondary btn-sm text-nowrap' %>
 								<%= link_to icon('fa-solid', 'trash') +" Delete", comment,
 									method: :delete, 
