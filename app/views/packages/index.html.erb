@@ -1,7 +1,7 @@
 <% content_for :header do %>
 <% end %>
 
-<% content_for :footer do %>	
+<% content_for :footer do %>
 <% end %>
 
 <div class="packages-container">
@@ -13,7 +13,7 @@
 	
     <div class="pt-3 pb-2 mb-3 border-bottom d-flex justify-content-between">
         <h1 class="h2 mb-0">Packages</h1>
-		<%= link_to icon('fa-solid', 'plus') +" New Package", new_package_path, class: 'btn btn-success' %>
+		<%= link_to icon('fa-solid', 'plus') +" New Package", new_package_path, class: 'btn btn-success', 'data-no-turbolink' => true %>
     </div>
 
 	<div class="table-responsive">

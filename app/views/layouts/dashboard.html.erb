@@ -16,11 +16,14 @@
             <%= javascript_importmap_tags %> 
         -->
 
-        <%= tinymce_assets if controller.controller_name == 'packages' %>
+        <% if controller.controller_name == 'packages' && controller.action_name == 'new' || 
+            controller.controller_name == 'packages' && controller.action_name == 'edit' %>
+            
+        <% end %>
 
         <%= yield :header if content_for? :header %>
     </head>
-    <body class="d-flex flex-column justify-content-between">
+    <body class="d-flex flex-column justify-content-between" <%= yield :body_attribute if content_for? :body_attribute %>>
         <% cache do %>
             <%= render "layouts/dashboard-header" %>
         <% end %>
@@ -58,7 +61,11 @@
         <%= javascript_include_tag "dashboard", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "turbo", type: "module" %>
 
-        <%= tinymce if controller.controller_name == 'packages' %>
+        <% if controller.controller_name == 'packages' && controller.action_name == 'new' || 
+            controller.controller_name == 'packages' && controller.action_name == 'edit' %>
+            
+            
+        <% end %>
         
         <%= yield :footer if content_for? :footer %>
     </body>

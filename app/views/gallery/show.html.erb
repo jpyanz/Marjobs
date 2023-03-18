@@ -67,7 +67,7 @@
                                     <span class="rounded-circle text-bg-secondary p-3"><%= icon('fa-solid fa-2xl', 'user') %></span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, comment.created_at + 50.minutes) %></i></span></h5>
+                                    <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, Time.current) %></i></span></h5>
                                     <p><%= comment.body %></p>
                                 </div>
                             </div>
@@ -82,13 +82,13 @@
         <div class="row justify-content-center">
             <div class="col col-sm-8">
                 <%= form_with model: [ @album, @album.comments.build ] do |form| %>
-                    <div class="mb-3">
-                        <%= form.label 'Name', class: 'form-label' %>
-                        <%= form.text_field 'name', class: 'form-control' %>
+                    <div class="form-floating mb-3">
+                        <%= form.text_field :name, class: 'form-control', placeholder: :name %>
+                        <%= form.label :name %>
                     </div>
-                    <div class="mb-3">
-                        <%= form.label 'Message' , class: 'form-label' %>
-                        <%= form.text_area :body, rows: '5', class: 'form-control' %>
+                    <div class="form-floating mb-3">
+                        <%= form.text_area :body, rows: '5', class: 'form-control h-100', placeholder: "Message"  %>
+                        <%= form.label 'Message' %>
                     </div>
                     
                     <%= form.hidden_field :status, value: 'Public' %>

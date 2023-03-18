@@ -1,6 +1,10 @@
 <nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
+            <h6 class="px-3 text-muted"><span>ADMIN</span></h6>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'users') +" Users", users_path, class: controller.controller_name == 'users' ? 'nav-link active' : 'nav-link' %>
+            </li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: controller.controller_name == 'bookings' ? 'nav-link active' : 'nav-link' %>
             </li>
@@ -19,6 +23,7 @@
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'message') +" Messages", contacts_path, class: controller.controller_name == 'contacts' ? 'nav-link active' : 'nav-link' %>
             </li>
+            <h6 class="px-3 text-muted mt-3"><span>MODERATOR</span></h6>
         </ul>
     </div>
 </nav>

@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
     layout 'dashboard'
     before_action :authorize
+    before_action :set_user, only: %i[ show edit update destroy ]
     
     def index
         @users = User.all
-    end
-
-    def show
-        @user = User.find(params[:id])
     end
 
     def new
@@ -18,33 +15,28 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            redirect_to @user
+            redirect_to users_path
         else
             render :new, status: :unprocessable_entity
         end
     end
 
     def edit
-        @user = User.find(params[:id])
     end
 
     def update
-        @user = User.find(params[:id])
-
         if @user.update(user_params)
-            redirect_to @user
+            redirect_to users_path
         else
             render :edit, status: :unprocessable_entity
         end
     end
 
     def destroy
-        @user = User.find(params[:id])
-
         if @user.destroy
-            redirect_to login_path, status: :see_other
+            redirect_to users_path, status: :see_other
         else
-            render :show
+            render :index
         end
     end
 
@@ -57,6 +49,10 @@ class UsersController < ApplicationController
     def authorize
         redirect_to login_path unless current_user
     end
+
+    def set_user
+		@user = User.find(params[:id])
+	end
 
     def user_params
         params.require(:user).permit(:name, :username, :password)
