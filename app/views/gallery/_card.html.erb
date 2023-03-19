@@ -1,4 +1,4 @@
-<div id="<%= dom_id album %>" class="col mb-3">
+<div id="<%= dom_id album %>" class="card-cont col mb-3">
     <div class="card shadow-sm h-100">
         <% if album.thumbnail.attached? %>
             <%= image_tag album.thumbnail.variant(resize_to_fill: [400, 400]).processed, class: 'card-img-top' %>

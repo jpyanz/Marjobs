@@ -2,6 +2,7 @@
     <style>
         .gallery-container .img-cont { max-height: 250px; }
         .gallery-container .alert .fa-triangle-exclamation { margin-right: 10px; }
+        .gallery-container .card-cont { min-width: 250px; max-width: 500px; }
     </style>
 <% end %>
 
@@ -9,15 +10,18 @@
     <script>
         $(function() 
         {
-            if($.trim($('#cards', '.gallery-container').html()).length == 0)
+            if($('.gallery-container').hasClass('queried')) 
             {
-                $('.error', '.gallery-container').removeClass('d-none');
+                if($.trim($('#cards', '.gallery-container').html()).length == 0)
+                {
+                    $('.error', '.gallery-container').removeClass('d-none');
+                }
             }
         });
     </script>
 <% end %>
 
-<div class="gallery-container container-fluid">
+<div class="gallery-container container-fluid <%= 'queried' if request.query_string.present? %>">
     <section class="py-5 text-center container">
         <div class="row">
             <div class="col-lg-6 col-md-8 mx-auto">
@@ -56,7 +60,7 @@
                             <%= form.text_field :query, placeholder: 'search', class: 'form-control' %>
                         <% end %>         
                         
-                        <%= form.button name: nil, class: 'btn btn-outline-secondary' do %>
+                        <%= form.button name: nil, class: 'search btn btn-outline-secondary' do %>
                             <%= icon('fa-solid', 'search') %> Search
                         <% end %>
                         
@@ -76,7 +80,7 @@
         </div>
         
         <%= turbo_frame_tag "index-results" do %>
-            <div id="cards" class="row justify-content-center">
+            <div id="cards" class='row justify-content-center'>
                 <% @albums.each do |album| %>
                     <% if(params.has_key?(:query)) %>
                         <% if album.title.downcase.to_s.include?(params[:query].downcase) || album.description.downcase.to_s.include?(params[:query].downcase) %>

@@ -11,20 +11,41 @@
 		</div>
   	<% end %>
 
-	<div class="mb-3">
+    <div class="row justify-content-end">
+		<div class="col col-sm-4 col-lg-3">
+			<div class="input-group mb-3">
+				<%= form.label :role, class: 'input-group-text' %>
+                <%= form.select :role, [
+                    ["Admin", "admin"], 
+                    ["Moderator", "moderator"]
+                ], 
+                { include_blank: false }, 
+                { class: "form-select", disabled: user.id == 1 ? true : false } %>
+            </div>
+		</div>
+	</div>
+
+    <div class="mb-3">
         <%= form.label :name, class: 'form-label' %>
         <%= form.text_field :name, class: 'form-control', required: true %>
     </div>
 
-    <div class="mb-3">
-        <%= form.label :username, class: 'form-label' %>
-        <%= form.text_field :username, class: 'form-control', required: true %>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="mb-3">
+                <%= form.label :username, class: 'form-label' %>
+                <%= form.text_field :username, class: 'form-control', required: true, disabled: user.id == 1 ? true : false %>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="mb-3">
+                <%= form.label :password, class: 'form-label' %>
+                <%= form.password_field :password, class: 'form-control', autocomplete: 'on', required: true %>
+            </div>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <%= form.label :password, class: 'form-label' %>
-        <%= form.password_field :password, class: 'form-control', autocomplete: 'on', required: true %>
-    </div>
+    
 
     <%= form.submit submit_text, class: 'w-100 btn btn-lg btn-primary mt-3' %>
 <% end %>

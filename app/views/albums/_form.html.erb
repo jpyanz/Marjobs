@@ -16,18 +16,24 @@
 			<%= form.label :title, class: 'form-label fw-bold' %>
 			<%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
 		</div>
-		<% if @categories_array.present? %>
-			<div class="col mb-3">
-				<%= form.label :category, class: 'form-label fw-bold' %>
-
+		<div class="col mb-3">
+			<%= form.label :category, class: 'form-label fw-bold' %>
+			<% if @categories_array.present? %>
 				<div class="input-group mb-3">
 					<%= form.select :category, options_for_select(@categories_array, album.category), 
 					{ include_blank: "Select a category" }, 
 					{ class: "form-select", required: false } %>
 					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
 				</div>
-			</div>
-		<% end %>
+			<% else %>
+				<div class="input-group mb-3">
+					<%= form.select :category, [[album.category, album.category]],
+					{ include_blank: "Select a category" }, 
+					{ class: "form-select" } %>
+					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
+				</div>
+			<% end %>
+		</div>
 	</div>
 	
 
