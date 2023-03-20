@@ -49,59 +49,61 @@
         </div>
     </section>
 
-    <div class="album py-5">
-        <div class="row mb-5">
-            <div class="col-md-4 ms-auto">
-                <%= form_with url: gallery_path, method: :get do |form| %>
-                    <div class="input-group mb-3">
-                        <% if(params.has_key?(:query)) %> 
-                            <%= form.text_field :query, placeholder: 'search', class: 'form-control', value: params[:query] %>
-                        <% else %>
-                            <%= form.text_field :query, placeholder: 'search', class: 'form-control' %>
-                        <% end %>         
-                        
-                        <%= form.button name: nil, class: 'search btn btn-outline-secondary' do %>
-                            <%= icon('fa-solid', 'search') %> Search
-                        <% end %>
-                        
-                        <% if @categories.present? %>
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><%= icon('fa-solid', 'filter') %> Filter</button>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><h6 class="dropdown-header">Categories</h6></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <% @categories.each do |category| %>
-                                    <li><a class="dropdown-item" href="?category=<%= category.category.downcase %>"><%= category.category %></a></li>
-                                <% end %>
-                            </ul>
-                        <% end %>
-                    </div>
-                <% end %>
+    <% if @albums.present? %>
+        <div class="album py-5">
+            <div class="row mb-5">
+                <div class="col-md-4 ms-auto">
+                    <%= form_with url: gallery_path, method: :get do |form| %>
+                        <div class="input-group mb-3">
+                            <% if(params.has_key?(:query)) %> 
+                                <%= form.text_field :query, placeholder: 'search', class: 'form-control', value: params[:query] %>
+                            <% else %>
+                                <%= form.text_field :query, placeholder: 'search', class: 'form-control' %>
+                            <% end %>         
+                            
+                            <%= form.button name: nil, class: 'search btn btn-outline-secondary' do %>
+                                <%= icon('fa-solid', 'search') %> Search
+                            <% end %>
+                            
+                            <% if @categories.present? %>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><%= icon('fa-solid', 'filter') %> Filter</button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><h6 class="dropdown-header">Categories</h6></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <% @categories.each do |category| %>
+                                        <li><a class="dropdown-item" href="?category=<%= category.category.downcase %>"><%= category.category %></a></li>
+                                    <% end %>
+                                </ul>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
             </div>
-        </div>
-        
-        <%= turbo_frame_tag "index-results" do %>
-            <div id="cards" class='row justify-content-center'>
-                <% @albums.each do |album| %>
-                    <% if(params.has_key?(:query)) %>
-                        <% if album.title.downcase.to_s.include?(params[:query].downcase) || album.description.downcase.to_s.include?(params[:query].downcase) %>
-                            <%= render partial: "card", locals: { album: album } %>    
-                        <% end %>
-                    <% elsif (params.has_key?(:category)) %>
-                        <% if album.category.downcase.to_s.include?(params[:category].downcase) %>
+            
+            <%= turbo_frame_tag "index-results" do %>
+                <div id="cards" class='row justify-content-center'>
+                    <% @albums.each do |album| %>
+                        <% if(params.has_key?(:query)) %>
+                            <% if album.title.downcase.to_s.include?(params[:query].downcase) || album.description.downcase.to_s.include?(params[:query].downcase) %>
+                                <%= render partial: "card", locals: { album: album } %>    
+                            <% end %>
+                        <% elsif (params.has_key?(:category)) %>
+                            <% if album.category.downcase.to_s.include?(params[:category].downcase) %>
+                                <%= render partial: "card", locals: { album: album } %>
+                            <% end %>
+                        <% else %>
                             <%= render partial: "card", locals: { album: album } %>
                         <% end %>
-                    <% else %>
-                        <%= render partial: "card", locals: { album: album } %>
                     <% end %>
-                <% end %>
-            </div>
-        <% end %>
-        <div class="row justify-content-center error d-none">
-            <div class="col-6">
-                <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
-                    <h1 class="display-6"><%= icon('fa-solid', 'triangle-exclamation') %> No result found</h1>
-                </div> 
+                </div>
+            <% end %>
+            <div class="row justify-content-center error d-none">
+                <div class="col-6">
+                    <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
+                        <h1 class="display-6"><%= icon('fa-solid', 'triangle-exclamation') %> No result found</h1>
+                    </div> 
+                </div>
             </div>
         </div>
-    </div>
+    <% end %>
 </div>
