@@ -1,0 +1,26 @@
+<% content_for :header do %>
+<% end %>
+
+<% content_for :footer do %>
+<% end %>
+
+<div class="new-package-container">
+	<nav class="mt-3" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><%= link_to "Package", packages_path %></li>
+    		<li class="breadcrumb-item active" aria-current="page">New Package</li>
+		</ol>
+	</nav>
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">
+          	<%= link_to icon('fa-solid', 'angle-left'), packages_path %> New Package
+      	</h1>
+    </div>
+
+	<%= render "form", package: @package, btn_title: 'CREATE' %>
+
+	<div class="my-3">
+        <%= link_to "Back to packages", packages_path %>
+    </div>
+</div>

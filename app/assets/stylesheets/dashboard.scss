@@ -26,6 +26,8 @@ header {
 
         }
     }
+
+    .profile-pic { padding: 5px 10px 5px; }
 }
 
 body {
@@ -36,6 +38,7 @@ body {
         left: 0;
         padding: 66px 0 0;
         box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        z-index: 1;
 
         .sidebar-sticky {
             height: calc(100vh - 48px);
@@ -58,10 +61,16 @@ body {
             }
         }
     }
+
+    .edit-package-container {
+        .tox-statusbar__branding,
+        .tox-promotion { display: none; }
+    }
+
+    .new-package-container {
+        .tox-statusbar__branding,
+        .tox-promotion { display: none; }
+    }
 }
   
 footer { z-index: 1; }
-
-@media (max-width: 767.98px) {
-    .sidebar { top: 5rem !important; }
-}

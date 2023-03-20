@@ -1,49 +1,72 @@
 class PackagesController < ApplicationController
-    layout 'default'
-	
-    def index
-    end
+	layout 'dashboard'
+	before_action :authorize
+	before_action :set_package, only: %i[ show edit update destroy ]
 
-	def checkout
-		@booking = Booking.new
-    end
+	def index
+		@packages = Package.all.order("created_at DESC")
+	end
 
-    def create		
-		@booking = Booking.new(booking_params)
+	def show
+	end
 
-		@booking.addons = {
-			1 => params[:booking]['addon1'],
-			2 => params[:booking]['addon2'],
-			3 => params[:booking]['addon3'],
-			4 => params[:booking]['addon4'],
-			5 => params[:booking]['addon5'],
-			6 => params[:booking]['addon6'],
-			7 => params[:booking]['addon7'],
-			8 => params[:booking]['addon8'],
-			9 => params[:booking]['addon9']
-		}
+	def new
+		@package = Package.new
+	end
+
+	def edit
+	end
+
+	def create
+		@package = Package.new(package_params)
 
 		respond_to do |format|
-		  if @booking.save
-			
-			CheckoutMailer.checkout(booking_params, @booking.addons).deliver
-			
-			format.html { redirect_to packages_confirmation_path }
-			format.json { render :confirmation, status: :created, location: @booking }
-		  else
-			format.html { render :checkout, status: :unprocessable_entity }
-			format.json { render json: @booking.errors, status: :unprocessable_entity }
-		  end
+			if @package.save
+				format.html { redirect_to packages_path, notice: "Package was successfully created." }
+				format.json { render :show, status: :created, location: @package }
+			else
+				format.html { render :new, status: :unprocessable_entity }
+				format.json { render json: @package.errors, status: :unprocessable_entity }
+			end
 		end
-    end
+	end
 
-	def confirmation
+	def update
+		respond_to do |format|
+			if @package.update(package_params)
+				format.html { redirect_to packages_path, notice: "Package was successfully updated." }
+				format.json { render :show, status: :ok, location: @package }
+			else
+				format.html { render :edit, status: :unprocessable_entity }
+				format.json { render json: @package.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	def destroy
+		@package.destroy
+
+		respond_to do |format|
+			format.html { redirect_to packages_url, notice: "Package was successfully deleted." }
+			format.json { head :no_content }
+		end
 	end
 
 	private
 
-	# Only allow a list of trusted parameters through.
-    def booking_params
-		params.require(:booking).permit(:package, :date, :name, :phone, :email, :venue, addons: {})
+	def current_user
+		@current_user ||= User.find(session[:user_id]) if session[:user_id]
+	end
+
+	def authorize
+		redirect_to login_path unless current_user
+	end
+
+	def set_package
+		@package = Package.find(params[:id])
+	end
+
+	def package_params
+		params.require(:package).permit(:name, :price, :description, :freebies)
 	end
 end

@@ -12,94 +12,96 @@
                     <%= form.text_field :query, placeholder: 'search', class: 'form-control' %>
                 <% end %>         
                 
-                <%= form.submit "Search", class: 'btn btn-outline-secondary' %>
+                <%= form.submit "Search", name: nil, class: 'btn btn-outline-secondary' %>
             </div>
         <% end %>
     </div>
 </nav>
 
-<div class="tab-content">
-    <div class="tab-pane fade show active p-5" id="all" role="tabpanel" aria-labelledby="nav-all-tab" tabindex="0">
-        <div class="row grid">
-            <% @album.images.each do |image| %>
-                <% if(params.has_key?(:query)) %>
-                    <% if image.filename.to_s.include?(params[:query]) %>
+<%= turbo_frame_tag "show-results" do %>
+    <div class="tab-content">
+        <div class="tab-pane fade show active p-5" id="all" role="tabpanel" aria-labelledby="nav-all-tab" tabindex="0">
+            <div class="row grid">
+                <% @album.files.each do |file| %>
+                    <% if(params.has_key?(:query)) %>
+                        <% if file.filename.to_s.downcase.include?(params[:query].downcase) %>
+                            <div class="col col-sm-4 col-md-3 mb-4">
+                                <figure class="figure mb-0 w-100">
+                                    <% if file.image? %>
+                                        <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                    <% end %>
+                                    
+                                    <% if file.video? %>
+                                        <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                    <% end %>
+                                </figure>
+                            </div>
+                        <% end %>
+                    <% else %>
                         <div class="col col-sm-4 col-md-3 mb-4">
                             <figure class="figure mb-0 w-100">
-                                <% if image.image? %>
-                                    <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                <% if file.image? %>
+                                    <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
                                 <% end %>
                                 
-                                <% if image.video? %>
-                                    <%= video_tag url_for(image), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                <% if file.video? %>
+                                    <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
                                 <% end %>
                             </figure>
                         </div>
                     <% end %>
-                <% else %>
-                    <div class="col col-sm-4 col-md-3 mb-4">
-                        <figure class="figure mb-0 w-100">
-                            <% if image.image? %>
-                                <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
-                            <% end %>
-                            
-                            <% if image.video? %>
-                                <%= video_tag url_for(image), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
-                            <% end %>
-                        </figure>
-                    </div>
                 <% end %>
-            <% end %>
+            </div>
         </div>
-    </div>
-    <div class="tab-pane fade p-5" id="photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="0">
-        <div class="row grid">
-            <% @album.images.each do |image| %>
-                <% if(params.has_key?(:query)) %>
-                    <% if image.filename.to_s.include?(params[:query]) %>
-                        <% if image.image? %>
+        <div class="tab-pane fade p-5" id="photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="0">
+            <div class="row grid">
+                <% @album.files.each do |file| %>
+                    <% if(params.has_key?(:query)) %>
+                        <% if file.filename.to_s.downcase.include?(params[:query].downcase) %>
+                            <% if file.image? %>
+                                <div class="col col-sm-4 col-md-3 mb-4">
+                                    <figure class="figure mb-0 w-100">
+                                        <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                    </figure>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <% if file.image? %>
                             <div class="col col-sm-4 col-md-3 mb-4">
                                 <figure class="figure mb-0 w-100">
-                                    <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                    <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
                                 </figure>
                             </div>
                         <% end %>
                     <% end %>
-                <% else %>
-                    <% if image.image? %>
-                        <div class="col col-sm-4 col-md-3 mb-4">
-                            <figure class="figure mb-0 w-100">
-                                <%= image_tag image, loading: 'lazy', class: 'img-thumbnail figure-img' %>
-                            </figure>
-                        </div>
-                    <% end %>
                 <% end %>
-            <% end %>
+            </div>
         </div>
-    </div>
-    <div class="tab-pane fade p-5" id="videos" role="tabpanel" aria-labelledby="nav-videos-tab" tabindex="0">
-        <div class="row grid">
-            <% @album.images.each do |image| %>
-                <% if(params.has_key?(:query)) %>
-                    <% if image.filename.to_s.include?(params[:query]) %>
-                        <% if image.video? %>
+        <div class="tab-pane fade p-5" id="videos" role="tabpanel" aria-labelledby="nav-videos-tab" tabindex="0">
+            <div class="row grid">
+                <% @album.files.each do |file| %>
+                    <% if(params.has_key?(:query)) %>
+                        <% if file.filename.to_s.downcase.include?(params[:query].downcase) %>
+                            <% if file.video? %>
+                                <div class="col col-sm-4 col-md-3 mb-4">
+                                    <figure class="figure mb-0 w-100">
+                                        <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                    </figure>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% else %>
+                        <% if file.video? %>
                             <div class="col col-sm-4 col-md-3 mb-4">
                                 <figure class="figure mb-0 w-100">
-                                    <%= video_tag url_for(image), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                    <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
                                 </figure>
                             </div>
                         <% end %>
                     <% end %>
-                <% else %>
-                    <% if image.video? %>
-                        <div class="col col-sm-4 col-md-3 mb-4">
-                            <figure class="figure mb-0 w-100">
-                                <%= video_tag url_for(image), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
-                            </figure>
-                        </div>
-                    <% end %>
                 <% end %>
-            <% end %>
-        </div>
+            </div>
+        </div>   
     </div>
-</div>
+ <% end %>

@@ -4,19 +4,6 @@
 <% content_for :footer do %>
 <% end %>
 
-<% if notice.present? %>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div class="toast align-items-center show text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-			<div class="d-flex">
-				<div class="toast-body">
-					<%= notice %>
-				</div>
-				<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-			</div>
-		</div>
-	</div>
-<% end %>
-
 <div class="bookings-container">
 	<nav class="mt-3" aria-label="breadcrumb">
 		<ol class="breadcrumb">
@@ -58,23 +45,21 @@
 						<td>
 							<ol>
 								<% booking.addons.each do |key, value| %>
-									<% if value.to_s != '0' %>
-										<li><%= value %></li>
-									<% end %>
+									<li><%= value unless value == 0.to_s %></li>
 								<% end %>
 							</ol>
 						</td>
 						<td><%= booking.status.nil? || booking.status == "Pending" ? "Pending" : "Done" %></td>
-						<td>
-							<div class="vstack text-center">
-								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_booking_path(booking), class: 'btn btn-secondary btn-sm mb-1' %>
-								<%= button_to icon('fa-solid', 'trash') +" Delete", booking,
+						<td class="text-end">
+							<div class="btn-group" role="group">
+								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_booking_path(booking), class: 'btn btn-secondary btn-sm text-nowrap' %>
+								<%= link_to icon('fa-solid', 'trash') +" Delete", booking,
 									method: :delete, 
 									data: {
 										turbo_method: :delete,
 										turbo_confirm: "Are you sure?"
 									},  
-									class: 'btn btn-danger btn-sm w-100' %>
+									class: 'btn btn-danger btn-sm text-nowrap' %>
 							</div>
 						</td>
 					</tr>

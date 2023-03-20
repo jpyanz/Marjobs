@@ -9,12 +9,14 @@
         <%= csp_meta_tag %>
 
         <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
-        <%= stylesheet_link_tag "dashboard", media: "all", "data-turbo-track": "reload" %>
+        <%= stylesheet_link_tag "dashboard", media: "all", "data-turbo-track": "reload" %>        
 
         <!-- 
             TODO: Needed but causes error, maybe show in production?
             <%= javascript_importmap_tags %> 
         -->
+
+        <%= tinymce_assets %>
 
         <%= yield :header if content_for? :header %>
     </head>
@@ -31,6 +33,19 @@
 
                 <main class="ms-md-auto col-md-10 px-md-4">
                     <%= yield %>
+
+                    <% if notice.present? %>
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                            <div class="toast align-items-center show text-bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body">
+                                        <%= notice %>
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
                 </main>
             </div>
         </main>
@@ -40,8 +55,18 @@
         <% end %>
         
         <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+        <%= javascript_include_tag "dashboard", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "turbo", type: "module" %>
 
+        <script>
+            $(document).on('turbo:before-render', function ()
+            {
+                tinymce.remove();
+            });
+        </script>
+
+        <%= tinymce %>
+        
         <%= yield :footer if content_for? :footer %>
     </body>
 </html>

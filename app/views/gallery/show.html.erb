@@ -1,9 +1,9 @@
 <% content_for :header do %>
     <style>
-        .album-container .created-date { font-size: 12px; }
-        .album-container .add-comment-text { font-size: 25px; }
-        .album-container video { width: 100%; }
-        .album-container *:focus { outline: none !important; }
+        .gallery-show-container .created-date { font-size: 12px; }
+        .gallery-show-container .add-comment-text { font-size: 25px; }
+        .gallery-show-container video { width: 100%; }
+        .gallery-show-container *:focus { outline: none !important; }
     </style>
 <% end %>
 
@@ -25,21 +25,34 @@
                     });
                 });
             });
+
+            if($('figure', '.gallery-show-container').length == 0)
+            {
+                $('.error', '.gallery-show-container').removeClass('d-none');
+            }
         });
     </script>
 <% end %>
 
-<div class="album-container container-fluid">
+<div class="gallery-show-container container-fluid">
     <section class="py-5 text-center container">
         <div class="row">
             <div class="col">
-                <h1 class="fw-light"><%= @album.name %></h1>
+                <h1 class="fw-light"><%= @album.title %></h1>
                 <p class="lead text-muted"><%= @album.description %></p>
             </div>
         </div>
     </section>
     
     <%= render "nav-tabs", object: @album %>
+
+    <div class="row justify-content-center error d-none">
+        <div class="col-6">
+            <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
+                <h1 class="display-6"><%= icon('fa-solid', 'triangle-exclamation') %> No result found</h1>
+            </div> 
+        </div>
+    </div>
 
     <section class="comments">
         <h2 class="display-6 my-5 text-center"><%= 'Comments' unless @album.comments.blank? %></h2>
@@ -54,7 +67,7 @@
                                     <span class="rounded-circle text-bg-secondary p-3"><%= icon('fa-solid fa-2xl', 'user') %></span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, comment.created_at + 50.minutes) %></i></span></h5>
+                                    <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, Time.current) %></i></span></h5>
                                     <p><%= comment.body %></p>
                                 </div>
                             </div>
@@ -69,13 +82,13 @@
         <div class="row justify-content-center">
             <div class="col col-sm-8">
                 <%= form_with model: [ @album, @album.comments.build ] do |form| %>
-                    <div class="mb-3">
-                        <%= form.label 'Name', class: 'form-label' %>
-                        <%= form.text_field 'name', class: 'form-control' %>
+                    <div class="form-floating mb-3">
+                        <%= form.text_field :name, class: 'form-control', placeholder: :name %>
+                        <%= form.label :name %>
                     </div>
-                    <div class="mb-3">
-                        <%= form.label 'Message' , class: 'form-label' %>
-                        <%= form.text_area :body, rows: '5', class: 'form-control' %>
+                    <div class="form-floating mb-3">
+                        <%= form.text_area :body, rows: '5', class: 'form-control h-100', placeholder: "Message"  %>
+                        <%= form.label 'Message' %>
                     </div>
                     
                     <%= form.hidden_field :status, value: 'Public' %>

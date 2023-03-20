@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <%= link_to "Packages", packages_path, class: "nav-link" %>
+                        <%= link_to "Packages", checkout_path, class: "nav-link" %>
                     </li>
                     <li class="nav-item">
                         <%= link_to "Gallery", gallery_path, class: "nav-link" %>
@@ -39,11 +39,7 @@
                 <% if logged_in? %>
                     <div class="dropdown">
                         <button class="profile-btn btn btn-link dropdown-toggle text-decoration-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg class="bd-placeholder-img rounded-circle" width="30" height="30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Profile Image" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Profile Image</title>
-                                <rect width="100%" height="100%" fill="#868e96"></rect>
-                                <text x="30%" y="50%" fill="#dee2e6" dy=".4em">JY</text>
-                            </svg>
+                            <span class="profile-pic rounded-circle text-bg-secondary"><%= icon('fa-solid', 'user') %></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>

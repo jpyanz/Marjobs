@@ -8,6 +8,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.text :email
       t.text :venue
       t.text :addons
+      t.string :status
 
       t.timestamps
     end

@@ -2,40 +2,27 @@ class BookingsController < ApplicationController
 	layout 'dashboard'
 	before_action :authorize
 	before_action :set_booking, only: %i[ show edit update destroy ]
+	before_action :set_addons, only: %i[ new edit create update ]
 
-	# GET /bookings or /bookings.json
 	def index
 		@bookings = Booking.all.order("created_at DESC")
 	end
 
-	# GET /bookings/1 or /bookings/1.json
-	def show
-	end
-
-	# GET /bookings/new
 	def new
 		@booking = Booking.new
 	end
 
-	# GET /bookings/1/edit
 	def edit
 	end
 
-	# POST /bookings or /bookings.json
 	def create
 		@booking = Booking.new(booking_params)
 
-		@booking.addons = {
-			1 => params[:booking]['addon1'],
-			2 => params[:booking]['addon2'],
-			3 => params[:booking]['addon3'],
-			4 => params[:booking]['addon4'],
-			5 => params[:booking]['addon5'],
-			6 => params[:booking]['addon6'],
-			7 => params[:booking]['addon7'],
-			8 => params[:booking]['addon8'],
-			9 => params[:booking]['addon9']
-		}
+		@booking.addons = {}
+
+		@addons.each.with_index(1) do |addon, i|
+			@booking.addons.store(addon.id.to_s, params[:booking][addon.id.to_s]) unless params[:booking][addon.id.to_s] == 0.to_s
+		end
 
 		respond_to do |format|
 		if @booking.save
@@ -48,19 +35,12 @@ class BookingsController < ApplicationController
 		end
 	end
 
-	# PATCH/PUT /bookings/1 or /bookings/1.json
 	def update
-		@booking.addons = {
-			1 => params[:booking]['addon1'],
-			2 => params[:booking]['addon2'],
-			3 => params[:booking]['addon3'],
-			4 => params[:booking]['addon4'],
-			5 => params[:booking]['addon5'],
-			6 => params[:booking]['addon6'],
-			7 => params[:booking]['addon7'],
-			8 => params[:booking]['addon8'],
-			9 => params[:booking]['addon9']
-		}
+		@booking.addons = {}
+
+		@addons.each.with_index(1) do |addon, i|
+			@booking.addons.store(addon.id.to_s, params[:booking][addon.id.to_s]) unless params[:booking][addon.id.to_s] == 0.to_s
+		end
 
 		respond_to do |format|
 			if @booking.update(booking_params)
@@ -73,7 +53,6 @@ class BookingsController < ApplicationController
 		end
 	end
 
-	# DELETE /bookings/1 or /bookings/1.json
 	def destroy
 		@booking.destroy
 
@@ -93,12 +72,14 @@ class BookingsController < ApplicationController
 		redirect_to login_path unless current_user
 	end
 
-	# Use callbacks to share common setup or constraints between actions.
 	def set_booking
 		@booking = Booking.find(params[:id])
 	end
 
-	# Only allow a list of trusted parameters through.
+	def set_addons
+		@addons = Addon.all.order("created_at DESC")
+	end
+	
 	def booking_params
 		params.require(:booking).permit(:package, :date, :name, :phone, :email, :venue, :status, addons: {})
 	end
