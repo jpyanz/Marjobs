@@ -69,12 +69,7 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Config for Mailing System
-  # Development:
-  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
-  # Production:
-  config.action_mailer.default_url_options = { :host => 'https://marjobs.osc-fr1.scalingo.io/' }
-  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
@@ -88,6 +83,5 @@ Rails.application.configure do
   }
 
   config.action_view.preload_links_header = false
-  config.active_storage.replace_on_assign_to_many = false
   config.serve_static_assets = false
 end
