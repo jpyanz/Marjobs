@@ -24,5 +24,8 @@ module Marjobs
     # config.assets.paths << Rails.root.join("app", "assets", "images")
     # config.assets.paths << Rails.root.join("app", "assets", "videos")
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    # use mini magick instead of vips for ror7
+    config.active_storage.variant_processor = :mini_magick
   end
 end
