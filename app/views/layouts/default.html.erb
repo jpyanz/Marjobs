@@ -19,17 +19,13 @@
         <%= yield :header if content_for? :header %>
     </head>
     <body class="d-flex flex-column justify-content-between">
-        <% cache do %>
-            <%= render "layouts/default-header" %>
-        <% end %>
+        <%= render "layouts/default-header" %>
 
         <main class="flex-grow-1" role="main">
             <%= yield %>
         </main>
 
-        <% cache do %>
-            <%= render "layouts/default-footer" %>
-        <% end %>
+        <%= render "layouts/default-footer" %>
         
         <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "default", "data-turbo-track": "reload" %>
