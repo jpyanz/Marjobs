@@ -25,7 +25,8 @@ class CheckoutController < ApplicationController
 		respond_to do |format|
 			if @booking.save
 				
-				CheckoutMailer.checkout(booking_params, @booking.addons).deliver
+				# TODO: uncomment in production 
+				# CheckoutMailer.checkout(booking_params, @booking.addons).deliver
 				
 				format.html { redirect_to checkout_confirmation_path }
 				format.json { render :confirmation, status: :created, location: @booking }

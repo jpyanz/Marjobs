@@ -11,7 +11,8 @@ class ContactUsController < ApplicationController
 		respond_to do |format|
 			if @contact.save
 
-				ContactMailer.contact(contact_params).deliver
+				# TODO: uncomment in production 
+				# ContactMailer.contact(contact_params).deliver
 
 				format.html { redirect_to contact_us_path, notice: "Message was successfully sent!" }
 				format.json { render :show, status: :created, location: @contact }

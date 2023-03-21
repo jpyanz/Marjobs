@@ -83,5 +83,4 @@ Rails.application.configure do
   }
 
   config.action_view.preload_links_header = false
-  config.serve_static_assets = false
 end
