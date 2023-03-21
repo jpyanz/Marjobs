@@ -38,10 +38,10 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="mb-3">
-                            <div class="form-floating">
-                                <%= form.number_field :phone, class: 'form-control', min: 0, placeholder: :phone, onKeyPress: 'if(this.value.length==15) return false;', required: true %>
-                                <%= form.label :phone, class: 'form-label' %>
+                        <div class="">
+                            <div class="form-floating input-group mb-3">
+                                <span class="input-group-text" id="phone">+63</span>
+                                <%= form.number_field :phone, class: 'form-control pt-2', min: 0, placeholder: :phone, onKeyPress: 'if(this.value.length==10) return false;', required: true %> 
                             </div>
                         </div>
                     </div>
