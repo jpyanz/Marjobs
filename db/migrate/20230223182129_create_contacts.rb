@@ -2,7 +2,7 @@ class CreateContacts < ActiveRecord::Migration[7.0]
   def change
     create_table :contacts do |t|
       t.string :name
-      t.integer :phone
+      t.integer "phone", limit: 8
       t.string :email
       t.text :message
 
