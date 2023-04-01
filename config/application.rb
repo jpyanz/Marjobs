@@ -20,7 +20,7 @@ module Marjobs
     # config.eager_load_paths << Rails.root.join("extras")
 
     # config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
-    # config.assets.paths << Rails.root.join("app", "assets", "javascripts")
+    # config.assets.paths << Rails.root.join("app", "assets", "javascripts")bunsl
     # config.assets.paths << Rails.root.join("app", "assets", "images")
     # config.assets.paths << Rails.root.join("app", "assets", "videos")
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
