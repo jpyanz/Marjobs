@@ -4,6 +4,9 @@
         .gallery-show-container .add-comment-text { font-size: 25px; }
         .gallery-show-container video { width: 100%; }
         .gallery-show-container *:focus { outline: none !important; }
+        
+        .gallery-show-container figure .figure-caption { line-height: 0; }
+        .gallery-show-container figure .figure-caption iframe { height: 15px !important; width: 50px !important; }
     </style>
 <% end %>
 
@@ -55,49 +58,11 @@
     </div>
 
     <section class="comments">
-        <h2 class="display-6 my-5 text-center"><%= 'Comments' unless @album.comments.blank? %></h2>
-        
-        <div class="row justify-content-center">
-            <div class="col col-sm-8">
-                <ul class="list-group list-group-flush">
-                    <% @album.comments.where(:status => 'Public').each do |comment| %>
-                        <li class="list-group-item bg-transparent">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 d-flex align-items-center">
-                                    <span class="rounded-circle text-bg-secondary p-3"><%= icon('fa-solid fa-2xl', 'user') %></span>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5><%= comment.name %> <span class="created-date h6 text-muted"><i><%= distance_of_time_in_words(comment.created_at, Time.current) %></i></span></h5>
-                                    <p><%= comment.body %></p>
-                                </div>
-                            </div>
-                        </li>
-                    <% end %>
-                </ul>
-            </div>        
-        </div>
-
         <h3 class="add-comment-text my-5 text-center">Add a comment</h3>
 
         <div class="row justify-content-center">
             <div class="col col-sm-8">
-                <%= form_with model: [ @album, @album.comments.build ] do |form| %>
-                    <div class="form-floating mb-3">
-                        <%= form.text_field :name, class: 'form-control', placeholder: :name %>
-                        <%= form.label :name %>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <%= form.text_area :body, rows: '5', class: 'form-control h-100', placeholder: "Message"  %>
-                        <%= form.label 'Message' %>
-                    </div>
-                    
-                    <%= form.hidden_field :status, value: 'Public' %>
-                    <%= form.hidden_field :album_id, value: request.fullpath.split("/").last %>
-
-                    <div class="d-grid gap-2">
-                        <%= form.submit 'Submit', :class => 'btn btn-primary btn-lg' %>
-                    </div>
-                <% end %>
+                <div class="fb-comments" data-href="<%= request.original_url %>" data-width="100%" data-numposts="5"></div>
             </div>
         </div>
     </section>

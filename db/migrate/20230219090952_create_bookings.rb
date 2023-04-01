@@ -4,7 +4,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.string :package
       t.date :date
       t.string :name
-      t.integer :phone
+      t.integer "phone", limit: 8
       t.text :email
       t.text :venue
       t.text :addons

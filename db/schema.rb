@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_160346) do
     t.string "package"
     t.date "date"
     t.string "name"
-    t.integer "phone"
+    t.integer "phone", limit: 8
     t.text "email"
     t.text "venue"
     t.text "addons"
@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_160346) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
-    t.integer "phone"
+    t.integer "phone", limit: 8
     t.string "email"
     t.text "message"
     t.datetime "created_at", null: false

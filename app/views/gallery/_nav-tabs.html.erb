@@ -29,10 +29,20 @@
                                 <figure class="figure mb-0 w-100">
                                     <% if file.image? %>
                                         <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                        <figcaption class="figure-caption">
+                                            <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                            </div>
+                                        </figcaption>
                                     <% end %>
                                     
                                     <% if file.video? %>
                                         <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                        <figcaption class="figure-caption">
+                                            <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                            </div>
+                                        </figcaption>
                                     <% end %>
                                 </figure>
                             </div>
@@ -42,10 +52,20 @@
                             <figure class="figure mb-0 w-100">
                                 <% if file.image? %>
                                     <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                    <figcaption class="figure-caption">
+                                        <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                        </div>
+                                    </figcaption>
                                 <% end %>
                                 
                                 <% if file.video? %>
                                     <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                    <figcaption class="figure-caption">
+                                        <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                        </div>
+                                    </figcaption>
                                 <% end %>
                             </figure>
                         </div>
@@ -62,6 +82,11 @@
                                 <div class="col col-sm-4 col-md-3 mb-4">
                                     <figure class="figure mb-0 w-100">
                                         <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                        <figcaption class="figure-caption">
+                                            <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                            </div>
+                                        </figcaption>
                                     </figure>
                                 </div>
                             <% end %>
@@ -71,6 +96,11 @@
                             <div class="col col-sm-4 col-md-3 mb-4">
                                 <figure class="figure mb-0 w-100">
                                     <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
+                                    <figcaption class="figure-caption">
+                                        <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                        </div>
+                                    </figcaption>
                                 </figure>
                             </div>
                         <% end %>
@@ -87,6 +117,11 @@
                                 <div class="col col-sm-4 col-md-3 mb-4">
                                     <figure class="figure mb-0 w-100">
                                         <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                        <figcaption class="figure-caption">
+                                            <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                            </div>
+                                        </figcaption>
                                     </figure>
                                 </div>
                             <% end %>
@@ -96,6 +131,11 @@
                             <div class="col col-sm-4 col-md-3 mb-4">
                                 <figure class="figure mb-0 w-100">
                                     <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
+                                    <figcaption class="figure-caption">
+                                        <div class="fb-share-button" data-href="<%= root_url + url_for(file) %>" data-layout="" data-size="large">
+                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= root_url + url_for(file) %>%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                                        </div>
+                                    </figcaption>
                                 </figure>
                             </div>
                         <% end %>
