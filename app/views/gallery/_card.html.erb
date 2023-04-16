@@ -21,5 +21,5 @@
             <small class="text-muted">Last updated <%= distance_of_time_in_words(album.created_at, Time.now + 15.seconds) %></small>
         </div>
     </div>
-    <%= render partial: "fb-share-button", locals: { share_url: request.original_url + url_for(album) } %>
+    <%= render partial: "fb-share-button", locals: { share_url: root_url + gallery_show_path(album) } %>
 </div>
