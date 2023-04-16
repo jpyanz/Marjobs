@@ -32,6 +32,22 @@ body {
         }
     }
 
+    // Gallery Show Page 
+    .gallery-show-container {
+        .created-date { font-size: 12px; }
+        .add-comment-text { font-size: 25px; }
+        video { width: 100%; }
+        *:focus { outline: none !important; }
+        figure {
+            .figure-img { margin-bottom: 0; }
+
+            & +  .fb-share-button { 
+                line-height: 0; 
+                iframe { height: 15px !important; width: 50px !important; }
+            }
+        }
+    }
+
     // Main Layout
     .main-container {
         .section-1 { 

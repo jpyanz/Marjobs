@@ -19,10 +19,7 @@
         <%= yield :header if content_for? :header %>
     </head>
     <body class="d-flex flex-column justify-content-between">
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" 
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=1022698442231332&autoLogAppEvents=1" 
-        nonce="Mrdy1A67"></script>
+        <%= yield :fb_script if content_for? :fb_script %>
         
         <%= render "layouts/default-header" %>
 
