@@ -91,7 +91,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => 'https://marjobs.osc-fr1.scalingo.io/' }
+  #config.action_mailer.default_url_options = { :host => 'https://marjobs.osc-fr1.scalingo.io/' }
+  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
@@ -105,5 +106,5 @@ Rails.application.configure do
   }
 
   # use mini magick instead of vips for ror7
-  config.active_storage.variant_processor = :mini_magick
+  #config.active_storage.variant_processor = :mini_magick
 end

@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Marjobs
   class Application < Rails::Application
+
+    config.hosts = nil
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
