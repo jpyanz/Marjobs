@@ -9,7 +9,6 @@ Bundler.require(*Rails.groups)
 module Marjobs
   class Application < Rails::Application
 
-    config.hosts = nil
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
@@ -22,12 +21,17 @@ module Marjobs
     # config.eager_load_paths << Rails.root.join("extras")
 
     # config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
-    # config.assets.paths << Rails.root.join("app", "assets", "javascripts")bunsl
+    # config.assets.paths << Rails.root.join("app", "assets", "javascripts")
     # config.assets.paths << Rails.root.join("app", "assets", "images")
     # config.assets.paths << Rails.root.join("app", "assets", "videos")
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
+    config.hosts << "marjobsinc.com"
+
     # Append active storage instead of replace
     config.active_storage.replace_on_assign_to_many = false
+
+    # use mini magick instead of vips for ror7
+    # config.active_storage.variant_processor = :mini_magick
   end
 end
