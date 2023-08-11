@@ -31,5 +31,7 @@ module Marjobs
 
     # use mini magick instead of vips for ror7
     config.active_storage.variant_processor = :mini_magick
+
+    config.hosts = nil
   end
 end
