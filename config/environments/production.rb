@@ -103,4 +103,7 @@ Rails.application.configure do
       :authentication       => 'plain',
       :enable_starttls_auto => true
   }
+
+  # use mini magick instead of vips for ror7
+  config.active_storage.variant_processor = :mini_magick
 end

@@ -29,9 +29,6 @@ module Marjobs
     # Append active storage instead of replace
     config.active_storage.replace_on_assign_to_many = false
 
-    # use mini magick instead of vips for ror7
-    config.active_storage.variant_processor = :mini_magick
-
     config.hosts = nil
   end
 end
