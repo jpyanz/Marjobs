@@ -28,7 +28,5 @@ module Marjobs
 
     # Append active storage instead of replace
     config.active_storage.replace_on_assign_to_many = false
-
-    config.hosts = nil
   end
 end

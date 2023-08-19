@@ -7,21 +7,11 @@
 <% end %>
 
 <% content_for :footer do %>
-    <%= javascript_include_tag "imagesloaded.pkgd.min.js" %>
-    <%= javascript_include_tag "masonry.pkgd.min.js" %>
-    
     <script>
         $(function() 
         {
             const tooltipTriggerList = $('[data-bs-toggle="tooltip"]');
             const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-            var $grid = $('.grid').imagesLoaded( function()
-            {
-                $grid.masonry({
-                    percentPosition: true
-                });
-            });
         });
     </script>
 <% end %>

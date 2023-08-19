@@ -10,6 +10,6 @@ class CheckoutMailer < ApplicationMailer
         @venue = params["venue"]
         @addons = addons
         
-        mail(to: 'brian.ocampo.official@gmail.com', subject: 'Booking order message from Marjobs.com')
+        mail(to: 'admin@marjobsinc.com', subject: 'Booking order message from Marjobs.com')
     end
 end

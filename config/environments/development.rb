@@ -69,15 +69,15 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Config for Mailing System
-  config.action_mailer.default_url_options = { :host => 'marjobsinc.com' }
+  config.action_mailer.default_url_options = { :host => 'marjobsinc.com' }  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
       :address              => "smtp.gmail.com",
       :port                 => 587,
-      :domain               => 'gmail.com',
-      :user_name            => 'dimplez.yanzon@gmail.com',
-      :password             => 'kixwffaqzwjwsjnb', # from App Password in account security settings
+      :domain               => 'marjobsinc.com',
+      :user_name            => ENV["GMAIL_USERNAME"],
+      :password             => ENV["GMAIL_PASSWORD"], # from App Password in account security settings
       :authentication       => 'plain',
       :enable_starttls_auto => true
   }
