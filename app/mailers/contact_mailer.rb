@@ -7,6 +7,6 @@ class ContactMailer < ApplicationMailer
 		@email = params["email"]
 		@message = params["message"]
 
-		mail(to: 'brian.ocampo.official@gmail.com', subject: 'Contact Message from Marjobs.com')
+		mail(to: 'dimplez.yanzon@gmail.com', subject: 'Contact Message from Marjobs.com')
 	end
 end
