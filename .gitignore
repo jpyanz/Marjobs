@@ -37,3 +37,4 @@
 /config/credentials.yml.enc
 /config/env_var.rb
 /ssh
+/ssl
