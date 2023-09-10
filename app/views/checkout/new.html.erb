@@ -7,7 +7,7 @@
 <div class="packages-confirmation-container container-fluid">
     <div class="row justify-content-center">
         <div class="col col-md-8">
-            <h1 class="display-6 text-center my-5">Checkout</h1>
+            <h1 class="display-6 text-center my-5">SCHEDULE</h1>
             
             <%= form_with(model: @booking, url: '/checkout/create', id: 'checkout') do |form| %>
                 <div class="row">
@@ -64,22 +64,26 @@
                     <% end %>
                     <%= form.text_area :venue, class: 'form-control', rows: '5', placeholder: 'Venue address', required: true %>
                 </div>
-                <div class="mb-3">
-                    <p class="form-label fw-bold">Add-ons</p>
-                </div>
-                <div class="row">
-                    <% @addons.each do |addon| %>
-                        <div class="col-12 col-sm-6">
-                            <div class="form-check">
-                                <%= form.check_box addon.id, {:class => "form-check-input"}, addon.name %>
-                                <%= form.label addon.id, addon.name, class: 'form-check-label' %><small class="text-muted fw-light"> - <%= number_to_currency(addon.price.to_f, unit: '₱') %></small>
+                
+                <% if @addons.present? %>
+                    <div class="mb-3">
+                        <p class="form-label fw-bold">Add-ons</p>
+                    </div>
+                    <div class="row">
+                        <% @addons.each do |addon| %>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check">
+                                    <%= form.check_box addon.id, {:class => "form-check-input"}, addon.name %>
+                                    <%= form.label addon.id, addon.name, class: 'form-check-label' %><small class="text-muted fw-light"> - <%= number_to_currency(addon.price.to_f, unit: '₱') %></small>
+                                </div>
                             </div>
-                        </div>
-                    <% end %>
-                </div>
+                        <% end %>
+                    </div>
+                <% end %>
+
                 <div class="text-center mt-5">
                     <%= form.button nil, class: "btn btn-primary btn-lg" do %>
-                        <%= icon('fa-solid', 'cart-shopping') %> BOOK
+                        <%= icon('fa-solid', 'cart-shopping') %> SUBMIT
                     <% end %>
                 </div>
             <% end %>

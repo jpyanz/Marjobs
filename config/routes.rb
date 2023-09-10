@@ -20,8 +20,6 @@ Rails.application.routes.draw do
     post '/checkout/create', to: 'checkout#create'
     get '/checkout/confirmation', to: 'checkout#confirmation'
 
-    get '/about', to: 'about#index'
-
     get '/contact-us', to: 'contact_us#index'
     post '/contact-us/create', to: 'contact_us#create'
     

@@ -11,19 +11,8 @@
 		</div>
 	<% end %>
 
-	<div class="row justify-content-end">
-		<div class="col col-sm-4 col-lg-3">
-			<div class="input-group mb-3">
-				<%= form.label :status, class: 'input-group-text' %>
-				<%= form.select :status, [
-					["Private", "Private"],
-					["Public", "Public"]
-				], 
-				{ include_blank: false }, 
-				{ class: "form-select" } %>
-			</div>
-		</div>
-	</div>
+    <%= form.hidden_field :status, value: "Private" %>
+    
 	<div class="mb-3">
 		<%= form.label :name, class: 'form-label fw-bold' %>
     	<%= form.text_field :name, class: 'form-control' %>
