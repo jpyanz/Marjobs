@@ -28,40 +28,13 @@
     </script>
 <% end %>
 
-<div class="gallery-container container-fluid <%= 'queried' if request.query_string.present? %>">
-    <section class="py-5 text-center container">
-        <div class="row">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Gallery</h1>
-                <p class="lead text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Nullam dictum tellus id mollis porta. Suspendisse pellentesque blandit elit, 
-                    et tristique est tincidunt at.
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="feature card text-bg-dark border-light">
-                    <%= image_tag "img-5.jpg", class: 'card-img img-fluid', alt: "Test" %>
-
-                    <div class="card-img-overlay d-flex flex-column justify-content-end align-items-baseline">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Suspendisse odio erat, tempor sed aliquam sit amet, ultricies eget orci.</p>
-                        
-                        <a class="btn btn-light rounded-0 w-5" href="#" role="button">READ MORE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+<div class="gallery-container container-fluid <%= 'queried' if request.query_string.present? %> <%= 'h-100' unless @albums.present? %>">
     <% if @albums.present? %>
         <div class="album py-5">
-            <div class="row mb-5">
+            <div class="row">
                 <div class="col-md-4 ms-auto">
                     <%= form_with url: gallery_path, method: :get do |form| %>
-                        <div class="input-group mb-3">
+                        <div class="input-group">
                             <% if(params.has_key?(:query)) %> 
                                 <%= form.text_field :query, placeholder: 'search', class: 'form-control', value: params[:query] %>
                             <% else %>
@@ -86,6 +59,14 @@
                     <% end %>
                 </div>
             </div>
+
+            <section class="my-3 text-center container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">Gallery</h1>
+                    </div>
+                </div>
+            </section>
             
             <div id="cards" class='row justify-content-center'>
                 <% @albums.each do |album| %>
@@ -109,6 +90,11 @@
                     </div> 
                 </div>
             </div>
+        </div>
+    <% else %>
+        <div class="d-flex justify-content-center align-items-center flex-column h-100 w-50 mx-auto">
+            <h1>No Gallery yet</h1>
+            <p class="lead text-center">Coming soon<br />Come back later</p>
         </div>
     <% end %>
 </div>

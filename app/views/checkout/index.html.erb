@@ -1,7 +1,4 @@
 <% content_for :header do %>
-    <style>
-        .packages-container .card-cont { max-width: 500px; }
-    </style>
 <% end %>
 
 <% content_for :footer do %>
@@ -9,7 +6,7 @@
 
 <div class="packages-container container-fluid <%= 'h-100' unless @packages.present? %>">
     <% if @packages.present? %>
-        <h1 class="display-6 my-5 text-center">Wedding Packages</h1>
+        <h1 class="display-6 my-5 text-center">Packages</h1>
         
         <div class="row justify-content-center g-4">
             <% @packages.each do |package| %>
@@ -46,7 +43,7 @@
         <div class="row justify-content-center">
             <div class="col col-sm-4">
                 <div class="d-grid mt-5">
-                    <%= link_to 'BOOK NOW', checkout_new_path, class: 'btn btn-primary btn-lg' %>
+                    <%= link_to 'Schedule an Appointment', checkout_new_path, class: 'btn btn-primary btn-lg' %>
                 </div>    
             </div>
         </div>

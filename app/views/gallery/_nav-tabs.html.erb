@@ -34,7 +34,6 @@
                                     <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
                                 <% end %>
                             </figure>
-                            <%= render partial: "fb-share-button", locals: { share_url: root_url + url_for(file) } %>
                         </div>
                     <% end %>
                 <% else %>
@@ -48,7 +47,6 @@
                                 <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
                             <% end %>
                         </figure>
-                        <%= render partial: "fb-share-button", locals: { share_url: root_url + url_for(file) } %>
                     </div>
                 <% end %>
             <% end %>
@@ -64,7 +62,6 @@
                                 <figure class="figure mb-0 w-100">
                                     <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
                                 </figure>
-                                <%= render partial: "fb-share-button", locals: { share_url: root_url + url_for(file) } %>
                             </div>
                         <% end %>
                     <% end %>
@@ -74,7 +71,6 @@
                             <figure class="figure mb-0 w-100">
                                 <%= image_tag file, loading: 'lazy', class: 'img-thumbnail figure-img' %>
                             </figure>
-                            <%= render partial: "fb-share-button", locals: { share_url: root_url + url_for(file) } %>
                         </div>
                     <% end %>
                 <% end %>
@@ -91,7 +87,6 @@
                                 <figure class="figure mb-0 w-100">
                                     <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
                                 </figure>
-                                <%= render partial: "fb-share-button", locals: { share_url: root_url + url_for(file) } %>
                             </div>
                         <% end %>
                     <% end %>
@@ -101,7 +96,6 @@
                             <figure class="figure mb-0 w-100">
                                 <%= video_tag url_for(file), size: "350x200", controls: true, controlsList: 'nodownload', preload: 'none', class: 'img-thumbnail figure-img w-100' %>	
                             </figure>
-                            <%= render partial: "fb-share-button", locals: { share_url: root_url + url_for(file) } %>
                         </div>
                     <% end %>
                 <% end %>

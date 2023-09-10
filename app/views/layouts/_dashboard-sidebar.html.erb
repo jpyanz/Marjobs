@@ -28,6 +28,9 @@
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'object-group') +" Categories", categories_path, class: controller.controller_name == 'categories' ? 'nav-link active' : 'nav-link' %>
             </li>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'comments') +" Comments", comments_path, class: controller.controller_name == 'comments' ? 'nav-link active' : 'nav-link' %>
+            </li>
         </ul>
     </div>
 </nav>

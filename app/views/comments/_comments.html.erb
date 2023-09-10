@@ -1,0 +1,13 @@
+<% @album.comments.each do |comment| %>
+    <% if comment.status == 'Public' %>
+        <div class="d-flex">
+            <div class="flex-shrink-0">
+                <span class="img-thumbnail"><%= icon('fa-solid', 'user') %></span>
+            </div>
+            <div class="flex-grow-1 ms-3">
+                <p><%= comment.name %></p>
+                <p><%= comment.body %></p>
+            </div>
+        </div>
+    <% end %>
+<% end %>

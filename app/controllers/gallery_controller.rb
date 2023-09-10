@@ -8,5 +8,6 @@ class GalleryController < ApplicationController
 	
 	def show
 		@album = Album.find(params[:id])
+		@comment = @album.comments.build
 	end
 end
