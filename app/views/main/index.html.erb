@@ -2,10 +2,182 @@
 <% end %>
 
 <% content_for :footer do %>
+    <% if flash[:notice] %>
+        <div class="toast-container p-3 top-50 start-50 translate-middle">
+            <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+                <div class="toast-header">
+                    <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#007aff"></rect>
+                    </svg>
+                    <strong class="me-auto">Marjobs</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <%= flash[:notice] %>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let toastDom = document.querySelectorAll('.toast')[0];
+
+            if (toastDom)
+            {
+                let toast = new bootstrap.Toast(toastDom);
+
+                toast.show();
+            }
+        </script>
+    <% end %>
 <% end %>
 
-<div class="main-container container-fluid">
-    <div class="row row-cols-1">
-        
+<div class="main-container">
+    <div class="section-1 position-relative">
+        <div class="corner top-right position-absolute top-0 end-0"></div>
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-lg-10">
+                    <h1 class="fw-bold">Turn your moments <br class="d-none d-lg-block">into timeless visual <br class="d-none d-lg-block">stories.</h1>
+                    <p>We create cinematic excellence and stunning imagery with our professional video production and photography services.</p>
+                    <%= link_to "SCHEDULE A MEETING", checkout_path, class: 'btn btn-primary btn-lg', type: 'button' %>
+                </div>
+            </div>
+        </div>
+        <div class="corner bottom-left position-absolute bottom-0 start-0"></div>
+    </div>
+    <div class="section-2">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-lg-10">
+                    <p class="h2 fw-bold text-center mb-5">Are you tired of looking back at your important events or projects and feeling disappointed by the lackluster photos and videos?</p>
+
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <%= image_tag("section-2.png", :class => "img-fluid mx-auto d-block mb-5") %>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <p class="lead">Perhaps you hired multiple photographers, videographers, or a studio who didn't coordinate well, resulting in missed moments or conflicting styles.
+                            The end result was a collection of photos and videos that failed to tell a cohesive and engaging story.
+                            The coverage lacked creativity and failed to capture your event or project's emotions, atmosphere, or uniqueness. </p>
+
+                            <p class="lead">Well, we have the solution for you. Say goodbye to incomplete or unsatisfactory coverage! Our comprehensive photo, video, and editing services ensure
+                            that your memories and projects are captured with excellence, creativity, and great attention to detail. Contact us today to discuss your needs,
+                            and let us tell your story the way it deserves to be told.</p>
+
+                            <div class="float-lg-end text-center">
+                                <%= link_to "SCHEDULE A MEETING", checkout_path, class: 'btn btn-primary', type: 'button' %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-3 position-relative p-5">
+        <div class="corner top-left position-absolute top-0 start-0"></div>
+        <p class="display-5 fw-bold text-center position-relative mb-5">WHY US?</p>
+        <div class="container-fluid position-relative mb-5">
+            <div class="row row-cols-sm-2 row-cols-md-4 gy-3">
+                <div class="col">
+                    <div class="rounded p-3">
+                        <p class="fw-bold">PROFESSIONAL QUALITY AND EXPERTISE</p>
+
+                        <p>Our team comprises experienced professionals who create stunning visuals and tell compelling stories through photography and videography.
+                        With years of industry knowledge, we have the skills and the insights to bring your vision to life.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="rounded p-3">
+                        <p class="fw-bold">TAILORED SOLUTIONS</p>
+
+                        <p>Every person is unique, and we treat it as such. We take the time to understand your specific requirements and goals,
+                        providing personalized package solutions that suit your needs.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="rounded p-3">
+                        <p class="fw-bold">STRESS-FREE EVENT</p>
+
+                        <p>You will most likely experience mixed feelings while waiting for important life events. Share your moment with us;
+                        we will take care of the worrying part and do the heavy lifting so you can focus on the FUN and exciting part.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="rounded p-3">
+                        <p class="fw-bold">COMPETITIVE PRICING</p>
+
+                        <p>We believe in offering exceptional value for your investment.
+                        Our competitive pricing ensures that you receive top-notch services without breaking the bank.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-4 p-5">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-10">
+                    <p class="display-4">CONTACT US</p>
+                    <%= image_tag("line.png", :class => "img-fluid mb-5") %>
+
+                    <p class="mb-5">
+                        If you have any question regarding our company and services,<br />
+                        please do not hesitate to contact us using the form. You can also <br />
+                        contact us via our dedicated info line and email address. Let's talk!
+                    </p>
+
+                    <div class="row gy-3">
+                        <div class="col-12 col-md-5">
+                            <div class="rounded p-4">
+                                <p class="fw-bold mb-0">Address</p>
+                                <address>
+                                    B4 L16A Perpetual Village 8, Habay 1, Bacoor City, Cavite (Near SM Bacoor) - By appointment only
+                                </address>
+
+                                <p class="fw-bold mb-0">Phone</p>
+                                <p><a href="tel:+4733378901">+63 970 930 6093</a></p>
+
+                                <p class="fw-bold mb-0">E-mail</p>
+                                <a href="mailto:marjobs.multimedia@gmail.com">marjobs.multimedia@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-7">
+                            <%= form_with(model: @contact, url: '/create') do |form| %>
+                                <div class="row gy-3">
+                                    <div class="col-6">
+                                        <div class="form-floating">
+                                            <%= form.text_field :name, class: 'form-control form-control-sm', placeholder: :name, required: true %>
+                                            <%= form.label :name, class: 'form-label col-form-label-sm' %>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating input-group h-100">
+                                            <span class="input-group-text" id="phone">+63</span>
+                                            <%= form.number_field :phone, class: 'form-control form-control-sm pt-2', min: 0, placeholder: :phone, onKeyPress: 'if(this.value.length==10) return false;', required: true %>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <%= form.email_field :email, class: 'form-control form-control-sm', placeholder: :email, required: true %>
+                                            <%= form.label :email, class: 'form-label col-form-label-sm' %>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <%= form.text_area :message, class: 'form-control', rows: '5', placeholder: "message", required: true %>
+                                            <%= form.label :message, class: 'form-label' %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="float-md-end mt-3">
+                                    <%= form.submit "SUBMIT", class: 'btn btn-primary' %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
