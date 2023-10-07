@@ -4,9 +4,9 @@
 	{
 		$(window).on("scroll", function ()
 		{
-			var scroll = $(this).scrollTop() - 80;
+			var scroll = $(this).scrollTop() - ($(window).outerHeight() - 250);
 
-			$(".main-container").css({ "background-position": "center " + scroll / 2 + "px" });
+			$(".main-container").css({ "background-position": "0px " + scroll / 2 + "px" });
 		});
 	};
 
@@ -15,6 +15,11 @@
 		$(document).bind("contextmenu", function (e)
 		{
 			return false;
+		});
+
+		$(document).ready(function ()
+		{
+			//$(this).scrollTop(0);
 		});
 
 		parallax();

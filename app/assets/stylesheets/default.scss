@@ -15,12 +15,12 @@ body {
     // Main Layout
     .main-container {
         background: url('main-photo.jpg') no-repeat;
-        background-size: 100vw 100vh;
+        background-size: 170vw 150vh;
+        background-position: 0px -40vh;
 
         .section-1 {
             color: #fff;
-            height: calc(100vh - 80px);
-            position: relative;
+            height: calc(100vh - 73px);
 
             .container-fluid {
                 h1 { font-size: 4em; }
@@ -160,13 +160,11 @@ footer {
     .logo { font: 30px 'Italianno', Arial, Helvetica, sans-serif; }
 }
 
-@media only screen {
-    .main-container {
-        background-attachment: scroll;
-    }
+@media (max-width: 991.98px) {
+    body .main-container .section-1 { height: calc(100vh - 35px); }
 }
 
-@media (min-width: 991.98px) {
+@media (min-width: 992px) {
     .navbar-nav .nav-item {
         border: 2px solid #fff;
 
@@ -181,6 +179,7 @@ footer {
 }
 
 @media (min-width: 576px) {
+    /*
     // Packages Page
     .packages-container {
         .card {
@@ -194,4 +193,5 @@ footer {
             }
         }
     }
+    */
 }

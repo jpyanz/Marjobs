@@ -7,8 +7,8 @@
 <div class="packages-confirmation-container container-fluid">
     <div class="row justify-content-center">
         <div class="col col-md-8">
-            <h1 class="display-6 text-center my-5">SCHEDULE</h1>
-            
+            <h1 class="display-6 text-center my-5">SCHEDULE AN APPOINTMENT</h1>
+
             <%= form_with(model: @booking, url: '/checkout/create', id: 'checkout') do |form| %>
                 <div class="row">
                     <div class="col-12 col-sm-6">
@@ -17,8 +17,8 @@
                                 Package<small class="text-danger">*</small>
                             <% end %>
 
-                            <%= form.select :package, options_for_select(@packages_array, @booking.package), 
-                            { include_blank: "Select your package" }, 
+                            <%= form.select :package, options_for_select(@packages_array, @booking.package),
+                            { include_blank: "Select your package" },
                             { class: "form-control", required: true } %>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <% end %>
                     <%= form.text_area :venue, class: 'form-control', rows: '5', placeholder: 'Venue address', required: true %>
                 </div>
-                
+
                 <% if @addons.present? %>
                     <div class="mb-3">
                         <p class="form-label fw-bold">Add-ons</p>
