@@ -7,7 +7,7 @@
 <div class="packages-container container-fluid <%= 'h-100' unless @packages.present? %>">
     <% if @packages.present? %>
         <h1 class="display-6 my-5 text-center">Packages</h1>
-        
+
         <div class="row justify-content-center g-4">
             <% @packages.each do |package| %>
                 <div class="card-cont col">
@@ -15,7 +15,7 @@
                         <div class="card-header fw-bold text-center py-3"><%= package.name %></div>
                         <div class="card-body">
                             <h2 class="card-title text-center"><%= number_to_currency(package.price.to_f, unit: '₱') %></h2>
-                            
+
                             <%= sanitize package.description, attributes: %w(class style href) %>
 
                             <p class="mt-5 fw-bold text-center"><u>FREEBIES</u></p>
@@ -42,9 +42,9 @@
 
         <div class="row justify-content-center">
             <div class="col col-sm-4">
-                <div class="d-grid mt-5">
+                <div class="d-grid my-5">
                     <%= link_to 'Schedule an Appointment', checkout_new_path, class: 'btn btn-primary btn-lg' %>
-                </div>    
+                </div>
             </div>
         </div>
     <% else %>
