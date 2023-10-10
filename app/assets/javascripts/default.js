@@ -4,7 +4,7 @@
 	{
 		$(window).on("scroll", function ()
 		{
-			var scroll = $(this).scrollTop() - 1000;
+			var scroll = $(this).scrollTop() - 800;
 
 			$(".main-container .section-1").css({ "background-position": "0px " + scroll / 2 + "px" });
 		});

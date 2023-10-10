@@ -17,7 +17,7 @@ body {
         .section-1 {
             background: url('main-photo.jpg') no-repeat;
             background-size: 150vw 150vh;
-            background-position: 0px -500px;
+            background-position: 0px -400px;
             border-bottom-left-radius: 20rem;
             border-top-right-radius: 20rem;
             color: #fff;
@@ -26,7 +26,6 @@ body {
             .container-fluid {
                 h1 { font-size: 4em; }
                 p { font-size: 1.5em; }
-                a.btn { position: relative; z-index: 1; }
             }
         }
 
@@ -38,33 +37,9 @@ body {
         }
 
         .section-3 {
-            background: rgb(191, 149, 39);
             background: linear-gradient(180deg, rgba(191, 149, 39, 1) 0%, rgba(227, 209, 161, 1) 50%);
+            border-top-left-radius: 20rem;
 
-            .corner {
-                height: 35%;
-                min-width: 200px;
-                min-height: 250px;
-                overflow: hidden;
-                width: 20%;
-
-                &.top-left {
-                    &:before {
-                        box-shadow: -170px -100px 0 0 #fff;
-                        top: 0;
-                        left: 0;
-                    }
-                }
-
-                &:before {
-                    content: "";
-                    display: block;
-                    width: 200%;
-                    height: 200%;
-                    position: absolute;
-                    border-radius: 50%;
-                }
-            }
             .row .rounded { background-color: #e8e8f5; height: 100%; }
         }
 
@@ -124,7 +99,7 @@ body {
 
     // About Page
     .about-container {
-        .row:nth-child(2) { margin-top: -4rem; }
+        .row:first-child { margin-bottom: -4rem; }
 
         .section-1 {
             background: url('about-top.png') bottom center no-repeat;
