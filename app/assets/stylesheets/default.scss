@@ -14,50 +14,19 @@ header {
 body {
     // Main Layout
     .main-container {
-        background: url('main-photo.jpg') no-repeat;
-        background-size: 170vw 150vh;
-        background-position: 0px -40vh;
-
         .section-1 {
+            background: url('main-photo.jpg') no-repeat;
+            background-size: 150vw 150vh;
+            background-position: 0px -500px;
+            border-bottom-left-radius: 20rem;
+            border-top-right-radius: 20rem;
             color: #fff;
             height: calc(100vh - 73px);
 
             .container-fluid {
                 h1 { font-size: 4em; }
                 p { font-size: 1.5em; }
-            }
-
-            .corner {
-                height: 35%;
-                min-width: 200px;
-                min-height: 250px;
-                overflow: hidden;
-                width: 20%;
-
-                &.bottom-left {
-                    &:before {
-                        box-shadow: -140px 100px 0 0 #fff;
-                        bottom: 0;
-                        left: 0;
-                    }
-                }
-
-                &.top-right {
-                    &:before {
-                        box-shadow: 80px -170px 0 0 #fff;
-                        right: 0px;
-                        top: 0;
-                    }
-                }
-
-                &:before {
-                    content: "";
-                    display: block;
-                    width: 200%;
-                    height: 200%;
-                    position: absolute;
-                    border-radius: 50%;
-                }
+                a.btn { position: relative; z-index: 1; }
             }
         }
 
@@ -152,12 +121,27 @@ body {
             }
         }
     }
+
+    // About Page
+    .about-container {
+        .row:nth-child(2) { margin-top: -4rem; }
+
+        .section-1 {
+            background: url('about-top.png') bottom center no-repeat;
+            background-size: cover;
+            height: 70vh;
+        }
+
+        .section-2 {
+            background-color: rgba(200, 200, 200, 0.5);
+        }
+    }
 }
 
 footer {
     border-top: 1px solid #e7e7e7;
 
-    .logo { font: 30px 'Italianno', Arial, Helvetica, sans-serif; }
+    .logo { font: 2rem 'Italianno', Arial, Helvetica, sans-serif; }
 }
 
 @media (max-width: 991.98px) {
