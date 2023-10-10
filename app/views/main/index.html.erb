@@ -32,18 +32,16 @@
 <% end %>
 
 <div class="main-container">
-    <div class="section-1 position-relative">
-        <div class="corner top-right position-absolute top-0 end-0"></div>
+    <div class="section-1">
         <div class="container-fluid h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-lg-10">
                     <h1 class="fw-bold">Turn your moments <br class="d-none d-lg-block">into timeless visual <br class="d-none d-lg-block">stories.</h1>
                     <p>We create cinematic excellence and stunning imagery with our <br class="d-none d-lg-block">professional video production and photography services.</p>
-                    <%= link_to "SCHEDULE A MEETING", checkout_path, class: 'btn btn-primary btn-lg', type: 'button' %>
+                    <%= link_to "SCHEDULE A MEETING", checkout_new_path, class: 'btn btn-primary btn-lg', type: 'button' %>
                 </div>
             </div>
         </div>
-        <div class="corner bottom-left position-absolute bottom-0 start-0"></div>
     </div>
     <div class="section-2">
         <div class="container-fluid h-100">
@@ -65,7 +63,7 @@
                             and let us tell your story the way it deserves to be told.</p>
 
                             <div class="float-lg-end text-center">
-                                <%= link_to "SCHEDULE A MEETING", checkout_path, class: 'btn btn-primary', type: 'button' %>
+                                <%= link_to "SCHEDULE A MEETING", checkout_new_path, class: 'btn btn-primary', type: 'button' %>
                             </div>
                         </div>
                     </div>

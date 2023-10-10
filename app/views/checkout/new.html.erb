@@ -7,11 +7,11 @@
 <div class="packages-confirmation-container container-fluid">
     <div class="row justify-content-center">
         <div class="col col-md-8">
-            <h1 class="display-6 text-center my-5">SCHEDULE AN APPOINTMENT</h1>
+            <h1 class="display-6 text-center my-5">SCHEDULE A MEETING</h1>
 
             <%= form_with(model: @booking, url: '/checkout/create', id: 'checkout') do |form| %>
                 <div class="row">
-                    <div class="col-12 col-sm-6">
+                    <div class="col col-sm-6">
                         <div class="mb-3">
                             <%= form.label :package, class: 'form-label fw-bold' do %>
                                 Package<small class="text-danger">*</small>
@@ -22,11 +22,13 @@
                             { class: "form-control", required: true } %>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6">
-                        <%= form.label :date, class: 'form-label fw-bold' do %>
-                            Date<small class="text-danger">*</small>
-                        <% end %>
-                        <%= form.date_field :date, class: 'form-control', required: true %>
+                    <div class="col col-sm-6">
+                        <div class="mb-3">
+                            <%= form.label :date, class: 'form-label fw-bold' do %>
+                                Date<small class="text-danger">*</small>
+                            <% end %>
+                            <%= form.date_field :date, class: 'form-control', required: true %>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -38,7 +40,7 @@
                             <%= form.text_field :name, class: 'form-control', required: true %>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col col-sm-4">
                         <div class="mb-3">
                             <%= form.label :phone, class: 'form-label fw-bold' do %>
                                 Phone<small class="text-danger">*</small>
@@ -49,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col col-sm-4">
                         <div class="mb-3">
                             <%= form.label :email, class: 'form-label fw-bold' do %>
                                 Email<small class="text-danger">*</small>
