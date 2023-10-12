@@ -41,7 +41,6 @@ header {
     BODY
 \*------------------------------------*/
 body {
-    height: 100vh;
     background-color: #f5f5f5;
     font-family: 'Inter', Arial, Helvetica, sans-serif !important;
     font-size: 100%;
@@ -97,23 +96,23 @@ body {
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
-    html { font-size: 16px; }
+    html { font-size: 17px; }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    html { font-size: 14px; }
+    html { font-size: 16px; }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    html { font-size: 12px; }
+    html { font-size: 15px; }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
-    html { font-size: 10px; }
+    html { font-size: 15px; }
 }
 
 @media (max-width: 575.98px) {
-    html { font-size: 10px; }
+    html { font-size: 15px; }
 }
 
 

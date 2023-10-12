@@ -10,7 +10,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Packages</li>
 		</ol>
 	</nav>
-	
+
     <div class="pt-3 pb-2 mb-3 border-bottom d-flex justify-content-between">
         <h1 class="h2 mb-0">Packages</h1>
 		<%= link_to icon('fa-solid', 'plus') +" New Package", new_package_path, class: 'btn btn-success' %>
@@ -23,6 +23,7 @@
 					<th scope="col">#</th>
 					<th>Name</th>
 					<th>Price</th>
+					<th>Category</th>
 					<th>Description</th>
 					<th>Freebies</th>
 					<th></th>
@@ -34,17 +35,18 @@
 						<th scope="row"><%= i %></th>
 						<td><%= package.name %></td>
 						<td><%= number_to_currency(package.price.to_f, unit: '₱') %></td>
+						<td><%= package.category %></td>
 						<td><%= sanitize package.description, attributes: %w(class style href) %></td>
 						<td><%= sanitize package.freebies, attributes: %w(class style href) %></td>
 						<td class="text-end">
 							<div class="btn-group" role="group">
 								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_package_path(package), class: 'btn btn-secondary btn-sm text-nowrap' %>
 								<%= link_to icon('fa-solid', 'trash') +" Delete", package,
-									method: :delete, 
+									method: :delete,
 									data: {
 										turbo_method: :delete,
 										turbo_confirm: "Are you sure?"
-									},  
+									},
 									class: 'btn btn-danger btn-sm text-nowrap' %>
 							</div>
 						</td>

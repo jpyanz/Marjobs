@@ -1,9 +1,10 @@
 class CheckoutController < ApplicationController
     layout 'default'
-	
+
     def index
 		@packages = Package.all.order("created_at DESC")
 		@addons = Addon.all.order("created_at DESC")
+		@categories = Category.all
     end
 
 	def new
@@ -12,7 +13,7 @@ class CheckoutController < ApplicationController
 		@addons = Addon.all.order("created_at DESC")
     end
 
-    def create		
+    def create
 		@booking = Booking.new(booking_params)
 		@addons = Addon.all.order("created_at DESC")
 
@@ -24,9 +25,9 @@ class CheckoutController < ApplicationController
 
 		respond_to do |format|
 			if @booking.save
-				
+
 				CheckoutMailer.checkout(booking_params, @booking.addons).deliver
-				
+
 				format.html { redirect_to checkout_confirmation_path }
 				format.json { render :confirmation, status: :created, location: @booking }
 			else
