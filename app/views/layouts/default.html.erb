@@ -11,16 +11,47 @@
         <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
         <%= stylesheet_link_tag "default", media: "all", "data-turbo-track": "reload" %>
 
-        <!-- 
+        <!--
             TODO: Needed but causes error, maybe show in production?
-            <%= javascript_importmap_tags %> 
+            <%= javascript_importmap_tags %>
         -->
 
         <%= yield :header if content_for? :header %>
     </head>
     <body class="d-flex flex-column justify-content-between">
+
+        <!-- Messenger Chat Plugin Code -->
+        <div id="fb-root"></div>
+
+        <!-- Your Chat Plugin code -->
+        <div id="fb-customer-chat" class="fb-customerchat"></div>
+
+        <script>
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "398648830294674");
+            chatbox.setAttribute("attribution", "biz_inbox");
+        </script>
+
+        <!-- Your SDK code -->
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                xfbml            : true,
+                version          : 'v18.0'
+                });
+            };
+
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+
         <%= yield :fb_script if content_for? :fb_script %>
-        
+
         <%= render "layouts/default-header" %>
 
         <main class="flex-grow-1" role="main">
@@ -28,7 +59,7 @@
         </main>
 
         <%= render "layouts/default-footer" %>
-        
+
         <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "default", "data-turbo-track": "reload" %>
         <%= javascript_include_tag "turbo", type: "module" %>

@@ -7,14 +7,15 @@
                 <li class="nav-item">
                     <%= link_to icon('fa-solid', 'users') +" Users", users_path, class: controller.controller_name == 'users' ? 'nav-link active' : 'nav-link' %>
                 </li>
-                <li class="nav-item">
-                    <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: controller.controller_name == 'bookings' ? 'nav-link active' : 'nav-link' %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to icon('fa-solid', 'message') +" Messages", contacts_path, class: controller.controller_name == 'contacts' ? 'nav-link active' : 'nav-link' %>
-                </li>
                 <li><hr class="ms-3 me-5" /></li>
             </div>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: controller.controller_name == 'bookings' ? 'nav-link active' : 'nav-link' %>
+            </li>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'message') +" Messages", contacts_path, class: controller.controller_name == 'contacts' ? 'nav-link active' : 'nav-link' %>
+            </li>
+            <li><hr class="ms-3 me-5" /></li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'box-archive') +" Packages", packages_path, class: controller.controller_name == 'packages' ? 'nav-link active' : 'nav-link' %>
             </li>
@@ -22,9 +23,11 @@
                 <%= link_to icon('fa-solid', 'puzzle-piece') +" Addons", addons_path, class: controller.controller_name == 'addons' ? 'nav-link active' : 'nav-link' %>
             </li>
             <li><hr class="ms-3 me-5" /></li>
+            <!--
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'photo-film') +" Galleries", albums_path, class: controller.controller_name == 'albums' ? 'nav-link active' : 'nav-link' %>
             </li>
+            -->
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'object-group') +" Categories", categories_path, class: controller.controller_name == 'categories' ? 'nav-link active' : 'nav-link' %>
             </li>

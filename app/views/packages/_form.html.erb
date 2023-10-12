@@ -12,7 +12,7 @@
 	<% end %>
 
 	<div class="row">
-		<div class="col-12 col-sm-6">
+		<div class="col-12 col-sm-4">
 			<div class="mb-3">
 				<%= form.label :name, class: 'form-label fw-bold' do %>
 					Name<small class="text-danger">*</small>
@@ -21,12 +21,30 @@
 				<%= form.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
 			</div>
 		</div>
-		<div class="col-12 col-sm-6">
+		<div class="col-12 col-sm-4">
 			<%= form.label :price, class: 'form-label fw-bold' do %>
 				Price<small class="text-danger">*</small>
 			<% end %>
 
 			<%= form.number_field :price, class: 'form-control', value: number_to_currency(package.price.to_f, delimiter: '', unit: ''), step: :any, min: 0, placeholder: :price, required: true %>
+		</div>
+		<div class="col-12 col-sm-4">
+			<%= form.label :category, class: 'form-label fw-bold' %>
+			<% if @categories_array.present? %>
+				<div class="input-group mb-3">
+					<%= form.select :category, options_for_select(@categories_array, package.category),
+					{ include_blank: "Select a category" },
+					{ class: "form-select", required: false } %>
+					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
+				</div>
+			<% else %>
+				<div class="input-group mb-3">
+					<%= form.select :category, [[package.category, package.category]],
+					{ include_blank: "Select a category" },
+					{ class: "form-select" } %>
+					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
+				</div>
+			<% end %>
 		</div>
 	</div>
 	<div class="mb-3">

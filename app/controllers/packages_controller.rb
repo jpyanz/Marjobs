@@ -2,9 +2,10 @@ class PackagesController < ApplicationController
 	layout 'dashboard'
 	before_action :authorize
 	before_action :set_package, only: %i[ show edit update destroy ]
+	before_action :set_categories, only: %i[ show new edit create ]
 
 	def index
-		@packages = Package.all.order("created_at DESC")
+		@packages = Package.all.order("created_at ASC")
 	end
 
 	def show
@@ -66,7 +67,11 @@ class PackagesController < ApplicationController
 		@package = Package.find(params[:id])
 	end
 
+	def set_categories
+		@categories_array = Category.all.map { |category| [category.category] }
+	end
+
 	def package_params
-		params.require(:package).permit(:name, :price, :description, :freebies)
+		params.require(:package).permit(:name, :price, :category, :description, :freebies)
 	end
 end

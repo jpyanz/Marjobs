@@ -12,6 +12,8 @@ header {
 }
 
 body {
+    main { margin-top: 3rem; }
+
     // Main Layout
     .main-container {
         .section-1 {
@@ -115,8 +117,6 @@ body {
 
 footer {
     border-top: 1px solid #e7e7e7;
-
-    .logo { font: 2rem 'Italianno', Arial, Helvetica, sans-serif; }
 }
 
 @media (max-width: 991.98px) {

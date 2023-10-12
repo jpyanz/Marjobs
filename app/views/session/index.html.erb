@@ -1,6 +1,6 @@
 <div class="login-container">
     <div class="form-signin w-100 m-auto">
-        <a href="/" class="logo">Marjobs</a>
+        <a href="/" class="logo"><%= image_tag "logo.png", :class => "img-fluid" %></a>
 
         <% if flash[:notice] %>
             <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
@@ -23,7 +23,7 @@
         <% end %>
 
         <p class="mt-2 text-start">
-            <%= link_to icon('fa-solid', 'angle-left') +" back", '/', class: 'text-decoration-none' %>
+            <%= link_to icon('fa-solid', 'angle-left') +" Home", '/', class: 'text-decoration-none' %>
         </p>
     </div>
 </div>
