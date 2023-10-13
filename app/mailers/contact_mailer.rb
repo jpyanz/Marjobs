@@ -1,12 +1,12 @@
 class ContactMailer < ApplicationMailer
-    default from: 'dimplez.yanzon@gmail.com'
+    default from: 'marjobs.multimedia@gmail.com'
 
-    def contact(params) 
+    def contact(params)
 		@name =  params["name"]
 		@phone = params["phone"]
 		@email = params["email"]
 		@message = params["message"]
 
-		mail(to: 'dimplez.yanzon@gmail.com', subject: 'Contact Message from Marjobs.com')
+		mail(to: 'marjobs.multimedia@gmail.com', subject: 'Contact Message from marjobsinc.com')
 	end
 end

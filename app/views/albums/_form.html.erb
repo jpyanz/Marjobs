@@ -20,22 +20,21 @@
 			<%= form.label :category, class: 'form-label fw-bold' %>
 			<% if @categories_array.present? %>
 				<div class="input-group mb-3">
-					<%= form.select :category, options_for_select(@categories_array, album.category), 
-					{ include_blank: "Select a category" }, 
+					<%= form.select :category, options_for_select(@categories_array, album.category),
+					{ include_blank: "Select a category" },
 					{ class: "form-select", required: false } %>
 					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
 				</div>
 			<% else %>
 				<div class="input-group mb-3">
 					<%= form.select :category, [[album.category, album.category]],
-					{ include_blank: "Select a category" }, 
+					{ include_blank: "Select a category" },
 					{ class: "form-select" } %>
 					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
 				</div>
 			<% end %>
 		</div>
 	</div>
-	
 
 	<div class="mb-3">
 		<%= form.label :description, class: 'form-label fw-bold' %>
@@ -53,24 +52,24 @@
 					<% album.files.each do |file| %>
 						<% if !file.id.nil? %>
 							<figure class="figure position-relative mx-3">
-								<%= link_to icon('fa-solid', 'xmark'), 
-									album_delete_file_path(@album, file.id), 
-									method: :delete, 
+								<%= link_to icon('fa-solid', 'xmark'),
+									album_delete_file_path(@album, file.id),
+									method: :delete,
 									data: {
 										turbo_method: :delete,
 										turbo_confirm: "Are you sure?"
-									},  
-									:"data-bs-toggle" => "tooltip", 
+									},
+									:"data-bs-toggle" => "tooltip",
 									:"data-bs-title" => "Delete",
 									class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle'
 								%>
-							
+
 								<% if file.content_type.include?("image") %>
 									<%= link_to image_tag(file.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(file), target: :_blank %>
 								<% else %>
-									<%= video_tag url_for(file), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>	
+									<%= video_tag url_for(file), size: "350x200", controls: true, preload: 'none', class: 'img-thumbnail figure-img' %>
 								<% end %>
-								
+
 								<figcaption class="figure-caption"><%= file.blob.filename %></figcaption>
 							</figure>
 						<% end %>
@@ -90,23 +89,23 @@
 
 			<% if album.thumbnail.attached? && !album.thumbnail.id.nil? %>
 				<figure class="figure position-relative mx-3">
-					<%= link_to icon('fa-solid', 'xmark'), 
+					<%= link_to icon('fa-solid', 'xmark'),
 						album_delete_thumbnail_path(@album, album.thumbnail.id),
-						method: :delete, 
+						method: :delete,
 						data: {
 							turbo_method: :delete,
 							turbo_confirm: "Are you sure?"
-						},  
-						:"data-bs-toggle" => "tooltip", 
+						},
+						:"data-bs-toggle" => "tooltip",
 						:"data-bs-title" => "Delete",
-						class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle' 
+						class: 'close-btn position-absolute top-0 start-100 translate-middle bg-danger rounded-circle'
 					%>
 
 					<%= link_to image_tag(album.thumbnail.variant(resize_to_limit: [200, 200]).processed, loading: 'lazy', class: 'img-thumbnail figure-img'), url_for(form.object.thumbnail), target: :_blank %>
 					<figcaption class="figure-caption"><%= album.thumbnail.blob.filename %></figcaption>
 				</figure>
 			<% end %>
-			
+
 			<%= form.file_field :thumbnail, class: 'form-control' %>
 		</div>
 	</div>
