@@ -1,5 +1,5 @@
 class CheckoutMailer < ApplicationMailer
-    default from: 'dimplez.yanzon@gmail.com'
+    default from: 'marjobs.multimedia@gmail.com'
 
     def checkout(params, addons)
         @package = params["package"]
@@ -9,7 +9,7 @@ class CheckoutMailer < ApplicationMailer
         @email = params["email"]
         @venue = params["venue"]
         @addons = addons
-        
-        mail(to: 'admin@marjobsinc.com', subject: 'Booking order message from Marjobs.com')
+
+        mail(to: 'marjobs.multimedia@gmail.com', subject: 'Client made a meeting schedule from marjobsinc.com')
     end
 end

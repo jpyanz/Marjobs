@@ -1,6 +1,5 @@
 header {
     .navbar-brand {
-        font-family: 'Italianno', Arial, Helvetica, sans-serif;
         padding-top: .75rem;
         padding-bottom: .75rem;
         background-color: rgba(0, 0, 0, .25);
@@ -11,7 +10,7 @@ header {
         top: .25rem;
         right: 1rem;
     }
-    
+
     .form-control { padding: .75rem 1rem; }
 
     .form-control-dark {
@@ -48,14 +47,14 @@ body {
             .nav-link {
                 font-weight: 500;
                 color: #333;
-    
+
                 &.active { color: #2470dc; }
-    
+
                 .feather {
                     margin-right: 4px;
                     color: #727272;
                 }
-    
+
                 &:hover .feather,
                 &.active .feather { color: inherit; }
             }
@@ -72,5 +71,5 @@ body {
         .tox-promotion { display: none; }
     }
 }
-  
+
 footer { z-index: 1; }

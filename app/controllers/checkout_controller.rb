@@ -2,20 +2,20 @@ class CheckoutController < ApplicationController
     layout 'default'
 
     def index
-		@packages = Package.all.order("created_at DESC")
-		@addons = Addon.all.order("created_at DESC")
-		@categories = Category.all
-    end
+		@packages = Package.all.order("created_at ASC")
+		@addons = Addon.all.order("created_at ASC")
+		@categories = Package.all.order("created_at ASC").map { |package| package.category }.uniq - [""]
+	end
 
 	def new
 		@booking = Booking.new
-		@packages_array = Package.all.map { |package| [package.name] }
-		@addons = Addon.all.order("created_at DESC")
+		@packages_name = Package.all.map { |package| [package.name] }
+		@addons = Addon.all.order("created_at ASC")
     end
 
     def create
 		@booking = Booking.new(booking_params)
-		@addons = Addon.all.order("created_at DESC")
+		@addons = Addon.all.order("created_at ASC")
 
 		@booking.addons = {}
 

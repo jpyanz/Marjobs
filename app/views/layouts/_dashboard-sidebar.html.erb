@@ -22,18 +22,18 @@
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'puzzle-piece') +" Addons", addons_path, class: controller.controller_name == 'addons' ? 'nav-link active' : 'nav-link' %>
             </li>
-            <li><hr class="ms-3 me-5" /></li>
-            <!--
-            <li class="nav-item">
-                <%= link_to icon('fa-solid', 'photo-film') +" Galleries", albums_path, class: controller.controller_name == 'albums' ? 'nav-link active' : 'nav-link' %>
-            </li>
-            -->
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'object-group') +" Categories", categories_path, class: controller.controller_name == 'categories' ? 'nav-link active' : 'nav-link' %>
+            </li>
+            <!--
+            <li><hr class="ms-3 me-5" /></li>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'photo-film') +" Galleries", albums_path, class: controller.controller_name == 'albums' ? 'nav-link active' : 'nav-link' %>
             </li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'comments') +" Comments", comments_path, class: controller.controller_name == 'comments' ? 'nav-link active' : 'nav-link' %>
             </li>
+            -->
         </ul>
     </div>
 </nav>
