@@ -15,11 +15,10 @@ body {
     // Main Layout
     .main-container {
         .section-1 {
-            background: url('main-photo.jpg') no-repeat;
-            background-size: 150vw 150vh;
-            background-position: 0px -400px;
-            border-bottom-left-radius: 12rem;
-            border-top-right-radius: 12rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-bottom-left-radius: 7rem;
+            border-top-right-radius: 7rem;
             color: #fff;
             height: calc(100vh - 73px);
 
@@ -33,11 +32,29 @@ body {
             background: url('rectangle-white.png') left top no-repeat;
             background-size: contain;
             background-color: #f3f3f1;
+
+            .services {
+                background-color: rgba(213, 218, 251, 0.5);
+                border-bottom-left-radius: 7rem;
+                border-bottom-right-radius: 7rem;
+
+                .item {
+                    background-color: #fff;
+                    height: 100%;
+                    text-align: center;
+
+                    .album-icon { padding-bottom: 9px; }
+                }
+            }
+
+            .partners {
+                .list { background-color: rgba(213, 218, 251, 0.5); }
+            }
         }
 
         .section-3 {
             background: linear-gradient(180deg, rgba(191, 149, 39, 1) 0%, rgba(227, 209, 161, 1) 50%);
-            border-top-left-radius: 20rem;
+            border-top-left-radius: 7rem;
 
             .row .rounded { background-color: #e8e8f5; height: 100%; }
         }
@@ -56,7 +73,7 @@ body {
     .packages-container {
         background: rgb(191, 149, 39);
         background: linear-gradient(160deg, rgba(191, 149, 39, 1) 0%, rgba(191, 149, 39, 1) 20%, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 1) 100%);
-        border-top-left-radius: 20rem;
+        border-top-left-radius: 15rem;
 
         .card-cont {
             background-color: rgba(200, 200, 200, 0.5);
@@ -121,38 +138,57 @@ footer {
     border-top: 1px solid #e7e7e7;
 }
 
-@media (max-width: 991.98px) {
-    body .main-container .section-1 { height: calc(100vh - 35px); }
+@media (max-width: 575.98px) {
+    .main-container .section-1 {
+        background-image: url('main-photo-450.jpg');
+    }
+}
+
+@media(min-width: 576px) {
+    .main-container .section-1 {
+        background-image: url('main-photo-450.jpg');
+    }
+}
+
+@media (max-width: 767.98px) {
+    .main-container {
+        .section-2 {
+            background-size: 50% 100% !important;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .main-container .section-1 {
+        background-image: url('main-photo-760.png');
+    }
 }
 
 @media (min-width: 992px) {
+    .main-container .section-1 {
+        background-image: url('main-photo-1024.png');
+    }
+
     .navbar-nav .nav-item {
         border: 3px solid #fff;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
             border-bottom-color: #333;
         }
     }
 }
 
-@media (max-width: 767.98px) {
-    body .main-container .section-2 { background-size: 80% 100%; }
+@media (max-width: 991.98px) {
+    body .main-container .section-1 {
+        height: calc(100vh - 35px);
+    }
 }
 
-@media (min-width: 576px) {
-    /*
-    // Packages Page
-    .packages-container {
-        .card {
-            transition: transform .5s ease;
+@media(min-width: 1200px) {
+    .main-container .section-1 { background-image: url('main-photo-1440.png'); }
+}
 
-            &:hover {
-                border-left: 1px solid rgba(0, 0, 0, 0.175);
-                border-radius: 0.375rem;
-                transform: scale(1.1);
-                z-index: 1;
-            }
-        }
-    }
-    */
+@media (min-width: 1400px) {
+    .main-container .section-1 { background-image: url('main-photo.jpg'); }
 }
