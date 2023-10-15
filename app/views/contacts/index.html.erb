@@ -10,7 +10,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Messages</li>
 		</ol>
 	</nav>
-	
+
     <div class="pt-3 pb-2 mb-3 border-bottom d-flex justify-content-between">
         <h1 class="h2 mb-0">Messages</h1>
 		<%= link_to icon('fa-solid', 'plus') +" New Message", new_contact_path, class: 'btn btn-success' %>
@@ -25,6 +25,7 @@
 					<th>Phone</th>
 					<th>Email</th>
 					<th>Message</th>
+					<th>Created Date</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -33,18 +34,19 @@
 					<tr id="<%= dom_id contact %>">
 						<th scope="row"><%= i %></th>
 						<td><%= contact.name %></td>
-						<td><%= phone_to contact.phone, contact.phone %></td>
+						<td><%= phone_to contact.phone, "+63"+ contact.phone.to_s %></td>
 						<td><%= mail_to contact.email, contact.email %></td>
 						<td><%= sanitize(contact.message) %></td>
+						<td><%= contact.created_at.strftime("%B %d, %Y") %></td>
 						<td class="text-end">
 							<div class="btn-group" role="group">
 								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_contact_path(contact), class: 'btn btn-secondary btn-sm text-nowrap' %>
 								<%= link_to icon('fa-solid', 'trash') +" Delete", contact,
-									method: :delete, 
+									method: :delete,
 									data: {
 										turbo_method: :delete,
 										turbo_confirm: "Are you sure?"
-									},  
+									},
 									class: 'btn btn-danger btn-sm text-nowrap' %>
 							</div>
 						</td>
