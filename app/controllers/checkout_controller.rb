@@ -8,9 +8,15 @@ class CheckoutController < ApplicationController
 	end
 
 	def new
+		# Booking Init
 		@booking = Booking.new
 		@packages_name = Package.all.map { |package| [package.name] }
 		@addons = Addon.all.order("created_at ASC")
+
+		# Meeting Init
+		@meeting = Meeting.new
+		@categories_array = Category.all.map { |category| [category.category] }
+        @categories_array.append("Others")
     end
 
     def create
@@ -37,6 +43,23 @@ class CheckoutController < ApplicationController
 		end
     end
 
+	def meetings_create
+		@meeting = Meeting.new(meeting_params)
+
+        respond_to do |format|
+            if @meeting.save
+
+				MeetingMailer.checkout(meeting_params).deliver
+
+                format.html { redirect_to checkout_confirmation_path }
+                format.json { render :show, status: :created, location: @meeting }
+            else
+                format.html { render :new, status: :unprocessable_entity }
+                format.json { render json: @meeting.errors, status: :unprocessable_entity }
+            end
+        end
+	end
+
 	def confirmation
 	end
 
@@ -46,4 +69,8 @@ class CheckoutController < ApplicationController
     def booking_params
 		params.require(:booking).permit(:package, :date, :name, :phone, :email, :venue, addons: {})
 	end
+
+	def meeting_params
+        params.require(:meeting).permit(:category, :other, :date, :name, :contact, :email, :preffered_date)
+    end
 end

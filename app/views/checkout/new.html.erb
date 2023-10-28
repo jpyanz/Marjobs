@@ -2,93 +2,34 @@
 <% end %>
 
 <% content_for :footer do %>
+    <script>
+        $(function()
+        {
+            let checkoutNewContainer = '.checkout-new-container',
+                otherInput = $('input#meeting_other', checkoutNewContainer),
+                categorySelect = $('select#meeting_category', checkoutNewContainer);
+
+            categorySelect.on('change', function ()
+            {
+                otherInput.prop('disabled', $(this).val() == "Others" ? false : true).val("");
+            });
+        });
+    </script>
 <% end %>
 
-<div class="packages-confirmation-container container-fluid">
-    <div class="row justify-content-center">
+<div class="checkout-new-container container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
         <div class="col col-md-8">
-            <h1 class="display-6 text-center my-5">SCHEDULE A MEETING</h1>
-
-            <%= form_with(model: @booking, url: '/checkout/create', id: 'checkout') do |form| %>
-                <div class="row">
-                    <div class="col col-sm-6">
-                        <div class="mb-3">
-                            <%= form.label :package, class: 'form-label fw-bold' do %>
-                                Package<small class="text-danger">*</small>
-                            <% end %>
-
-                            <%= form.select :package, options_for_select(@packages_name, @booking.package),
-                            { include_blank: "Select your package" },
-                            { class: "form-control", required: true } %>
-                        </div>
-                    </div>
-                    <div class="col col-sm-6">
-                        <div class="mb-3">
-                            <%= form.label :date, class: 'form-label fw-bold' do %>
-                                Date<small class="text-danger">*</small>
-                            <% end %>
-                            <%= form.date_field :date, class: 'form-control', required: true %>
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-header text-center display-6">
+                    SCHEDULE A MEETING
                 </div>
-                <div class="row">
-                    <div class="col-12 col-sm-4">
-                        <div class="mb-3">
-                            <%= form.label :name, class: 'form-label fw-bold' do %>
-                                Name<small class="text-danger">*</small>
-                            <% end %>
-                            <%= form.text_field :name, class: 'form-control', required: true %>
-                        </div>
-                    </div>
-                    <div class="col col-sm-4">
-                        <div class="mb-3">
-                            <%= form.label :phone, class: 'form-label fw-bold' do %>
-                                Phone<small class="text-danger">*</small>
-                            <% end %>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="phone">+63</span>
-                                <%= form.number_field :phone, class: 'form-control', min: 0, onKeyPress: 'if(this.value.length==10) return false;', required: true %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-sm-4">
-                        <div class="mb-3">
-                            <%= form.label :email, class: 'form-label fw-bold' do %>
-                                Email<small class="text-danger">*</small>
-                            <% end %>
-                            <%= form.email_field :email, class: 'form-control', required: true %>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <%= form.label :venue, class: 'form-label fw-bold' do %>
-                        Venue<small class="text-danger">*</small>
-                    <% end %>
-                    <%= form.text_area :venue, class: 'form-control', rows: '5', placeholder: 'Venue address', required: true %>
-                </div>
+                <div class="card-body">
+                    <!-- <%= render partial: "bookings", locals: { booking: @booking, packages_name: @packages_name, addons: @addons } %> -->
 
-                <% if @addons.present? %>
-                    <div class="mb-3">
-                        <p class="form-label fw-bold">Add-ons</p>
-                    </div>
-                    <div class="row">
-                        <% @addons.each do |addon| %>
-                            <div class="col-12 col-sm-6">
-                                <div class="form-check">
-                                    <%= form.check_box addon.id, {:class => "form-check-input"}, addon.name %>
-                                    <%= form.label addon.id, addon.name, class: 'form-check-label' %><small class="text-muted fw-light"> - <%= number_to_currency(addon.price.to_f, unit: '₱') %></small>
-                                </div>
-                            </div>
-                        <% end %>
-                    </div>
-                <% end %>
-
-                <div class="text-center mt-5">
-                    <%= form.button nil, class: "btn btn-primary btn-lg" do %>
-                        <%= icon('fa-solid', 'cart-shopping') %> SUBMIT
-                    <% end %>
+                    <%= render partial: "meetings", locals: { meeting: @meeting, categories_array: @categories_array } %>
                 </div>
-            <% end %>
+            </div>
         </div>
     </div>
 </div>

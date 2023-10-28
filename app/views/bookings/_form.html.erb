@@ -16,10 +16,10 @@
 			<div class="input-group mb-3">
 				<%= form.label :status, class: 'input-group-text' %>
 				<%= form.select :status, [
-					["Pending", "Pending"], 
+					["Pending", "Pending"],
 					["Done", "Done"]
-				], 
-				{ include_blank: false }, 
+				],
+				{ include_blank: false },
 				{ class: "form-select" } %>
 			</div>
 		</div>
@@ -32,12 +32,12 @@
 				<% end %>
 
 				<%= form.select :package, [
-					["ANDROMEDA", "Andromeda"], 
-					["AQUILA", "Aquila"], 
-					["CASSEIOPEIA", "Casseiopeia"], 
+					["ANDROMEDA", "Andromeda"],
+					["AQUILA", "Aquila"],
+					["CASSEIOPEIA", "Casseiopeia"],
 					["ORION", "Orion"]
-				], 
-				{ include_blank: "Select your package" }, 
+				],
+				{ include_blank: "Select your package" },
 				{ class: "form-select", required: true } %>
 			</div>
 		</div>
@@ -77,27 +77,30 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="mb-3">
 		<%= form.label :venue, class: 'form-label fw-bold' do %>
 			Venue<small class="text-danger">*</small>
 		<% end %>
 		<%= form.text_area :venue, class: 'form-control', rows: '3', placeholder: 'Venue address', required: true %>
 	</div>
-	<div class="mb-3">
-		<p class="form-label fw-bold">Add-ons</p>
-	</div>
 
-	<div class="row">
-		<% @addons.each do |addon| %>
-			<div class="col-12 col-sm-6">
-				<div class="form-check">
-					<%= form.check_box addon.id, {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons.key?(addon.id.to_s) : ''}, addon.name %>
-					<%= form.label addon.id, addon.name, class: 'form-check-label' %><small class="text-muted fw-light"> - <%= number_to_currency(addon.price.to_f, unit: '₱') %></small>
+	<% if @addons.present? %>
+		<div class="mb-3">
+			<p class="form-label fw-bold">Add-ons</p>
+		</div>
+
+		<div class="row">
+			<% @addons.each do |addon| %>
+				<div class="col-12 col-sm-6">
+					<div class="form-check">
+						<%= form.check_box addon.id, {:class => "form-check-input", :checked => booking.addons.present? ? booking.addons.key?(addon.id.to_s) : ''}, addon.name %>
+						<%= form.label addon.id, addon.name, class: 'form-check-label' %><small class="text-muted fw-light"> - <%= number_to_currency(addon.price.to_f, unit: '₱') %></small>
+					</div>
 				</div>
-			</div>
-		<% end %>
-	</div>
-	
+			<% end %>
+		</div>
+	<% end %>
+
  	<%= form.submit btn_title, class: 'w-100 btn btn-lg btn-primary mt-3' %>
 <% end %>

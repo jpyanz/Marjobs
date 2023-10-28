@@ -1,0 +1,86 @@
+<%= form_with(model: @meeting, url: '/checkout/meetings/create', id: 'meeting') do |form| %>
+    <% if meeting.errors.any? %>
+		<div style="color: red">
+			<h2><%= pluralize(meeting.errors.count, "error") %> prohibited this package from being saved:</h2>
+
+			<ul>
+				<% meeting.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="row">
+        <div class="col-12 col-sm-6">
+			<%= form.label :category, class: 'form-label fw-bold' %>
+			<%= form.select :category, @categories_array.present? ? options_for_select(@categories_array, meeting.category) : [],
+            { include_blank: "Select a category" },
+            { class: "form-select mb-3", required: false } %>
+		</div>
+		<div class="col-12 col-sm-6">
+			<label class="form-label invisible d-none d-sm-block">&nbsp;</label>
+			<div class="input-group mb-3">
+                <span class="input-group-text">Others</span>
+                <%= form.text_field :other, class: 'form-control', placeholder: 'Other', disabled: 'disabled' %>
+            </div>
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-12 col-sm-6">
+			<div class="mb-3">
+				<%= form.label :date, class: 'form-label fw-bold' do %>
+					Date of Event<small class="text-danger">*</small>
+				<% end %>
+
+				<%= form.date_field :date, class: 'form-control', placeholder: 'Date', required: true %>
+			</div>
+		</div>
+        <div class="col-12 col-sm-6">
+			<div class="mb-3">
+				<%= form.label :preffered_date, class: 'form-label fw-bold' do %>
+					Preffered date of Meeting or Call
+				<% end %>
+
+				<%= form.date_field :preffered_date, class: 'form-control', placeholder: 'Date', required: false %>
+			</div>
+		</div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-4">
+			<div class="mb-3">
+				<%= form.label :name, class: 'form-label fw-bold' do %>
+					Name<small class="text-danger">*</small>
+				<% end %>
+
+				<%= form.text_field :name, class: 'form-control', placeholder: 'Name', required: true %>
+			</div>
+		</div>
+        <div class="col-12 col-sm-4">
+			<div class="mb-3">
+				<%= form.label :email, class: 'form-label fw-bold' do %>
+					Email<small class="text-danger">*</small>
+				<% end %>
+				<%= form.email_field :email, class: 'form-control', required: true %>
+			</div>
+		</div>
+
+        <div class="col-12 col-sm-4">
+			<div class="mb-3">
+				<%= form.label :contact, class: 'form-label fw-bold' do %>
+					Contact Number<small class="text-danger">*</small>
+				<% end %>
+				<div class="input-group mb-3">
+					<span class="input-group-text" id="contact">+63</span>
+					<%= form.number_field :contact, class: 'form-control', min: 0, onKeyPress: 'if(this.value.length==10) return false;', required: true %>
+				</div>
+			</div>
+		</div>
+    </div>
+
+	<div class="text-center mt-3">
+        <%= form.button nil, class: "btn btn-primary btn-lg" do %>
+            <%= icon('fa-solid', 'cart-shopping') %> SUBMIT
+        <% end %>
+    </div>
+<% end %>

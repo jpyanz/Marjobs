@@ -16,43 +16,47 @@
 		<%= link_to icon('fa-solid', 'plus') +" New Message", new_contact_path, class: 'btn btn-success' %>
     </div>
 
-	<div class="table-responsive">
-		<table id="contacts" class="table table-bordered">
-			<thead class="table-dark">
-				<tr>
-					<th scope="col">#</th>
-					<th>Name</th>
-					<th>Phone</th>
-					<th>Email</th>
-					<th>Message</th>
-					<th>Created Date</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody class="table-group-divider">
-				<% @contacts.each.with_index(1) do | contact, i | %>
-					<tr id="<%= dom_id contact %>">
-						<th scope="row"><%= i %></th>
-						<td><%= contact.name %></td>
-						<td><%= phone_to contact.phone, "+63"+ contact.phone.to_s %></td>
-						<td><%= mail_to contact.email, contact.email %></td>
-						<td><%= sanitize(contact.message) %></td>
-						<td><%= contact.created_at.strftime("%B %d, %Y") %></td>
-						<td class="text-end">
-							<div class="btn-group" role="group">
-								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_contact_path(contact), class: 'btn btn-secondary btn-sm text-nowrap' %>
-								<%= link_to icon('fa-solid', 'trash') +" Delete", contact,
-									method: :delete,
-									data: {
-										turbo_method: :delete,
-										turbo_confirm: "Are you sure?"
-									},
-									class: 'btn btn-danger btn-sm text-nowrap' %>
-							</div>
-						</td>
+	<% if @contacts.present? %>
+		<div class="table-responsive">
+			<table id="contacts" class="table table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">#</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Email</th>
+						<th>Message</th>
+						<th>Created Date</th>
+						<th></th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+				</thead>
+				<tbody class="table-group-divider">
+					<% @contacts.each.with_index(1) do | contact, i | %>
+						<tr id="<%= dom_id contact %>">
+							<th scope="row"><%= i %></th>
+							<td><%= contact.name %></td>
+							<td><%= phone_to contact.phone, "+63"+ contact.phone.to_s %></td>
+							<td><%= mail_to contact.email, contact.email %></td>
+							<td><%= sanitize(contact.message) %></td>
+							<td><%= contact.created_at.strftime("%B %d, %Y") %></td>
+							<td class="text-end">
+								<div class="btn-group" role="group">
+									<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_contact_path(contact), class: 'btn btn-secondary btn-sm text-nowrap' %>
+									<%= link_to icon('fa-solid', 'trash') +" Delete", contact,
+										method: :delete,
+										data: {
+											turbo_method: :delete,
+											turbo_confirm: "Are you sure?"
+										},
+										class: 'btn btn-danger btn-sm text-nowrap' %>
+								</div>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	<% else %>
+        <%= render partial: "layouts/empty", locals: { title: "Empty Messages", message: "" } %>
+    <% end %>
 </div>

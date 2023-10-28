@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     # for contact us submission in index
     post '/create', to: 'main#create'
 
-    resources :users, :bookings, :contacts, :comments, :categories, :packages, :addons
+    resources :users, :meetings, :bookings, :contacts, :comments, :categories, :packages, :addons
 
     resources :albums do
         resources :comments
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     get '/checkout/new', to: 'checkout#new'
     post '/checkout/create', to: 'checkout#create'
     get '/checkout/confirmation', to: 'checkout#confirmation'
+
+    post '/checkout/meetings/create', to: 'checkout#meetings_create'
 
     get '/about', to: 'about#index'
 
