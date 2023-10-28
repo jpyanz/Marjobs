@@ -1,11 +1,12 @@
 <h1>Order from <%= @name %></h1>
 ===============================================
 
-<p><strong>Category: </strong> <%= @category %></p>
+<p><strong>Type of Event: </strong> <%= @category %></p>
 <p><strong>Other Category: </strong> <%= @other %></p>
 <p><strong>Date of Event: </strong> <%= @date %></p>
 <p><strong>Preffered date of Meeting or Call: </strong> <%= @preffered_date %></p>
-<p><strong>Contact Number: </strong> +63<%= @contact %></p>
 <p><strong>Email: </strong> <%= @email %></p>
+<p><strong>Contact Number: </strong> +63<%= @contact %></p>
+<p><strong>Other Details: </strong> <%= sanitize(@details) %></p>
 
 <a href="https://marjobsinc.com/meetings" target="_blank">View Schedule</a>
