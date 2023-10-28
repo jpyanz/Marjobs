@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_20_160346) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_26_154833) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -88,6 +88,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_20_160346) do
     t.integer "phone", limit: 8
     t.string "email"
     t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.string "status"
+    t.string "category"
+    t.string "other"
+    t.date "date"
+    t.string "name"
+    t.integer "contact"
+    t.string "email"
+    t.date "preffered_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -10,61 +10,63 @@
 			<li class="breadcrumb-item active" aria-current="page">Bookings</li>
 		</ol>
 	</nav>
-	
+
     <div class="pt-3 pb-2 mb-3 border-bottom d-flex justify-content-between">
         <h1 class="h2 mb-0">Booking</h1>
 		<%= link_to icon('fa-solid', 'plus') +" New booking", new_booking_path, class: 'btn btn-success' %>
     </div>
 
-	<div class="table-responsive">
-		<table id="bookings" class="table table-bordered">
-			<thead class="table-dark">
-				<tr>
-					<th scope="col">#</th>
-					<th>Package</th>
-					<th>Date</th>
-					<th>Name</th>
-					<th>Phone</th>
-					<th>Email</th>
-					<th>Venue</th>
-					<th>Addons</th>
-					<th>Status</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody class="table-group-divider">
-				<% @bookings.each.with_index(1) do | booking, i | %>
-					<tr id="<%= dom_id booking %>" class="<%= booking.status == 'Done' ? "table-success" : "" %>">
-						<th scope="row"><%= i %></th>
-						<td><%= booking.package %></td>
-						<td><%= booking.date.strftime("%B %d, %Y") %></td>
-						<td><%= booking.name %></td>
-						<td><%= phone_to booking.phone, "+63"+ booking.phone.to_s %></td>
-						<td><%= mail_to booking.email, booking.email %></td>
-						<td><%= sanitize(booking.venue) %></td>
-						<td>
-							<ol>
-								<% booking.addons.each do |key, value| %>
-									<li><%= value unless value == 0.to_s %></li>
-								<% end %>
-							</ol>
-						</td>
-						<td><%= booking.status.nil? || booking.status == "Pending" ? "Pending" : "Done" %></td>
-						<td class="text-end">
-							<div class="btn-group" role="group">
-								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_booking_path(booking), class: 'btn btn-secondary btn-sm text-nowrap' %>
-								<%= link_to icon('fa-solid', 'trash') +" Delete", booking,
-									method: :delete, 
-									data: {
-										turbo_method: :delete,
-										turbo_confirm: "Are you sure?"
-									},  
-									class: 'btn btn-danger btn-sm text-nowrap' %>
-							</div>
-						</td>
+	<% if @bookings.present? %>
+		<div class="table-responsive">
+			<table id="bookings" class="table table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">#</th>
+						<th>Package</th>
+						<th>Date</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Email</th>
+						<th>Venue</th>
+						<th>Addons</th>
+						<th>Status</th>
+						<th></th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+				</thead>
+				<tbody class="table-group-divider">
+					<% @bookings.each.with_index(1) do | booking, i | %>
+						<tr id="<%= dom_id booking %>" class="<%= booking.status == 'Done' ? "table-success" : "" %>">
+							<th scope="row"><%= i %></th>
+							<td><%= booking.package %></td>
+							<td><%= booking.date.strftime("%B %d, %Y") %></td>
+							<td><%= booking.name %></td>
+							<td><%= phone_to booking.phone, "+63"+ booking.phone.to_s %></td>
+							<td><%= mail_to booking.email, booking.email %></td>
+							<td><%= sanitize(booking.venue) %></td>
+							<td>
+								<ol>
+									<% booking.addons.each do |key, value| %>
+										<li><%= value unless value == 0.to_s %></li>
+									<% end %>
+								</ol>
+							</td>
+							<td><%= booking.status.nil? || booking.status == "Pending" ? "Pending" : "Done" %></td>
+							<td class="text-end">
+								<div class="btn-group" role="group">
+									<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_booking_path(booking), class: 'btn btn-secondary btn-sm text-nowrap' %>
+									<%= link_to icon('fa-solid', 'trash') +" Delete", booking,
+										method: :delete,
+										data: {
+											turbo_method: :delete,
+											turbo_confirm: "Are you sure?"
+										},
+										class: 'btn btn-danger btn-sm text-nowrap' %>
+								</div>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	<% end %>
 </div>

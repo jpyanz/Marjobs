@@ -16,43 +16,47 @@
 		<%= link_to icon('fa-solid', 'plus') +" New Package", new_package_path, class: 'btn btn-success' %>
     </div>
 
-	<div class="table-responsive">
-		<table id="contacts" class="table table-bordered">
-			<thead class="table-dark">
-				<tr>
-					<th scope="col">#</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Category</th>
-					<th>Description</th>
-					<th>Freebies</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody class="table-group-divider">
-				<% @packages.each.with_index(1) do | package, i | %>
-					<tr id="<%= dom_id package %>">
-						<th scope="row"><%= i %></th>
-						<td><%= package.name %></td>
-						<td><%= number_to_currency(package.price.to_f, unit: '₱') %></td>
-						<td><%= package.category %></td>
-						<td><%= sanitize package.description, attributes: %w(class style href) %></td>
-						<td><%= sanitize package.freebies, attributes: %w(class style href) %></td>
-						<td class="text-end">
-							<div class="btn-group" role="group">
-								<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_package_path(package), class: 'btn btn-secondary btn-sm text-nowrap' %>
-								<%= link_to icon('fa-solid', 'trash') +" Delete", package,
-									method: :delete,
-									data: {
-										turbo_method: :delete,
-										turbo_confirm: "Are you sure?"
-									},
-									class: 'btn btn-danger btn-sm text-nowrap' %>
-							</div>
-						</td>
+	<% if @packages.present? %>
+		<div class="table-responsive">
+			<table id="packages" class="table table-bordered">
+				<thead class="table-dark">
+					<tr>
+						<th scope="col">#</th>
+						<th>Name</th>
+						<th>Price</th>
+						<th>Category</th>
+						<th>Description</th>
+						<th>Freebies</th>
+						<th></th>
 					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
+				</thead>
+				<tbody class="table-group-divider">
+					<% @packages.each.with_index(1) do | package, i | %>
+						<tr id="<%= dom_id package %>">
+							<th scope="row"><%= i %></th>
+							<td><%= package.name %></td>
+							<td><%= number_to_currency(package.price.to_f, unit: '₱') %></td>
+							<td><%= package.category %></td>
+							<td><%= sanitize package.description, attributes: %w(class style href) %></td>
+							<td><%= sanitize package.freebies, attributes: %w(class style href) %></td>
+							<td class="text-end">
+								<div class="btn-group" role="group">
+									<%= link_to icon('fa-solid', 'pen-to-square') +" Edit", edit_package_path(package), class: 'btn btn-secondary btn-sm text-nowrap' %>
+									<%= link_to icon('fa-solid', 'trash') +" Delete", package,
+										method: :delete,
+										data: {
+											turbo_method: :delete,
+											turbo_confirm: "Are you sure?"
+										},
+										class: 'btn btn-danger btn-sm text-nowrap' %>
+								</div>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	<% else %>
+        <%= render partial: "layouts/empty", locals: { title: "Empty Packages", message: "" } %>
+    <% end %>
 </div>

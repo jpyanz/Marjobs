@@ -45,10 +45,9 @@ body {
             overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
             .nav-link {
-                font-weight: 500;
                 color: #333;
 
-                &.active { color: #2470dc; }
+                &.active { color: #2470dc; font-weight: 500; }
 
                 .feather {
                     margin-right: 4px;

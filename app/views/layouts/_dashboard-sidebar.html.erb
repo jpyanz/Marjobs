@@ -1,4 +1,4 @@
-<nav id="sidebarMenu" class="col-md-2 d-md-block bg-light sidebar collapse">
+<nav id="sidebarMenu" class="col-md-2 d-md-block sidebar collapse">
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <h6 class="px-3 text-muted"><span><%= @current_user.role.upcase %></span></h6>
@@ -7,15 +7,15 @@
                 <li class="nav-item">
                     <%= link_to icon('fa-solid', 'users') +" Users", users_path, class: controller.controller_name == 'users' ? 'nav-link active' : 'nav-link' %>
                 </li>
-                <li><hr class="ms-3 me-5" /></li>
+                <li><hr class="mx-3" /></li>
             </div>
             <li class="nav-item">
-                <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: controller.controller_name == 'bookings' ? 'nav-link active' : 'nav-link' %>
+                <%= link_to icon('fa-solid', 'handshake') +" Meetings", meetings_path, class: controller.controller_name == 'meetings' ? 'nav-link active' : 'nav-link' %>
             </li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'message') +" Messages", contacts_path, class: controller.controller_name == 'contacts' ? 'nav-link active' : 'nav-link' %>
             </li>
-            <li><hr class="ms-3 me-5" /></li>
+            <li><hr class="mx-3" /></li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'box-archive') +" Packages", packages_path, class: controller.controller_name == 'packages' ? 'nav-link active' : 'nav-link' %>
             </li>
@@ -26,7 +26,10 @@
                 <%= link_to icon('fa-solid', 'object-group') +" Categories", categories_path, class: controller.controller_name == 'categories' ? 'nav-link active' : 'nav-link' %>
             </li>
             <!--
-            <li><hr class="ms-3 me-5" /></li>
+            <li class="nav-item">
+                <%= link_to icon('fa-solid', 'cart-shopping') +" Bookings", bookings_path, class: controller.controller_name == 'bookings' ? 'nav-link active' : 'nav-link' %>
+            </li>
+            <li><hr class="mx-3" /></li>
             <li class="nav-item">
                 <%= link_to icon('fa-solid', 'photo-film') +" Galleries", albums_path, class: controller.controller_name == 'albums' ? 'nav-link active' : 'nav-link' %>
             </li>

@@ -30,21 +30,12 @@
 		</div>
 		<div class="col-12 col-sm-4">
 			<%= form.label :category, class: 'form-label fw-bold' %>
-			<% if @categories_array.present? %>
-				<div class="input-group mb-3">
-					<%= form.select :category, options_for_select(@categories_array, package.category),
-					{ include_blank: "Select a category" },
-					{ class: "form-select", required: false } %>
-					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
-				</div>
-			<% else %>
-				<div class="input-group mb-3">
-					<%= form.select :category, [[package.category, package.category]],
-					{ include_blank: "Select a category" },
-					{ class: "form-select" } %>
-					<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
-				</div>
-			<% end %>
+			<div class="input-group mb-3">
+				<%= form.select :category, @categories_array.present? ? options_for_select(@categories_array, package.category) : [],
+				{ include_blank: "Select a category" },
+				{ class: "form-select", required: false } %>
+				<%= link_to icon('fa-solid', 'plus'), new_category_path, target: "_blank", :"data-bs-toggle" => "tooltip", :"data-bs-title" => 'Add new category', class:'btn btn-outline-success' %>
+			</div>
 		</div>
 	</div>
 	<div class="mb-3">
