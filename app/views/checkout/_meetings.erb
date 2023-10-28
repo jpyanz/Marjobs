@@ -12,17 +12,15 @@
 	<% end %>
 
 	<div class="row">
-        <div class="col-12 col-sm-6">
-			<%= form.label :category, class: 'form-label fw-bold' %>
+        <div class="col-12">
+			<%= form.label "Type of Event", class: 'form-label fw-bold' %>
 			<%= form.select :category, @categories_array.present? ? options_for_select(@categories_array, meeting.category) : [],
             { include_blank: "Select a category" },
             { class: "form-select mb-3", required: false } %>
-		</div>
-		<div class="col-12 col-sm-6">
-			<label class="form-label invisible d-none d-sm-block">&nbsp;</label>
-			<div class="input-group mb-3">
+
+			<div class="others-cont input-group mb-3">
                 <span class="input-group-text">Others</span>
-                <%= form.text_field :other, class: 'form-control', placeholder: 'Other', disabled: 'disabled' %>
+                <%= form.text_field :other, class: 'form-control', placeholder: 'Other' %>
             </div>
 		</div>
 	</div>
@@ -33,7 +31,7 @@
 					Date of Event<small class="text-danger">*</small>
 				<% end %>
 
-				<%= form.date_field :date, class: 'form-control', placeholder: 'Date', required: true %>
+				<%= form.date_field :date, class: 'form-control', placeholder: 'Date', max: '9999-12-31T23:59', required: true %>
 			</div>
 		</div>
         <div class="col-12 col-sm-6">
@@ -42,7 +40,7 @@
 					Preffered date of Meeting or Call
 				<% end %>
 
-				<%= form.date_field :preffered_date, class: 'form-control', placeholder: 'Date', required: false %>
+				<%= form.date_field :preffered_date, class: 'form-control', placeholder: 'Date', max: '9999-12-31T23:59' %>
 			</div>
 		</div>
     </div>
@@ -74,6 +72,14 @@
 					<span class="input-group-text" id="contact">+63</span>
 					<%= form.number_field :contact, class: 'form-control', min: 0, onKeyPress: 'if(this.value.length==10) return false;', required: true %>
 				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<div class="mb-3">
+				<%= form.label :details, class: 'form-label fw-bold' do %>
+					Other Details
+				<% end %>
+				<%= form.text_area :details, class: 'form-control', rows: '3', placeholder: 'Number of pax, Preferred location, etc.'  %>
 			</div>
 		</div>
     </div>

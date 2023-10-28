@@ -23,13 +23,14 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th>Category</th>
-                        <th>Others</th>
+                        <th>Type of Event</th>
+                        <th>Other Category</th>
                         <th>Date of Event</th>
                         <th>Name</th>
                         <th>Contact</th>
                         <th>Email</th>
                         <th>Preffered Date</th>
+                        <th>Other Details</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -39,12 +40,13 @@
                         <tr id="<%= dom_id meeting %>" class="<%= meeting.status == 'Done' ? "table-success" : "" %>">
                             <th scope="row"><%= i %></th>
                             <td><%= meeting.category %></td>
-                            <td><%= meeting.category != "Others" ? "" : meeting.other %></td>
+                            <td><%= meeting.other %></td>
                             <td><%= meeting.date.strftime("%B %d, %Y") %></td>
                             <td><%= meeting.name %></td>
                             <td><%= phone_to meeting.contact, "+63"+ meeting.contact.to_s %></td>
                             <td><%= mail_to meeting.email, meeting.email %></td>
                             <td><%= meeting.preffered_date.strftime("%B %d, %Y") %></td>
+                            <td><%= sanitize(meeting.details) %></td>
                             <td><%= meeting.status.nil? || meeting.status == "Pending" ? "Pending" : "Done" %></td>
                             <td class="text-end">
                                 <div class="btn-group" role="group">

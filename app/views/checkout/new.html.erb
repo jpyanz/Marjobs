@@ -6,13 +6,22 @@
         $(function()
         {
             let checkoutNewContainer = '.checkout-new-container',
-                otherInput = $('input#meeting_other', checkoutNewContainer),
+                otherInput = $('.others-cont', checkoutNewContainer),
                 categorySelect = $('select#meeting_category', checkoutNewContainer);
 
             categorySelect.on('change', function ()
             {
-                otherInput.prop('disabled', $(this).val() == "Others" ? false : true).val("");
+                if($(this).val() == "Others")
+                {
+                    otherInput.show("slow");
+                }
+                else
+                {
+                    otherInput.hide("slow");
+                }
             });
+
+            otherInput.hide();
         });
     </script>
 <% end %>

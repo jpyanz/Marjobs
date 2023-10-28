@@ -71,6 +71,6 @@ class CheckoutController < ApplicationController
 	end
 
 	def meeting_params
-        params.require(:meeting).permit(:category, :other, :date, :name, :contact, :email, :preffered_date)
+        params.require(:meeting).permit(:category, :other, :date, :name, :contact, :email, :preffered_date, :details)
     end
 end
